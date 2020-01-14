@@ -1,6 +1,6 @@
 {
   "name": "auroraextensions/shippingfilters",
-  "description": "Filter shipping address field options by store.",
+  "description": "Filter shipping address field options.",
   "type": "magento2-module",
   "license": "MIT",
   "authors": [
