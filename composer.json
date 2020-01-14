@@ -1,0 +1,32 @@
+{
+  "name": "auroraextensions/shippingfilters",
+  "description": "Filter shipping address field options by store.",
+  "type": "magento2-module",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Nickolas Burr",
+      "email": "nickolasburr@auroraextensions.com"
+    }
+  ],
+  "support": {
+    "email": "support@auroraextensions.com"
+  },
+  "require": {
+    "php": ">=7.1",
+    "magento/framework": "102.*.*",
+    "magento/module-customer": "102.*.*",
+    "magento/module-directory": "100.*.*",
+    "magento/module-sales": "102.*.*",
+    "magento/module-shipping": "100.*.*",
+    "magento/module-store": "101.*.*"
+  },
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "AuroraExtensions\\ShippingFilters\\": ""
+    }
+  }
+}
