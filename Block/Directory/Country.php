@@ -88,7 +88,7 @@ class Country extends Data
      * @return string
      * @see parent::getCountryHtmlSelect()
      */
-    public function getWhitelistCountryHtmlSelect(
+    public function getWhitelistCountrySelect(
         string $default = null,
         string $name = self::FIELD_COUNTRY_NAME,
         string $id = self::FIELD_COUNTRY_ID,
