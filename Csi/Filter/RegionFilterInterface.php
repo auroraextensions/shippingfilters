@@ -1,6 +1,6 @@
 <?php
 /**
- * CountryFilterInterface.php
+ * RegionFilterInterface.php
  *
  * NOTICE OF LICENSE
  *
@@ -18,10 +18,10 @@ declare(strict_types=1);
 
 namespace AuroraExtensions\ShippingFilters\Csi\Filter;
 
-interface CountryFilterInterface extends AbstractFilterInterface
+interface RegionFilterInterface extends AbstractFilterInterface
 {
     /**
      * @return array
      */
-    public function getCountries(): array;
+    public function getRegions(): array;
 }

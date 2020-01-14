@@ -1,6 +1,6 @@
 <?php
 /**
- * Country.php
+ * Region.php
  *
  * NOTICE OF LICENSE
  *
@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace AuroraExtensions\ShippingFilters\Block\Directory;
 
-use AuroraExtensions\ShippingFilters\Csi\Filter\CountryFilterInterface;
+use AuroraExtensions\ShippingFilters\Csi\Filter\RegionFilterInterface;
 use Magento\Directory\{
     Helper\Data as DirectoryHelper,
     Model\ResourceModel\Country\Collection as CountryCollection,
@@ -33,19 +33,19 @@ use Magento\Framework\{
     View\Element\Template\Context
 };
 
-class Country extends Data
+class Region extends Data
 {
-    /** @constant string FIELD_COUNTRY_NAME */
-    public const FIELD_COUNTRY_NAME = 'country_id';
+    /** @constant string FIELD_REGION_NAME */
+    public const FIELD_REGION_NAME = 'region';
 
-    /** @constant string FIELD_COUNTRY_ID */
-    public const FIELD_COUNTRY_ID = 'country';
+    /** @constant string FIELD_REGION_ID */
+    public const FIELD_REGION_ID = 'state';
 
-    /** @constant string FIELD_COUNTRY_TITLE */
-    public const FIELD_COUNTRY_TITLE = 'Country';
+    /** @constant string FIELD_REGION_TITLE */
+    public const FIELD_REGION_TITLE = 'State/Province';
 
-    /** @property CountryFilterInterface $countryFilter */
-    protected $countryFilter;
+    /** @property CountryFilterInterface $regionFilter */
+    protected $regionFilter;
 
     /**
      * @param Context $context
@@ -55,7 +55,7 @@ class Country extends Data
      * @param RegionCollectionFactory $regionCollectionFactory
      * @param CountryCollectionFactory $countryCollectionFactory
      * @param array $data
-     * @param CountryFilterInterface $countryFilter
+     * @param RegionFilterInterface $regionFilter
      * @return void
      */
     public function __construct(
@@ -66,7 +66,7 @@ class Country extends Data
         RegionCollectionFactory $regionCollectionFactory,
         CountryCollectionFactory $countryCollectionFactory,
         array $data = [],
-        CountryFilterInterface $countryFilter
+        RegionFilterInterface $regionFilter
     ) {
         parent::__construct(
             $context,
@@ -77,7 +77,7 @@ class Country extends Data
             $countryCollectionFactory
             $data
         );
-        $this->countryFilter = $countryFilter;
+        $this->regionFilter = $regionFilter;
     }
 
     /**
@@ -86,20 +86,20 @@ class Country extends Data
      * @param string $id
      * @param string $title
      * @return string
-     * @see parent::getCountryHtmlSelect()
+     * @see parent::getRegionSelect()
      */
-    public function getWhitelistCountrySelect(
+    public function getWhitelistRegionSelect(
         string $default = null,
-        string $name = self::FIELD_COUNTRY_NAME,
-        string $id = self::FIELD_COUNTRY_ID,
-        string $title = self::FIELD_COUNTRY_TITLE
+        string $name = self::FIELD_REGION_NAME,
+        string $id = self::FIELD_REGION_ID,
+        string $title = self::FIELD_REGION_TITLE
     ): string
     {
         /** @var string $value */
-        $value = $default ?? $this->getCountryId();
+        $value = $default ?? $this->getRegionId();
 
         /** @var array $options */
-        $options = $this->countryFilter
+        $options = $this->regionFilter
             ->getOptions();
 
         /** @var string $html */
@@ -108,9 +108,9 @@ class Country extends Data
             ->setName($name)
             ->setId($id)
             ->setTitle(__($title))
+            ->setClass('required-entry validate-state')
             ->setValue($value)
             ->setOptions($options)
-            ->setExtraParams('data-validate="{\'validate-select\':true}"')
             ->getHtml();
 
         return $html;
