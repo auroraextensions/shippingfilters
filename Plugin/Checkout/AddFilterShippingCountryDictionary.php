@@ -24,7 +24,7 @@ use Magento\Checkout\Block\Checkout\LayoutProcessorInterface;
 class AddFilterShippingCountryDictionary
 {
     /** @constant string DICT */
-    public const DICT = 'saf_whitelist_country_id';
+    public const DICT = 'whitelist_country_id';
 
     /** @property CountryFilterInterface $countryFilter */
     private $countryFilter;
