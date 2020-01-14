@@ -18,15 +18,10 @@ declare(strict_types=1);
 
 namespace AuroraExtensions\ShippingFilters\Csi\Filter;
 
-interface CountryFilterInterface
+interface CountryFilterInterface extends AbstractFilterInterface
 {
     /**
      * @return array
      */
     public function getCountries(): array;
-
-    /**
-     * @return array
-     */
-    public function getOptions(): array;
 }
