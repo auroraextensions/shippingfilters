@@ -40,7 +40,7 @@
                 <label>Country Settings</label>
                 <field id="whitelist" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Country Whitelist</label>
-                    <comment>Whitelist of countries where orders can be shipped.</comment>
+                    <comment>Whitelist of countries where shipments can be sent.</comment>
                 </field>
             </group>
         </section>
