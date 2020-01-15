@@ -38,9 +38,19 @@
             <!-- Country Settings -->
             <group id="country" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Country Settings</label>
-                <field id="whitelist" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="whitelist" translate="label comment" type="multiselect" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Country Whitelist</label>
                     <comment>Whitelist of countries where shipments can be sent.</comment>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                </field>
+            </group>
+            <!-- Region Settings -->
+            <group id="region" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Region Settings</label>
+                <field id="whitelist" translate="label comment" type="multiselect" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Region Whitelist</label>
+                    <comment>Whitelist of regions per country where shipments can be sent.</comment>
+                    <source_model>AuroraExtensions\ShippingFilters\Model\System\Config\Source\Region</source_model>
                 </field>
             </group>
         </section>
