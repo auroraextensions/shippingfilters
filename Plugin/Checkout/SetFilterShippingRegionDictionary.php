@@ -1,6 +1,6 @@
 <?php
 /**
- * SetFilterShippingCountryDictionary.php
+ * SetFilterShippingRegionDictionary.php
  *
  * NOTICE OF LICENSE
  *
@@ -20,10 +20,10 @@ namespace AuroraExtensions\ShippingFilters\Plugin\Checkout;
 
 use Magento\Checkout\Block\Checkout\LayoutProcessorInterface;
 
-class SetFilterShippingCountryDictionary
+class SetFilterShippingRegionDictionary
 {
     /** @constant string DICT */
-    public const DICT = 'whitelist_country_id';
+    public const DICT = 'whitelist_region_id';
 
     /**
      * @param LayoutProcessorInterface $subject
@@ -38,7 +38,7 @@ class SetFilterShippingCountryDictionary
         /** @var array $imports */
         $imports = &$result['components']['checkout']['children']['steps']
             ['children']['shipping-step']['children']['shippingAddress']
-            ['children']['shipping-address-fieldset']['children']['country_id']['imports'];
+            ['children']['shipping-address-fieldset']['children']['region_id']['imports'];
 
         if (isset($imports)) {
             $imports['initialOptions'] = 'index = checkoutProvider:dictionaries.' . static::DICT;
