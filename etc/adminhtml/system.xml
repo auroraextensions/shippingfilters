@@ -49,7 +49,7 @@
                 <label>Region Settings</label>
                 <field id="whitelist" translate="label comment" type="multiselect" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Region Whitelist</label>
-                    <comment>Whitelist of regions per country where shipments can be sent.</comment>
+                    <comment>Whitelist of regions where shipments can be sent.</comment>
                     <source_model>AuroraExtensions\ShippingFilters\Model\System\Config\Source\Region</source_model>
                 </field>
             </group>
