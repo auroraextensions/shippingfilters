@@ -95,7 +95,10 @@ class CountryFilter implements CountryFilterInterface
         $countries = $this->collectionFactory
             ->create()
             ->loadByStore($store)
-            ->addFieldToFilter('country_id', ['in' => $this->getCountries()]);
+            ->addFieldToFilter(
+                'main_table.country_id',
+                ['in' => $this->getCountries()]
+            );
 
         return $countries->toOptionArray();
     }

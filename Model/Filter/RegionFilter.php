@@ -119,7 +119,10 @@ class RegionFilter implements RegionFilterInterface
         $regions = $this->collectionFactory
             ->create()
             ->addCountryFilter($countries)
-            ->addRegionCodeFilter($this->getRegions())
+            ->addFieldToFilter(
+                'main_table.region_id',
+                ['in' => $this->getRegions()]
+            )
             ->load();
 
         return $regions->toOptionArray();
