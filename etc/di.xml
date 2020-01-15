@@ -19,17 +19,25 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="AuroraExtensions\ShippingFilters\Csi\Filter\CountryFilterInterface"
                 type="AuroraExtensions\ShippingFilters\Model\Filter\CountryFilter"/>
+    <preference for="AuroraExtensions\ShippingFilters\Csi\Filter\RegionFilterInterface"
+                type="AuroraExtensions\ShippingFilters\Model\Filter\RegionFilter"/>
     <preference for="AuroraExtensions\ShippingFilters\Csi\System\ModuleConfigInterface"
                 type="AuroraExtensions\ShippingFilters\Model\System\ModuleConfig"/>
 
     <type name="Magento\Checkout\Block\Checkout\DirectoryDataProcessor">
-        <plugin name="saf_checkout_shipping_address_add_filter_shipping_country_dictionary"
+        <plugin name="sf_checkout_shipping_address_add_filter_shipping_country_dictionary"
                 type="AuroraExtensions\ShippingFilters\Plugin\Checkout\AddFilterShippingCountryDictionary"
                 sortOrder="10"/>
+        <plugin name="sf_checkout_shipping_address_add_filter_shipping_region_dictionary"
+                type="AuroraExtensions\ShippingFilters\Plugin\Checkout\AddFilterShippingRegionDictionary"
+                sortOrder="20"/>
     </type>
     <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
-        <plugin name="saf_checkout_shipping_address_set_filter_shipping_country_dictionary"
+        <plugin name="sf_checkout_shipping_address_set_filter_shipping_country_dictionary"
                 type="AuroraExtensions\ShippingFilters\Plugin\Checkout\SetFilterShippingCountryDictionary"
                 sortOrder="10"/>
+        <plugin name="sf_checkout_shipping_address_set_filter_shipping_region_dictionary"
+                type="AuroraExtensions\ShippingFilters\Plugin\Checkout\SetFilterShippingRegionDictionary"
+                sortOrder="20"/>
     </type>
 </config>
