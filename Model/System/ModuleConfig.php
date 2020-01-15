@@ -30,6 +30,9 @@ class ModuleConfig implements ModuleConfigInterface
     /** @constant string XML_PATH_FILTERS_COUNTRY_WHITELIST */
     public const XML_PATH_FILTERS_COUNTRY_WHITELIST = 'shippingfilters/country/whitelist';
 
+    /** @constant string XML_PATH_FILTERS_REGION_WHITELIST */
+    public const XML_PATH_FILTERS_REGION_WHITELIST = 'shippingfilters/region/whitelist';
+
     /** @property ScopeConfigInterface $scopeConfig */
     protected $scopeConfig;
 
@@ -55,6 +58,23 @@ class ModuleConfig implements ModuleConfigInterface
     {
         return $this->scopeConfig->getValue(
             static::XML_PATH_FILTERS_COUNTRY_WHITELIST,
+            $scope,
+            $store
+        );
+    }
+
+    /**
+     * @param int $store
+     * @param string $scope
+     * @return string|null
+     */
+    public function getRegionWhitelist(
+        int $store = Store::DEFAULT_STORE_ID,
+        string $scope = StoreScopeInterface::SCOPE_STORE
+    ): ?string
+    {
+        return $this->scopeConfig->getValue(
+            static::XML_PATH_FILTERS_REGION_WHITELIST,
             $scope,
             $store
         );
