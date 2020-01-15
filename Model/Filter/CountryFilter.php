@@ -64,9 +64,12 @@ class CountryFilter implements CountryFilterInterface
      */
     public function getCountries(): array
     {
+        /** @var StoreInterface $store */
+        $store = $this->storeManager->getStore();
+
         /** @var string|null $whitelist */
         $whitelist = $this->getModuleConfig()
-            ->getCountryWhitelist();
+            ->getCountryWhitelist((int) $store->getId());
 
         /** @var array $countries */
         $countries = array_filter(
