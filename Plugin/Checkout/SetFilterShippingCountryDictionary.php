@@ -18,26 +18,12 @@ declare(strict_types=1);
 
 namespace AuroraExtensions\ShippingFilters\Plugin\Checkout;
 
-use AuroraExtensions\ShippingFilters\Csi\Filter\CountryFilterInterface;
 use Magento\Checkout\Block\Checkout\LayoutProcessorInterface;
 
 class SetFilterShippingCountryDictionary
 {
     /** @constant string DICT */
     public const DICT = 'whitelist_country_id';
-
-    /** @property CountryFilterInterface $countryFilter */
-    private $countryFilter;
-
-    /**
-     * @param CountryFilterInterface $countryFilter
-     * @return void
-     */
-    public function __construct(
-        CountryFilterInterface $countryFilter
-    ) {
-        $this->countryFilter = $countryFilter;
-    }
 
     /**
      * @param LayoutProcessorInterface $subject
