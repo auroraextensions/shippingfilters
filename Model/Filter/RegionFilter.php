@@ -94,13 +94,16 @@ class RegionFilter implements RegionFilterInterface
      * @param string $code
      * @return array
      */
-    public function getOptionsByCountry(string $code): array
+    public function getOptionsByCountryCode(string $code): array
     {
         /** @var Collection $regions */
         $regions = $this->collectionFactory
             ->create()
             ->addCountryFilter($code)
-            ->addRegionCodeFilter($this->getRegions())
+            ->addFieldToFilter(
+                'main_table.region_id',
+                ['in' => $this->getRegions()]
+            )
             ->load();
 
         return $regions->toOptionArray();
