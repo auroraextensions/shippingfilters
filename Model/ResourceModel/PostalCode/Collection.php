@@ -83,6 +83,28 @@ class Collection extends AbstractCollection implements AbstractCollectionInterfa
     }
 
     /**
+     * @param string $regionId
+     * @return $this
+     */
+    public function addRegionIdFilter(string $regionId): AbstractCollectionInterface
+    {
+        return $this->addRegionIdsFilter([$regionId]);
+    }
+
+    /**
+     * @param array $regionIds
+     * @return $this
+     */
+    public function addRegionIdsFilter(array $regionIds = []): AbstractCollectionInterface
+    {
+        if (!empty($codes)) {
+            $this->addFieldToFilter('main_table.region_id', ['in' => $regionIds]);
+        }
+
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function toOptionArray(): array
