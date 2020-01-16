@@ -87,18 +87,18 @@ class Region implements OptionSourceInterface
         /** @var array $options */
         $options = [];
 
-        /** @var array $codes */
-        $codes = $this->countryFilter
+        /** @var array $countries */
+        $countries = $this->countryFilter
             ->getCountries();
 
         /** @var string $code */
-        foreach ($codes as $code) {
+        foreach ($countries as $code) {
             /** @var array $optgroup */
             $optgroup = $this->getRegionsOptgroup($code);
 
             if (!empty($optgroup)) {
                 $options[] = [
-                    'label' => $this->getCountryName($code),
+                    'label' => $this->getCountryNameByCode($code),
                     'value' => $optgroup,
                 ];
             }
@@ -111,7 +111,7 @@ class Region implements OptionSourceInterface
      * @param string $code
      * @return string
      */
-    protected function getCountryName(string $code): string
+    protected function getCountryNameByCode(string $code): string
     {
         try {
             /** @var CountryInformationInterface $countryInfo */
