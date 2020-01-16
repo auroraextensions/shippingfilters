@@ -37,4 +37,86 @@ class Collection extends AbstractCollection implements AbstractCollectionInterfa
             PostalCodeResource::class
         );
     }
+
+    /**
+     * @param string $code
+     * @return $this
+     */
+    public function addCountryFilter(string $code = 'US'): AbstractCollectionInterface
+    {
+        return $this->addCountriesFilter([$code]);
+    }
+
+    /**
+     * @param array $codes
+     * @return $this
+     */
+    public function addCountriesFilter(array $codes = []): AbstractCollectionInterface
+    {
+        if (!empty($codes)) {
+            $this->addFieldToFilter('main_table.country_code', ['in' => $codes]);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param string $code
+     * @return $this
+     */
+    public function addRegionFilter(string $code): AbstractCollectionInterface
+    {
+        return $this->addRegionsFilter([$code]);
+    }
+
+    /**
+     * @param array $codes
+     * @return $this
+     */
+    public function addRegionsFilter(array $codes = []): AbstractCollectionInterface
+    {
+        if (!empty($codes)) {
+            $this->addFieldToFilter('main_table.region_code', ['in' => $codes]);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function toOptionArray(): array
+    {
+        /** @var array $options */
+        $options = [];
+
+        /** @var array $fieldsMap */
+        $fieldsMap = [
+            'value' => 'postal_code_id',
+            'title' => 'postal_name',
+            'country_id' => 'country_code',
+            'region_id' => 'region_id',
+        ];
+
+        /** @var PostalCodeInterface $item */
+        foreach ($this as $item) {
+            /** @var array $option */
+            $option = [];
+
+            /** @var string $code */
+            /** @var string $field */
+            foreach ($fieldsMap as $code => $field) {
+                $option[$code] = $item->getData($field);
+            }
+
+            $option['label'] = sprintf(
+                '%s [%s]',
+                $item->getPostalName(),
+                $item->getPostalCode()
+            );
+            $options[] = $option;
+        }
+
+        return $options;
+    }
 }
