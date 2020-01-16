@@ -17,10 +17,18 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="AuroraExtensions\ShippingFilters\Api\PostalCodeRepositoryInterface"
+                type="AuroraExtensions\ShippingFilters\Model\Repository\PostalCodeRepository"/>
+    <preference for="AuroraExtensions\ShippingFilters\Api\Data\PostalCodeInterface"
+                type="AuroraExtensions\ShippingFilters\Model\Data\PostalCode"/>
+    <preference for="AuroraExtensions\ShippingFilters\Api\Data\PostalCodeSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults"/>
     <preference for="AuroraExtensions\ShippingFilters\Csi\Filter\CountryFilterInterface"
                 type="AuroraExtensions\ShippingFilters\Model\Filter\CountryFilter"/>
     <preference for="AuroraExtensions\ShippingFilters\Csi\Filter\RegionFilterInterface"
                 type="AuroraExtensions\ShippingFilters\Model\Filter\RegionFilter"/>
+    <preference for="AuroraExtensions\ShippingFilters\Csi\Filter\PostalCodeFilterInterface"
+                type="AuroraExtensions\ShippingFilters\Model\Filter\PostalCodeFilter"/>
     <preference for="AuroraExtensions\ShippingFilters\Csi\System\ModuleConfigInterface"
                 type="AuroraExtensions\ShippingFilters\Model\System\ModuleConfig"/>
 
