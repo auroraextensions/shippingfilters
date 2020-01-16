@@ -108,8 +108,8 @@ class PostalCodeFilter implements PostalCodeFilterInterface
         /** @var Collection $postalCodes */
         $postalCodes = $this->collectionFactory
             ->create()
-            ->addCountriesFilter($countries)
-            ->addRegionFilter($code)
+            ->addCountryCodesFilter($countries)
+            ->addRegionCodeFilter($code)
             ->addFieldToFilter(
                 'main_table.postal_code_id',
                 ['in' => $this->getPostalCodes()]
@@ -135,8 +135,8 @@ class PostalCodeFilter implements PostalCodeFilterInterface
         /** @var Collection $postalCodes */
         $postalCodes = $this->collectionFactory
             ->create()
-            ->addCountriesFilter($countries)
-            ->addRegionsFilter($regions)
+            ->addCountryCodesFilter($countries)
+            ->addRegionCodesFilter($regions)
             ->addFieldToFilter(
                 'main_table.postal_code_id',
                 ['in' => $this->getPostalCodes()]
