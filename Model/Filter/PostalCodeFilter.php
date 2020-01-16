@@ -1,6 +1,6 @@
 <?php
 /**
- * RegionFilter.php
+ * PostalCodeFilter.php
  *
  * NOTICE OF LICENSE
  *
@@ -21,16 +21,15 @@ namespace AuroraExtensions\ShippingFilters\Model\Filter;
 use AuroraExtensions\ShippingFilters\{
     Component\System\ModuleConfigTrait,
     Csi\Filter\CountryFilterInterface,
+    Csi\Filter\PostalCodeFilterInterface,
     Csi\Filter\RegionFilterInterface,
-    Csi\System\ModuleConfigInterface
-};
-use Magento\Directory\{
-    Model\ResourceModel\Region\Collection,
-    Model\ResourceModel\Region\CollectionFactory
+    Csi\System\ModuleConfigInterface,
+    Model\ResourceModel\PostalCode\Collection,
+    Model\ResourceModel\PostalCode\CollectionFactory
 };
 use Magento\Store\Model\StoreManagerInterface;
 
-class RegionFilter implements RegionFilterInterface
+class PostalCodeFilter implements PostalCodeFilterInterface
 {
     /**
      * @property ModuleConfigInterface $moduleConfig
@@ -44,6 +43,9 @@ class RegionFilter implements RegionFilterInterface
     /** @property CountryFilterInterface $countryFilter */
     protected $countryFilter;
 
+    /** @property RegionFilterInterface $regionFilter */
+    protected $regionFilter;
+
     /** @property StoreManagerInterface $storeManager */
     protected $storeManager;
 
@@ -51,6 +53,7 @@ class RegionFilter implements RegionFilterInterface
      * @param CollectionFactory $collectionFactory
      * @param CountryFilterInterface $countryFilter
      * @param ModuleConfigInterface $moduleConfig
+     * @param RegionFilterInterface $regionFilter
      * @param StoreManagerInterface $storeManager
      * @return void
      */
@@ -58,28 +61,30 @@ class RegionFilter implements RegionFilterInterface
         CollectionFactory $collectionFactory,
         CountryFilterInterface $countryFilter,
         ModuleConfigInterface $moduleConfig,
+        RegionFilterInterface $regionFilter,
         StoreManagerInterface $storeManager
     ) {
         $this->collectionFactory = $collectionFactory;
         $this->countryFilter = $countryFilter;
         $this->moduleConfig = $moduleConfig;
+        $this->regionFilter = $regionFilter;
         $this->storeManager = $storeManager;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getRegions(): array
+    public function getPostalCodes(): array
     {
         /** @var StoreInterface $store */
         $store = $this->storeManager->getStore();
 
         /** @var string|null $whitelist */
         $whitelist = $this->getModuleConfig()
-            ->getRegionWhitelist((int) $store->getId());
+            ->getPostalCodeWhitelist((int) $store->getId());
 
-        /** @var array $regions */
-        $regions = array_filter(
+        /** @var array $postalCodes */
+        $postalCodes = array_filter(
             array_map(
                 'trim',
                 explode(',', $whitelist)
@@ -87,26 +92,31 @@ class RegionFilter implements RegionFilterInterface
             'strlen'
         );
 
-        return $regions;
+        return $postalCodes;
     }
 
     /**
      * @param string $code
      * @return array
      */
-    public function getOptionsByCountryCode(string $code): array
+    public function getOptionsByRegionCode(string $code): array
     {
-        /** @var Collection $regions */
-        $regions = $this->collectionFactory
+        /** @var array $countries */
+        $countries = $this->countryFilter
+            ->getCountries();
+
+        /** @var Collection $postalCodes */
+        $postalCodes = $this->collectionFactory
             ->create()
-            ->addCountryFilter($code)
+            ->addCountriesFilter($countries)
+            ->addRegionFilter($code)
             ->addFieldToFilter(
-                'main_table.region_id',
-                ['in' => $this->getRegions()]
+                'main_table.postal_code_id',
+                ['in' => $this->getPostalCodes()]
             )
             ->load();
 
-        return $regions->toOptionArray();
+        return $postalCodes->toOptionArray();
     }
 
     /**
@@ -118,16 +128,21 @@ class RegionFilter implements RegionFilterInterface
         $countries = $this->countryFilter
             ->getCountries();
 
-        /** @var Collection $regions */
-        $regions = $this->collectionFactory
+        /** @var array $regions */
+        $regions = $this->regionFilter
+            ->getRegions();
+
+        /** @var Collection $postalCodes */
+        $postalCodes = $this->collectionFactory
             ->create()
-            ->addCountryFilter($countries)
+            ->addCountriesFilter($countries)
+            ->addRegionsFilter($regions)
             ->addFieldToFilter(
-                'main_table.region_id',
-                ['in' => $this->getRegions()]
+                'main_table.postal_code_id',
+                ['in' => $this->getPostalCodes()]
             )
             ->load();
 
-        return $regions->toOptionArray();
+        return $postalCodes->toOptionArray();
     }
 }

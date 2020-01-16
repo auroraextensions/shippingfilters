@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * db_schema.xml
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License, which
+ * is bundled with this package in the file LICENSE.txt.
+ *
+ * It is also available on the Internet at the following URL:
+ * https://docs.auroraextensions.com/magento/extensions/2.x/shippingfilters/LICENSE.txt
+ *
+ * @package       AuroraExtensions_ShippingFilters
+ * @copyright     Copyright (C) 2020 Aurora Extensions <support@auroraextensions.com>
+ * @license       MIT License
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="shippingfilters_postal_code" resource="default" engine="innodb" comment="Shipping Filters Postal Codes">
+        <column xsi:type="int" name="postal_code_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Postal Code ID"/>
+        <column xsi:type="varchar" name="postal_code" nullable="false" length="64" comment="Postal Code"/>
+        <column xsi:type="varchar" name="postal_name" nullable="false" length="128" comment="Municipal Name"/>
+        <column xsi:type="int" name="region_id" padding="10" unsigned="true" nullable="false" comment="Region ID"/>
+        <column xsi:type="varchar" name="region_code" nullable="true" length="64" comment="Region Code"/>
+        <column xsi:type="varchar" name="region_name" nullable="true" length="128" comment="Region Name"/>
+        <column xsi:type="varchar" name="country_code" nullable="true" length="32" comment="Country Code"/>
+        <column xsi:type="varchar" name="country_name" nullable="true" length="128" comment="Country Name"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Updated At"/>
+        <constraint xsi:type="foreign" referenceId="SHIPPINGFILTERS_POSTAL_CODE_REGION_ID_DIRECTORY_COUNTRY_REGION_REGION_ID"
+                    table="shippingfilters_postal_code" column="region_id" referenceTable="directory_country_region"
+                    referenceColumn="region_id" onDelete="CASCADE"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="postal_code_id"/>
+        </constraint>
+        <index referenceId="SHIPPINGFILTERS_POSTAL_CODE_POSTAL_CODE" indexType="btree">
+            <column name="postal_code"/>
+        </index>
+        <index referenceId="SHIPPINGFILTERS_POSTAL_CODE_REGION_ID" indexType="btree">
+            <column name="region_id"/>
+        </index>
+        <index referenceId="SHIPPINGFILTERS_POSTAL_CODE_REGION_CODE" indexType="btree">
+            <column name="region_code"/>
+        </index>
+        <index referenceId="SHIPPINGFILTERS_POSTAL_CODE_COUNTRY_CODE" indexType="btree">
+            <column name="country_code"/>
+        </index>
+    </table>
+</schema>
