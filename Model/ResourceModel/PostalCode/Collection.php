@@ -42,16 +42,16 @@ class Collection extends AbstractCollection implements AbstractCollectionInterfa
      * @param string $code
      * @return $this
      */
-    public function addCountryFilter(string $code = 'US'): AbstractCollectionInterface
+    public function addCountryCodeFilter(string $code = 'US'): AbstractCollectionInterface
     {
-        return $this->addCountriesFilter([$code]);
+        return $this->addCountryCodesFilter([$code]);
     }
 
     /**
      * @param array $codes
      * @return $this
      */
-    public function addCountriesFilter(array $codes = []): AbstractCollectionInterface
+    public function addCountryCodesFilter(array $codes = []): AbstractCollectionInterface
     {
         if (!empty($codes)) {
             $this->addFieldToFilter('main_table.country_code', ['in' => $codes]);
@@ -64,16 +64,16 @@ class Collection extends AbstractCollection implements AbstractCollectionInterfa
      * @param string $code
      * @return $this
      */
-    public function addRegionFilter(string $code): AbstractCollectionInterface
+    public function addRegionCodeFilter(string $code): AbstractCollectionInterface
     {
-        return $this->addRegionsFilter([$code]);
+        return $this->addRegionCodesFilter([$code]);
     }
 
     /**
      * @param array $codes
      * @return $this
      */
-    public function addRegionsFilter(array $codes = []): AbstractCollectionInterface
+    public function addRegionCodesFilter(array $codes = []): AbstractCollectionInterface
     {
         if (!empty($codes)) {
             $this->addFieldToFilter('main_table.region_code', ['in' => $codes]);
