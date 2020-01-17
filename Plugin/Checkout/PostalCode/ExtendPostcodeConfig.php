@@ -1,6 +1,6 @@
 <?php
 /**
- * AssignElementTemplate.php
+ * ExtendPostcodeConfig.php
  *
  * NOTICE OF LICENSE
  *
@@ -20,7 +20,7 @@ namespace AuroraExtensions\ShippingFilters\Plugin\Checkout\PostalCode;
 
 use Magento\Checkout\Block\Checkout\LayoutProcessorInterface;
 
-class AssignElementTemplate
+class ExtendPostcodeConfig
 {
     /** @constant string TMPL */
     public const TMPL = 'AuroraExtensions_ShippingFilters/form/element/postal-code';
@@ -41,6 +41,7 @@ class AssignElementTemplate
             ['children']['shipping-address-fieldset']['children']['postcode']['config'];
 
         if (isset($config)) {
+            $config['caption'] = __('Please select a ZIP/postal code.');
             $config['elementTmpl'] = static::TMPL;
         }
 
