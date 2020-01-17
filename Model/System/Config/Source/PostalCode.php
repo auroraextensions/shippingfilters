@@ -1,6 +1,6 @@
 <?php
 /**
- * PostalCodeFilter.php
+ * PostalCode.php
  *
  * NOTICE OF LICENSE
  *
@@ -16,32 +16,35 @@
  */
 declare(strict_types=1);
 
-namespace AuroraExtensions\ShippingFilters\Model\Filter;
+namespace AuroraExtensions\ShippingFilters\Model\System\Config\Source;
 
 use AuroraExtensions\ShippingFilters\{
-    Component\System\ModuleConfigTrait,
     Csi\Filter\CountryFilterInterface,
-    Csi\Filter\PostalCodeFilterInterface,
     Csi\Filter\RegionFilterInterface,
-    Csi\System\ModuleConfigInterface,
     Model\ResourceModel\PostalCode\Collection,
     Model\ResourceModel\PostalCode\CollectionFactory
 };
+use Magento\Directory\Api\CountryInformationAcquirerInterface;
+use Magento\Framework\{
+    Data\OptionSourceInterface,
+    Exception\NoSuchEntityException
+};
 use Magento\Store\Model\StoreManagerInterface;
+use Psr\Log\LoggerInterface;
 
-class PostalCodeFilter implements PostalCodeFilterInterface
+class PostalCode implements OptionSourceInterface
 {
-    /**
-     * @property ModuleConfigInterface $moduleConfig
-     * @method ModuleConfigInterface getModuleConfig()
-     */
-    use ModuleConfigTrait;
-
     /** @property CollectionFactory $collectionFactory */
     protected $collectionFactory;
 
     /** @property CountryFilterInterface $countryFilter */
     protected $countryFilter;
+
+    /** @property CountryInformationAcquirerInterface $countryInfo */
+    protected $countryInfoAcquirer;
+
+    /** @property LoggerInterface $logger */
+    protected $logger;
 
     /** @property RegionFilterInterface $regionFilter */
     protected $regionFilter;
@@ -52,7 +55,8 @@ class PostalCodeFilter implements PostalCodeFilterInterface
     /**
      * @param CollectionFactory $collectionFactory
      * @param CountryFilterInterface $countryFilter
-     * @param ModuleConfigInterface $moduleConfig
+     * @param CountryInformationAcquirerInterface $countryInfoAcquirer
+     * @param LoggerInterface $logger
      * @param RegionFilterInterface $regionFilter
      * @param StoreManagerInterface $storeManager
      * @return void
@@ -60,46 +64,78 @@ class PostalCodeFilter implements PostalCodeFilterInterface
     public function __construct(
         CollectionFactory $collectionFactory,
         CountryFilterInterface $countryFilter,
-        ModuleConfigInterface $moduleConfig,
+        CountryInformationAcquirerInterface $countryInfoAcquirer,
+        LoggerInterface $logger,
         RegionFilterInterface $regionFilter,
         StoreManagerInterface $storeManager
     ) {
         $this->collectionFactory = $collectionFactory;
         $this->countryFilter = $countryFilter;
-        $this->moduleConfig = $moduleConfig;
+        $this->countryInfoAcquirer = $countryInfoAcquirer;
+        $this->logger = $logger;
         $this->regionFilter = $regionFilter;
         $this->storeManager = $storeManager;
     }
 
     /**
-     * {@inheritdoc}
+     * @return array
      */
-    public function getPostalCodes(): array
+    public function toOptionArray(): array
     {
-        /** @var StoreInterface $store */
-        $store = $this->storeManager->getStore();
+        /** @var array $options */
+        $options = [];
 
-        /** @var string $whitelist */
-        $whitelist = $this->getModuleConfig()
-            ->getPostalCodeWhitelist((int) $store->getId());
+        /** @var array $regions */
+        $regions = $this->regionFilter
+            ->getRegions();
 
-        /** @var array $postalCodes */
-        $postalCodes = array_filter(
-            array_map(
-                'trim',
-                explode(',', $whitelist)
-            ),
-            'strlen'
-        );
+        /** @var string $code */
+        foreach ($regions as $code) {
+            /** @var array $optgroup */
+            $optgroup = $this->getPostalCodesOptgroup($code);
 
-        return $postalCodes;
+            if (!empty($optgroup)) {
+                $options[] = [
+                    'label' => __($this->getRegionNameByCode($code)),
+                    'value' => $optgroup,
+                ];
+            }
+        }
+
+        return $options;
+    }
+
+    /**
+     * @param string $code
+     * @return string
+     */
+    protected function getRegionNameByCode(string $code): string
+    {
+        try {
+            /** @var array $countries */
+            $countries = $this->countryFilter
+                ->getCountries();
+
+            /** @var PostalCodeInterface $postalCode */
+            $postalCode = $this->collectionFactory
+                ->create()
+                ->addCountryCodesFilter($countries)
+                ->addRegionIdFilter($code)
+                ->getFirstItem();
+
+            return $postalCode->getRegionName();
+        } catch (NoSuchEntityException $e) {
+            $this->logger->error($e->getMessage());
+        }
+
+        return $code;
     }
 
     /**
      * @param string $code
      * @return array
      */
-    public function getOptionsByRegionCode(string $code): array
+    protected function getPostalCodesOptgroup(string $code): array
     {
         /** @var array $countries */
         $countries = $this->countryFilter
@@ -111,32 +147,6 @@ class PostalCodeFilter implements PostalCodeFilterInterface
             ->addMinimalFieldsToSelect()
             ->addCountryCodesFilter($countries)
             ->addRegionIdFilter($code)
-            ->addPostalCodeIdsFilter($this->getPostalCodes())
-            ->optimizeLoad();
-
-        return $postalCodes->toOptionArray();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getOptions(): array
-    {
-        /** @var array $countries */
-        $countries = $this->countryFilter
-            ->getCountries();
-
-        /** @var array $regions */
-        $regions = $this->regionFilter
-            ->getRegions();
-
-        /** @var Collection $postalCodes */
-        $postalCodes = $this->collectionFactory
-            ->create()
-            ->addMinimalFieldsToSelect()
-            ->addCountryCodesFilter($countries)
-            ->addRegionIdsFilter($regions)
-            ->addPostalCodeIdsFilter($this->getPostalCodes())
             ->optimizeLoad();
 
         return $postalCodes->toOptionArray();

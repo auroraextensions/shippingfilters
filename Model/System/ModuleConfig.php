@@ -52,51 +52,51 @@ class ModuleConfig implements ModuleConfigInterface
     /**
      * @param int $store
      * @param string $scope
-     * @return string|null
+     * @return string
      */
     public function getCountryWhitelist(
         int $store = Store::DEFAULT_STORE_ID,
         string $scope = StoreScopeInterface::SCOPE_STORE
-    ): ?string
+    ): string
     {
         return $this->scopeConfig->getValue(
             static::XML_PATH_FILTERS_COUNTRY_WHITELIST,
             $scope,
             $store
-        );
+        ) ?? '';
     }
 
     /**
      * @param int $store
      * @param string $scope
-     * @return string|null
+     * @return string
      */
     public function getRegionWhitelist(
         int $store = Store::DEFAULT_STORE_ID,
         string $scope = StoreScopeInterface::SCOPE_STORE
-    ): ?string
+    ): string
     {
         return $this->scopeConfig->getValue(
             static::XML_PATH_FILTERS_REGION_WHITELIST,
             $scope,
             $store
-        );
+        ) ?? '';
     }
 
     /**
      * @param int $store
      * @param string $scope
-     * @return string|null
+     * @return string
      */
     public function getPostalCodeWhitelist(
         int $store = Store::DEFAULT_STORE_ID,
         string $scope = StoreScopeInterface::SCOPE_STORE
-    ): ?string
+    ): string
     {
         return $this->scopeConfig->getValue(
             static::XML_PATH_FILTERS_POSTAL_WHITELIST,
             $scope,
             $store
-        );
+        ) ?? '';
     }
 }

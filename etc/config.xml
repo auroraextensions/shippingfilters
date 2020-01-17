@@ -26,8 +26,11 @@
                 <whitelist>US,CA,JP,RU,GB,FR</whitelist>
             </country>
             <region>
-                <whitelist>569,86,88,90,93,452,465,138,32,33,43,47,51,54,56,63</whitelist>
+                <whitelist></whitelist>
             </region>
+            <postal>
+                <whitelist></whitelist>
+            </postal>
         </shippingfilters>
     </default>
 </config>

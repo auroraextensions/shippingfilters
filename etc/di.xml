@@ -33,18 +33,21 @@
                 type="AuroraExtensions\ShippingFilters\Model\System\ModuleConfig"/>
 
     <type name="Magento\Checkout\Block\Checkout\DirectoryDataProcessor">
-        <plugin name="sf_checkout_shipping_address_add_filter_shipping_country_dictionary"
+        <plugin name="shippingfilters_checkout_shipping_address_add_filter_shipping_country_dictionary"
                 type="AuroraExtensions\ShippingFilters\Plugin\Checkout\AddFilterShippingCountryDictionary"
                 sortOrder="10"/>
-        <plugin name="sf_checkout_shipping_address_add_filter_shipping_region_dictionary"
+        <plugin name="shippingfilters_checkout_shipping_address_add_filter_shipping_region_dictionary"
                 type="AuroraExtensions\ShippingFilters\Plugin\Checkout\AddFilterShippingRegionDictionary"
                 sortOrder="20"/>
+        <plugin name="shippingfilters_checkout_shipping_address_add_shipping_postal_code_dictionary"
+                type="AuroraExtensions\ShippingFilters\Plugin\Checkout\AddShippingPostalCodeDictionary"
+                sortOrder="30"/>
     </type>
     <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
-        <plugin name="sf_checkout_shipping_address_set_filter_shipping_country_dictionary"
+        <plugin name="shippingfilters_checkout_shipping_address_set_filter_shipping_country_dictionary"
                 type="AuroraExtensions\ShippingFilters\Plugin\Checkout\SetFilterShippingCountryDictionary"
                 sortOrder="10"/>
-        <plugin name="sf_checkout_shipping_address_set_filter_shipping_region_dictionary"
+        <plugin name="shippingfilters_checkout_shipping_address_set_filter_shipping_region_dictionary"
                 type="AuroraExtensions\ShippingFilters\Plugin\Checkout\SetFilterShippingRegionDictionary"
                 sortOrder="20"/>
     </type>
