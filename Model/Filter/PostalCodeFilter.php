@@ -79,7 +79,7 @@ class PostalCodeFilter implements PostalCodeFilterInterface
         /** @var StoreInterface $store */
         $store = $this->storeManager->getStore();
 
-        /** @var string|null $whitelist */
+        /** @var string $whitelist */
         $whitelist = $this->getModuleConfig()
             ->getPostalCodeWhitelist((int) $store->getId());
 
@@ -108,13 +108,11 @@ class PostalCodeFilter implements PostalCodeFilterInterface
         /** @var Collection $postalCodes */
         $postalCodes = $this->collectionFactory
             ->create()
+            ->addMinimalFieldsToSelect()
             ->addCountryCodesFilter($countries)
-            ->addRegionCodeFilter($code)
-            ->addFieldToFilter(
-                'main_table.postal_code_id',
-                ['in' => $this->getPostalCodes()]
-            )
-            ->load();
+            ->addRegionIdFilter($code)
+            ->addPostalCodeIdsFilter($this->getPostalCodes())
+            ->optimizeLoad();
 
         return $postalCodes->toOptionArray();
     }
@@ -135,13 +133,11 @@ class PostalCodeFilter implements PostalCodeFilterInterface
         /** @var Collection $postalCodes */
         $postalCodes = $this->collectionFactory
             ->create()
+            ->addMinimalFieldsToSelect()
             ->addCountryCodesFilter($countries)
-            ->addRegionCodesFilter($regions)
-            ->addFieldToFilter(
-                'main_table.postal_code_id',
-                ['in' => $this->getPostalCodes()]
-            )
-            ->load();
+            ->addRegionIdsFilter($regions)
+            ->addPostalCodeIdsFilter($this->getPostalCodes())
+            ->optimizeLoad();
 
         return $postalCodes->toOptionArray();
     }
