@@ -47,6 +47,7 @@ class ExtendPostcodeConfig
             $config['caption'] = __('Please select a ZIP/postal code.');
             $config['component'] = static::COMPONENT;
             $config['elementTmpl'] = static::TEMPLATE;
+            $config['label'] = __('City and ZIP/Postal Code');
             $config['filterBy'] = [
                 'field' => 'region_id',
                 'target' => '${ $.parentName }.region_id:value',
