@@ -56,5 +56,8 @@
         <plugin name="shippingfilters_checkout_shipping_address_postal_code_set_shipping_postal_code_dictionary"
                 type="AuroraExtensions\ShippingFilters\Plugin\Checkout\PostalCode\SetShippingPostalCodeDictionary"
                 sortOrder="40"/>
+        <plugin name="shippingfilters_checkout_shipping_address_city_set_city_input_visibility"
+                type="AuroraExtensions\ShippingFilters\Plugin\Checkout\City\SetCityInputVisibility"
+                sortOrder="50"/>
     </type>
 </config>

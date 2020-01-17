@@ -188,7 +188,7 @@ class Collection extends AbstractCollection implements AbstractCollectionInterfa
     /**
      * @return Generator
      */
-    protected function optimizer()
+    private function optimizer()
     {
         /** @var AdapterInterface $adapter */
         $adapter = $this->getConnection();
@@ -205,7 +205,7 @@ class Collection extends AbstractCollection implements AbstractCollectionInterfa
     /**
      * @return Generator
      */
-    protected function getCacheItems()
+    private function getCacheItems()
     {
         return $this->generator
             ->generator();
@@ -229,18 +229,18 @@ class Collection extends AbstractCollection implements AbstractCollectionInterfa
 
             /** @var string $label */
             $label = sprintf(
-                '%s (%s)',
-                $postalCode,
-                $postalName
+                '%s, %s',
+                $postalName,
+                $postalCode
             );
 
             $options[] = [
-                'value' => $item['postal_code_id'],
-                'title' => $postalName,
                 'label' => $label,
+                'value' => $item['postal_code_id'],
                 'country_id' => $item['country_code'],
                 'region_id' => $item['region_id'],
                 'postal_code' => $postalCode,
+                'postal_name' => $postalName,
             ];
         }
 

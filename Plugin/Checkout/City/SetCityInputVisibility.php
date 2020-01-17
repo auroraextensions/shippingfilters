@@ -1,6 +1,6 @@
 <?php
 /**
- * ExtendPostcodeConfig.php
+ * SetCityInputVisibility.php
  *
  * NOTICE OF LICENSE
  *
@@ -16,18 +16,12 @@
  */
 declare(strict_types=1);
 
-namespace AuroraExtensions\ShippingFilters\Plugin\Checkout\PostalCode;
+namespace AuroraExtensions\ShippingFilters\Plugin\Checkout\City;
 
 use Magento\Checkout\Block\Checkout\LayoutProcessorInterface;
 
-class ExtendPostcodeConfig
+class SetCityInputVisibility
 {
-    /** @constant string COMPONENT */
-    public const COMPONENT = 'AuroraExtensions_ShippingFilters/js/form/element/postal-code';
-
-    /** @constant string TEMPLATE */
-    public const TEMPLATE = 'AuroraExtensions_ShippingFilters/form/element/postal-code';
-
     /**
      * @param LayoutProcessorInterface $subject
      * @param array $result
@@ -41,17 +35,10 @@ class ExtendPostcodeConfig
         /** @var array $config */
         $config = &$result['components']['checkout']['children']['steps']
             ['children']['shipping-step']['children']['shippingAddress']
-            ['children']['shipping-address-fieldset']['children']['postcode']['config'];
+            ['children']['shipping-address-fieldset']['children']['city']['config'];
 
         if (isset($config)) {
-            $config['caption'] = __('Please select a ZIP/postal code.');
-            $config['component'] = static::COMPONENT;
-            $config['elementTmpl'] = static::TEMPLATE;
-            $config['label'] = __('City and ZIP/Postal Code');
-            $config['filterBy'] = [
-                'field' => 'region_id',
-                'target' => '${ $.parentName }.region_id:value',
-            ];
+            $config['visible'] = false;
         }
 
         return $result;
