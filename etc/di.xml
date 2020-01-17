@@ -39,8 +39,8 @@
         <plugin name="shippingfilters_checkout_shipping_address_add_filter_shipping_region_dictionary"
                 type="AuroraExtensions\ShippingFilters\Plugin\Checkout\AddFilterShippingRegionDictionary"
                 sortOrder="20"/>
-        <plugin name="shippingfilters_checkout_shipping_address_add_shipping_postal_code_dictionary"
-                type="AuroraExtensions\ShippingFilters\Plugin\Checkout\AddShippingPostalCodeDictionary"
+        <plugin name="shippingfilters_checkout_shipping_address_postal_code_add_shipping_postal_code_dictionary"
+                type="AuroraExtensions\ShippingFilters\Plugin\Checkout\PostalCode\AddShippingPostalCodeDictionary"
                 sortOrder="30"/>
     </type>
     <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
@@ -50,5 +50,11 @@
         <plugin name="shippingfilters_checkout_shipping_address_set_filter_shipping_region_dictionary"
                 type="AuroraExtensions\ShippingFilters\Plugin\Checkout\SetFilterShippingRegionDictionary"
                 sortOrder="20"/>
+        <plugin name="shippingfilters_checkout_shipping_address_postal_code_extend_postcode_config"
+                type="AuroraExtensions\ShippingFilters\Plugin\Checkout\PostalCode\ExtendPostcodeConfig"
+                sortOrder="30"/>
+        <plugin name="shippingfilters_checkout_shipping_address_postal_code_set_shipping_postal_code_dictionary"
+                type="AuroraExtensions\ShippingFilters\Plugin\Checkout\PostalCode\SetShippingPostalCodeDictionary"
+                sortOrder="40"/>
     </type>
 </config>
