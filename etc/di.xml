@@ -33,22 +33,22 @@
                 type="AuroraExtensions\ShippingFilters\Model\System\ModuleConfig"/>
 
     <type name="Magento\Checkout\Block\Checkout\DirectoryDataProcessor">
-        <plugin name="shippingfilters_checkout_shipping_address_add_filter_shipping_country_dictionary"
-                type="AuroraExtensions\ShippingFilters\Plugin\Checkout\AddFilterShippingCountryDictionary"
+        <plugin name="shippingfilters_checkout_shipping_address_country_add_filter_shipping_country_dictionary"
+                type="AuroraExtensions\ShippingFilters\Plugin\Checkout\Country\AddFilterShippingCountryDictionary"
                 sortOrder="10"/>
-        <plugin name="shippingfilters_checkout_shipping_address_add_filter_shipping_region_dictionary"
-                type="AuroraExtensions\ShippingFilters\Plugin\Checkout\AddFilterShippingRegionDictionary"
+        <plugin name="shippingfilters_checkout_shipping_address_region_add_filter_shipping_region_dictionary"
+                type="AuroraExtensions\ShippingFilters\Plugin\Checkout\Region\AddFilterShippingRegionDictionary"
                 sortOrder="20"/>
         <plugin name="shippingfilters_checkout_shipping_address_postal_code_add_shipping_postal_code_dictionary"
                 type="AuroraExtensions\ShippingFilters\Plugin\Checkout\PostalCode\AddShippingPostalCodeDictionary"
                 sortOrder="30"/>
     </type>
     <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
-        <plugin name="shippingfilters_checkout_shipping_address_set_filter_shipping_country_dictionary"
-                type="AuroraExtensions\ShippingFilters\Plugin\Checkout\SetFilterShippingCountryDictionary"
+        <plugin name="shippingfilters_checkout_shipping_address_country_set_filter_shipping_country_dictionary"
+                type="AuroraExtensions\ShippingFilters\Plugin\Checkout\Country\SetFilterShippingCountryDictionary"
                 sortOrder="10"/>
-        <plugin name="shippingfilters_checkout_shipping_address_set_filter_shipping_region_dictionary"
-                type="AuroraExtensions\ShippingFilters\Plugin\Checkout\SetFilterShippingRegionDictionary"
+        <plugin name="shippingfilters_checkout_shipping_address_region_set_filter_shipping_region_dictionary"
+                type="AuroraExtensions\ShippingFilters\Plugin\Checkout\Region\SetFilterShippingRegionDictionary"
                 sortOrder="20"/>
         <plugin name="shippingfilters_checkout_shipping_address_postal_code_extend_postcode_config"
                 type="AuroraExtensions\ShippingFilters\Plugin\Checkout\PostalCode\ExtendPostcodeConfig"
