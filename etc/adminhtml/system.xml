@@ -53,6 +53,15 @@
                     <source_model>AuroraExtensions\ShippingFilters\Model\System\Config\Source\Region</source_model>
                 </field>
             </group>
+            <!-- Postal Code Settings -->
+            <group id="postal" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Postal Code Settings</label>
+                <field id="whitelist" translate="label comment" type="multiselect" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Postal Code Whitelist</label>
+                    <comment>Whitelist of postal codes where shipments can be sent.</comment>
+                    <source_model>AuroraExtensions\ShippingFilters\Model\System\Config\Source\PostalCode</source_model>
+                </field>
+            </group>
         </section>
     </system>
 </config>
