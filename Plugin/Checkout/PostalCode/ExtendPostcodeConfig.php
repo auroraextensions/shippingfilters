@@ -22,8 +22,11 @@ use Magento\Checkout\Block\Checkout\LayoutProcessorInterface;
 
 class ExtendPostcodeConfig
 {
-    /** @constant string TMPL */
-    public const TMPL = 'AuroraExtensions_ShippingFilters/form/element/postal-code';
+    /** @constant string COMPONENT */
+    public const COMPONENT = 'AuroraExtensions_ShippingFilters/js/form/element/postal-code';
+
+    /** @constant string TEMPLATE */
+    public const TEMPLATE = 'AuroraExtensions_ShippingFilters/form/element/postal-code';
 
     /**
      * @param LayoutProcessorInterface $subject
@@ -42,7 +45,8 @@ class ExtendPostcodeConfig
 
         if (isset($config)) {
             $config['caption'] = __('Please select a ZIP/postal code.');
-            $config['elementTmpl'] = static::TMPL;
+            $config['component'] = static::COMPONENT;
+            $config['elementTmpl'] = static::TEMPLATE;
         }
 
         return $result;
