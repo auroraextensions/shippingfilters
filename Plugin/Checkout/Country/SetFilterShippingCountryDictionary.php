@@ -16,7 +16,7 @@
  */
 declare(strict_types=1);
 
-namespace AuroraExtensions\ShippingFilters\Plugin\Checkout;
+namespace AuroraExtensions\ShippingFilters\Plugin\Checkout\Country;
 
 use Magento\Checkout\Block\Checkout\LayoutProcessorInterface;
 

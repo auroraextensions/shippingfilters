@@ -40,10 +40,12 @@ class SetShippingPostalCodeDictionary
             ['children']['shipping-step']['children']['shippingAddress']
             ['children']['shipping-address-fieldset']['children']['postcode']['imports'];
 
-        if (isset($imports)) {
-            $imports['initialOptions'] = 'index = checkoutProvider:dictionaries.' . static::DICT;
-            $imports['setOptions'] = 'index = checkoutProvider:dictionaries.' . static::DICT;
+        if (!isset($imports)) {
+            $imports = [];
         }
+
+        $imports['initialOptions'] = 'index = checkoutProvider:dictionaries.' . static::DICT;
+        $imports['setOptions'] = 'index = checkoutProvider:dictionaries.' . static::DICT;
 
         return $result;
     }

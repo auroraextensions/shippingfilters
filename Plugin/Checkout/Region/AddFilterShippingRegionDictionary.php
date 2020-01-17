@@ -1,6 +1,6 @@
 <?php
 /**
- * SetFilterShippingRegionDictionary.php
+ * AddFilterShippingRegionDictionary.php
  *
  * NOTICE OF LICENSE
  *
@@ -16,14 +16,28 @@
  */
 declare(strict_types=1);
 
-namespace AuroraExtensions\ShippingFilters\Plugin\Checkout;
+namespace AuroraExtensions\ShippingFilters\Plugin\Checkout\Region;
 
+use AuroraExtensions\ShippingFilters\Csi\Filter\RegionFilterInterface;
 use Magento\Checkout\Block\Checkout\LayoutProcessorInterface;
 
-class SetFilterShippingRegionDictionary
+class AddFilterShippingRegionDictionary
 {
     /** @constant string DICT */
     public const DICT = 'whitelist_region_id';
+
+    /** @property RegionFilterInterface $regionFilter */
+    private $regionFilter;
+
+    /**
+     * @param RegionFilterInterface $regionFilter
+     * @return void
+     */
+    public function __construct(
+        RegionFilterInterface $regionFilter
+    ) {
+        $this->regionFilter = $regionFilter;
+    }
 
     /**
      * @param LayoutProcessorInterface $subject
@@ -35,14 +49,11 @@ class SetFilterShippingRegionDictionary
         array $result
     ): array
     {
-        /** @var array $imports */
-        $imports = &$result['components']['checkout']['children']['steps']
-            ['children']['shipping-step']['children']['shippingAddress']
-            ['children']['shipping-address-fieldset']['children']['region_id']['imports'];
+        /** @var array $dicts */
+        $dicts = &$result['components']['checkoutProvider']['dictionaries'];
 
-        if (isset($imports)) {
-            $imports['initialOptions'] = 'index = checkoutProvider:dictionaries.' . static::DICT;
-            $imports['setOptions'] = 'index = checkoutProvider:dictionaries.' . static::DICT;
+        if (isset($dicts)) {
+            $dicts[static::DICT] = $this->regionFilter->getOptions();
         }
 
         return $result;
