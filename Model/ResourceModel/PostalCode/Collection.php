@@ -229,9 +229,9 @@ class Collection extends AbstractCollection implements AbstractCollectionInterfa
 
             /** @var string $label */
             $label = sprintf(
-                '%s [%s]',
-                $postalName,
-                $postalCode
+                '%s (%s)',
+                $postalCode,
+                $postalName
             );
 
             $options[] = [
@@ -240,7 +240,7 @@ class Collection extends AbstractCollection implements AbstractCollectionInterfa
                 'label' => $label,
                 'country_id' => $item['country_code'],
                 'region_id' => $item['region_id'],
-                'postcode' => $postalCode,
+                'postal_code' => $postalCode,
             ];
         }
 
