@@ -30,7 +30,7 @@ use Magento\Directory\{
 };
 use Magento\Framework\{
     File\Csv as CsvReader,
-    Module\Dir,
+    Module\Dir as ModuleDir,
     Module\Dir\Reader as ModuleReader,
     Setup\ModuleDataSetupInterface,
     Setup\Patch\DataPatchInterface
@@ -185,13 +185,13 @@ class AddUnitedStatesPostalCodes implements DataPatchInterface
      */
     private function getEtcFilePath(
         string $filename,
-        string $directory = 'import'
+        string $directory = 'import/postal_codes'
     ): string
     {
         /** @var string $modulePath */
         $modulePath = $this->moduleReader
             ->getModuleDir(
-                Dir::MODULE_ETC_DIR,
+                ModuleDir::MODULE_ETC_DIR,
                 static::MODULE_NAME
             );
 
