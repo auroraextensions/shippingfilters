@@ -25,7 +25,7 @@ define([
         defaults: {
             dict: 'whitelist_postal_code_id',
             exports: {
-                postalName: '${ $.parentName }.city:value'
+                postalCode: '${ $.parentName }.postcode:value'
             },
             imports: {
                 onCountrySelect: '${ $.parentName }.country_id:value'
@@ -33,48 +33,60 @@ define([
             listens: {
                 value: 'onValueChange'
             },
-            postalName: ko.observable()
+            postalCode: ko.observable()
         },
         /**
-         * @param {String|Number} value
-         * @return {String|null}
+         * @param {mixed} value
+         * @param {String} field
+         * @return {mixed}
          */
-        getNameById: function (value) {
-            return registry.get(this.provider, function (provider) {
-                var data, dict, index;
+        getFieldByValue: function (value, field) {
+            var dict, index,
+                item, result = null;
 
+            registry.get(this.provider, function (provider) {
                 /** @var {Array} dict */
                 dict = provider.dictionaries[this.dict];
 
                 if (!dict) {
-                    return null;
+                    return result;
                 }
 
+                /** @var {Number} index */
                 for (index = 0; index < dict.length; index += 1) {
-                    /** @var {Object} data */
-                    data = dict[index];
+                    /** @var {Object} item */
+                    item = dict[index];
 
-                    if (data['value'] === value) {
-                        return data['postal_name'];
+                    if (result !== null) {
+                        break;
+                    }
+
+                    if (item['value'] === value) {
+                        result = item[field];
                     }
                 }
-
-                return null;
             }.bind(this));
+
+            return result;
         },
         /**
          * @param {String} value
          * @return {void}
          */
         onCountrySelect: function (value) {
-            var country = registry.get(this.parentName + '.country_id'),
-                options = country.indexedOptions,
-                option = null;
+            var country, options, option;
 
             if (!value) {
                 return;
             }
 
+            /** @var {UiClass} country */
+            country = registry.get(this.parentName + '.country_id');
+
+            /** @var {Object} options */
+            options = country.indexedOptions;
+
+            /** @var {Object|null|void} option */
             option = options[value];
 
             if (!option) {
@@ -95,11 +107,13 @@ define([
          * @return {void}
          */
         onValueChange: function (value) {
+            var code, name;
+
             if (!value) {
                 return;
             }
 
-            this.postalName(this.getNameById(value));
+            this.postalCode(value);
         }
     });
 });
