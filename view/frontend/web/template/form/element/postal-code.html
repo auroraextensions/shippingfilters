@@ -15,7 +15,7 @@
  * @license       MIT License
  */
 -->
-<select class="select" data-bind="
+<select class="shippingfilters-postal-code-select" data-bind="
     attr: {
         name: inputName,
         id: uid,
@@ -35,5 +35,5 @@
         if (item && item.disabled) {
             ko.applyBindingsToNode(option, {attr: {disabled: true}}, item);
         }
-    }"
-/>
+    }
+"/>
