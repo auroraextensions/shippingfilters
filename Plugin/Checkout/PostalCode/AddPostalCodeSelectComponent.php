@@ -73,6 +73,7 @@ class AddPostalCodeSelectComponent
             'label' => __('ZIP/Postal Code'),
             'options' => [],
             'provider' => 'checkoutProvider',
+            'sortOrder' => 110,
             'validation' => [
                 'required-entry' => true,
             ],
