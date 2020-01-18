@@ -50,14 +50,14 @@
         <plugin name="shippingfilters_checkout_shipping_address_region_set_filter_shipping_region_dictionary"
                 type="AuroraExtensions\ShippingFilters\Plugin\Checkout\Region\SetFilterShippingRegionDictionary"
                 sortOrder="20"/>
-        <plugin name="shippingfilters_checkout_shipping_address_postal_code_extend_postcode_config"
-                type="AuroraExtensions\ShippingFilters\Plugin\Checkout\PostalCode\ExtendPostcodeConfig"
+        <plugin name="shippingfilters_checkout_shipping_address_postal_code_add_postal_code_select_component"
+                type="AuroraExtensions\ShippingFilters\Plugin\Checkout\PostalCode\AddPostalCodeSelectComponent"
                 sortOrder="30"/>
-        <plugin name="shippingfilters_checkout_shipping_address_postal_code_set_shipping_postal_code_dictionary"
-                type="AuroraExtensions\ShippingFilters\Plugin\Checkout\PostalCode\SetShippingPostalCodeDictionary"
-                sortOrder="40"/>
         <plugin name="shippingfilters_checkout_shipping_address_city_set_city_input_visibility"
                 type="AuroraExtensions\ShippingFilters\Plugin\Checkout\City\SetCityInputVisibility"
+                sortOrder="40"/>
+        <plugin name="shippingfilters_checkout_shipping_address_postal_code_set_postal_code_input_visibility"
+                type="AuroraExtensions\ShippingFilters\Plugin\Checkout\PostalCode\SetPostalCodeInputVisibility"
                 sortOrder="50"/>
     </type>
 </config>
