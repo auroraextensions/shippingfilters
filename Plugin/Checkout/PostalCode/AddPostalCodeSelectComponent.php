@@ -25,8 +25,14 @@ class AddPostalCodeSelectComponent
     /** @constant string COMPONENT */
     public const COMPONENT = 'AuroraExtensions_ShippingFilters/js/form/element/postal-code';
 
-    /** @constant string TEMPLATE */
-    public const TEMPLATE = 'AuroraExtensions_ShippingFilters/form/element/postal-code';
+    /** @constant string DATASCOPE */
+    public const DATASCOPE = 'postcode_id';
+
+    /** @constant string DICT */
+    public const DICT = 'whitelist_postal_code_id';
+
+    /** @constant string TMPL */
+    public const TMPL = 'AuroraExtensions_ShippingFilters/form/element/postal-code';
 
     /**
      * @param LayoutProcessorInterface $subject
@@ -38,22 +44,41 @@ class AddPostalCodeSelectComponent
         array $result
     ): array
     {
-        /** @var array $config */
-        $config = &$result['components']['checkout']['children']['steps']
+        /** @var array $component */
+        $component = &$result['components']['checkout']['children']['steps']
             ['children']['shipping-step']['children']['shippingAddress']
-            ['children']['shipping-address-fieldset']['children']['postcode_id']
-            ['config'];
+            ['children']['shipping-address-fieldset']['children'][static::DATASCOPE];
 
-        if (isset($config)) {
-            $config['caption'] = __('Please select a ZIP/postal code.');
-            $config['component'] = static::COMPONENT;
-            $config['elementTmpl'] = static::TEMPLATE;
-            $config['label'] = __('City and ZIP/Postal Code');
-            $config['filterBy'] = [
+        if (!isset($component)) {
+            $component = [];
+        }
+
+        $component += [
+            'component' => static::COMPONENT,
+            'config' => [
+                'caption' => __('Please select a ZIP/postal code'),
+                'customScope' => 'shippingAddress',
+                'elementTmpl' => static::TMPL,
+                'template' => 'ui/form/field',
+            ],
+            'dataScope' => 'shippingAddress.' . static::DATASCOPE,
+            'filterBy' => [
                 'field' => 'region_id',
                 'target' => '${ $.parentName }.region_id:value',
-            ];
-        }
+            ],
+            'imports' => [
+                'initialOptions' => 'index = checkoutProvider:dictionaries.' . static::DICT,
+                'setOptions' => 'index = checkoutProvider:dictionaries.' . static::DICT,
+            ],
+            'label' => __('ZIP/Postal Code'),
+            'options' => [],
+            'provider' => 'checkoutProvider',
+            'validation' => [
+                'required-entry' => true,
+            ],
+            'value' => '',
+            'visible' => true,
+        ];
 
         return $result;
     }
