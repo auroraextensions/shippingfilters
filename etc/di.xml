@@ -17,16 +17,25 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="AuroraExtensions\ShippingFilters\Api\LocalityRepositoryInterface"
+                type="AuroraExtensions\ShippingFilters\Model\Repository\LocalityRepository"/>
+    <preference for="AuroraExtensions\ShippingFilters\Api\Data\LocalityInterface"
+                type="AuroraExtensions\ShippingFilters\Model\Data\Locality"/>
+    <preference for="AuroraExtensions\ShippingFilters\Api\Data\LocalitySearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults"/>
     <preference for="AuroraExtensions\ShippingFilters\Api\PostalCodeRepositoryInterface"
                 type="AuroraExtensions\ShippingFilters\Model\Repository\PostalCodeRepository"/>
     <preference for="AuroraExtensions\ShippingFilters\Api\Data\PostalCodeInterface"
                 type="AuroraExtensions\ShippingFilters\Model\Data\PostalCode"/>
     <preference for="AuroraExtensions\ShippingFilters\Api\Data\PostalCodeSearchResultsInterface"
                 type="Magento\Framework\Api\SearchResults"/>
+
     <preference for="AuroraExtensions\ShippingFilters\Csi\Filter\CountryFilterInterface"
                 type="AuroraExtensions\ShippingFilters\Model\Filter\CountryFilter"/>
     <preference for="AuroraExtensions\ShippingFilters\Csi\Filter\RegionFilterInterface"
                 type="AuroraExtensions\ShippingFilters\Model\Filter\RegionFilter"/>
+    <preference for="AuroraExtensions\ShippingFilters\Csi\Filter\LocalityFilterInterface"
+                type="AuroraExtensions\ShippingFilters\Model\Filter\LocalityFilter"/>
     <preference for="AuroraExtensions\ShippingFilters\Csi\Filter\PostalCodeFilterInterface"
                 type="AuroraExtensions\ShippingFilters\Model\Filter\PostalCodeFilter"/>
     <preference for="AuroraExtensions\ShippingFilters\Csi\System\ModuleConfigInterface"
@@ -39,9 +48,12 @@
         <plugin name="shippingfilters_checkout_shipping_address_region_add_filter_shipping_region_dictionary"
                 type="AuroraExtensions\ShippingFilters\Plugin\Checkout\Region\AddFilterShippingRegionDictionary"
                 sortOrder="20"/>
+        <plugin name="shippingfilters_checkout_shipping_address_city_add_shipping_city_dictionary"
+                type="AuroraExtensions\ShippingFilters\Plugin\Checkout\City\AddShippingCityDictionary"
+                sortOrder="30"/>
         <plugin name="shippingfilters_checkout_shipping_address_postal_code_add_shipping_postal_code_dictionary"
                 type="AuroraExtensions\ShippingFilters\Plugin\Checkout\PostalCode\AddShippingPostalCodeDictionary"
-                sortOrder="30"/>
+                sortOrder="40"/>
     </type>
     <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
         <plugin name="shippingfilters_checkout_shipping_address_country_set_filter_shipping_country_dictionary"
@@ -50,14 +62,17 @@
         <plugin name="shippingfilters_checkout_shipping_address_region_set_filter_shipping_region_dictionary"
                 type="AuroraExtensions\ShippingFilters\Plugin\Checkout\Region\SetFilterShippingRegionDictionary"
                 sortOrder="20"/>
+        <plugin name="shippingfilters_checkout_shipping_address_city_add_city_select_component"
+                type="AuroraExtensions\ShippingFilters\Plugin\Checkout\City\AddCitySelectComponent"
+                sortOrder="30"/>
         <plugin name="shippingfilters_checkout_shipping_address_postal_code_add_postal_code_select_component"
                 type="AuroraExtensions\ShippingFilters\Plugin\Checkout\PostalCode\AddPostalCodeSelectComponent"
-                sortOrder="30"/>
+                sortOrder="40"/>
         <plugin name="shippingfilters_checkout_shipping_address_city_set_city_input_visibility"
                 type="AuroraExtensions\ShippingFilters\Plugin\Checkout\City\SetCityInputVisibility"
-                sortOrder="40"/>
+                sortOrder="50"/>
         <plugin name="shippingfilters_checkout_shipping_address_postal_code_set_postal_code_input_visibility"
                 type="AuroraExtensions\ShippingFilters\Plugin\Checkout\PostalCode\SetPostalCodeInputVisibility"
-                sortOrder="50"/>
+                sortOrder="60"/>
     </type>
 </config>
