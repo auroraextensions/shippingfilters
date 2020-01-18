@@ -107,13 +107,19 @@ define([
          * @return {void}
          */
         onValueChange: function (value) {
-            var code, name;
+            var code;
 
             if (!value) {
                 return;
             }
 
-            this.postalCode(value);
+            /** @var {String} code */
+            code = this.getFieldByValue(
+                value,
+                'postal_code'
+            );
+
+            this.postalCode(code);
         }
     });
 });
