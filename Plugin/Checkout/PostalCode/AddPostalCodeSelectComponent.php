@@ -1,6 +1,6 @@
 <?php
 /**
- * ExtendPostcodeConfig.php
+ * AddPostalCodeSelectComponent.php
  *
  * NOTICE OF LICENSE
  *
@@ -20,7 +20,7 @@ namespace AuroraExtensions\ShippingFilters\Plugin\Checkout\PostalCode;
 
 use Magento\Checkout\Block\Checkout\LayoutProcessorInterface;
 
-class ExtendPostcodeConfig
+class AddPostalCodeSelectComponent
 {
     /** @constant string COMPONENT */
     public const COMPONENT = 'AuroraExtensions_ShippingFilters/js/form/element/postal-code';
@@ -41,7 +41,8 @@ class ExtendPostcodeConfig
         /** @var array $config */
         $config = &$result['components']['checkout']['children']['steps']
             ['children']['shipping-step']['children']['shippingAddress']
-            ['children']['shipping-address-fieldset']['children']['postcode']['config'];
+            ['children']['shipping-address-fieldset']['children']['postcode_id']
+            ['config'];
 
         if (isset($config)) {
             $config['caption'] = __('Please select a ZIP/postal code.');
