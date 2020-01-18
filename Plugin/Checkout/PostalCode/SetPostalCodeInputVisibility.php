@@ -1,6 +1,6 @@
 <?php
 /**
- * SetShippingPostalCodeDictionary.php
+ * SetPostalCodeInputVisibility.php
  *
  * NOTICE OF LICENSE
  *
@@ -20,11 +20,8 @@ namespace AuroraExtensions\ShippingFilters\Plugin\Checkout\PostalCode;
 
 use Magento\Checkout\Block\Checkout\LayoutProcessorInterface;
 
-class SetShippingPostalCodeDictionary
+class SetPostalCodeInputVisibility
 {
-    /** @constant string DICT */
-    public const DICT = 'whitelist_postal_code_id';
-
     /**
      * @param LayoutProcessorInterface $subject
      * @param array $result
@@ -35,17 +32,14 @@ class SetShippingPostalCodeDictionary
         array $result
     ): array
     {
-        /** @var array $imports */
-        $imports = &$result['components']['checkout']['children']['steps']
+        /** @var array $config */
+        $config = &$result['components']['checkout']['children']['steps']
             ['children']['shipping-step']['children']['shippingAddress']
-            ['children']['shipping-address-fieldset']['children']['postcode']['imports'];
+            ['children']['shipping-address-fieldset']['children']['postcode']['config'];
 
-        if (!isset($imports)) {
-            $imports = [];
+        if (isset($config)) {
+            $config['visible'] = false;
         }
-
-        $imports['initialOptions'] = 'index = checkoutProvider:dictionaries.' . static::DICT;
-        $imports['setOptions'] = 'index = checkoutProvider:dictionaries.' . static::DICT;
 
         return $result;
     }
