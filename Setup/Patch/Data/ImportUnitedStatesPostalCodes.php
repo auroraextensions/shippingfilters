@@ -1,6 +1,6 @@
 <?php
 /**
- * AddUnitedStatesPostalCodes.php
+ * ImportUnitedStatesPostalCodes.php
  *
  * NOTICE OF LICENSE
  *
@@ -37,7 +37,7 @@ use Magento\Framework\{
 };
 use Psr\Log\LoggerInterface;
 
-class AddUnitedStatesPostalCodes implements DataPatchInterface
+class ImportUnitedStatesPostalCodes implements DataPatchInterface
 {
     /** @constant string COUNTRY_CODE */
     public const COUNTRY_CODE = 'US';
@@ -108,7 +108,9 @@ class AddUnitedStatesPostalCodes implements DataPatchInterface
      */
     public static function getDependencies()
     {
-        return [];
+        return [
+            ImportUnitedStatesLocalities::class,
+        ];
     }
 
     /**
@@ -116,7 +118,9 @@ class AddUnitedStatesPostalCodes implements DataPatchInterface
      */
     public function getAliases()
     {
-        return [];
+        return [
+            AddUnitedStatesPostalCodes::class,
+        ];
     }
 
     /**
@@ -135,9 +139,6 @@ class AddUnitedStatesPostalCodes implements DataPatchInterface
             /** @var array $fileData */
             $fileData = $this->csvReader
                 ->getData($filePath);
-
-            /** @var string|null $lastRegionCode */
-            $lastRegionCode = null;
 
             /** @var array $fileRow */
             foreach ($fileData as $fileRow) {
