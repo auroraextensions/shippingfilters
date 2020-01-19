@@ -73,7 +73,7 @@ class AddCitySelectComponent
             'label' => __('City'),
             'options' => [],
             'provider' => 'checkoutProvider',
-            'sortOrder' => 90,
+            'sortOrder' => 105,
             'validation' => [
                 'required-entry' => true,
             ],
