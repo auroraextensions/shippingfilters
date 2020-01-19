@@ -32,7 +32,7 @@ class Collection extends AbstractCollection implements AbstractCollectionInterfa
     private const SELECT_FIELDS = [
         'postal_code_id',
         'postal_code',
-        'postal_name',
+        'locality_name',
         'country_code',
         'region_id',
     ];
@@ -224,23 +224,13 @@ class Collection extends AbstractCollection implements AbstractCollectionInterfa
             /** @var string $postalCode */
             $postalCode = $item['postal_code'];
 
-            /** @var string $postalName */
-            $postalName = $item['postal_name'];
-
-            /** @var string $label */
-            $label = sprintf(
-                '%s, %s',
-                $postalName,
-                $postalCode
-            );
-
             $options[] = [
-                'label' => $label,
+                'label' => $postalCode,
                 'value' => $item['postal_code_id'],
                 'country_id' => $item['country_code'],
                 'region_id' => $item['region_id'],
                 'postal_code' => $postalCode,
-                'postal_name' => $postalName,
+                'locality_name' => $item['locality_name'],
             ];
         }
 
