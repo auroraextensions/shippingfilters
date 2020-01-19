@@ -31,8 +31,11 @@ class AddPostalCodeSelectComponent
     /** @constant string DICT */
     public const DICT = 'whitelist_postal_code_id';
 
-    /** @constant string TMPL */
-    public const TMPL = 'AuroraExtensions_ShippingFilters/form/element/postal-code';
+    /** @constant string ELEMENT_TMPL */
+    public const ELEMENT_TMPL = 'AuroraExtensions_ShippingFilters/form/element/postal-code';
+
+    /** @constant string TOOLTIP_TMPL */
+    public const TOOLTIP_TMPL = 'AuroraExtensions_ShippingFilters/form/element/select/tooltip';
 
     /**
      * @param LayoutProcessorInterface $subject
@@ -58,8 +61,18 @@ class AddPostalCodeSelectComponent
             'config' => [
                 'caption' => __('Please select a ZIP/postal code.'),
                 'customScope' => 'shippingAddress',
-                'elementTmpl' => static::TMPL,
+                'elementTmpl' => static::ELEMENT_TMPL,
                 'template' => 'ui/form/field',
+                'tooltipTpl' => static::TOOLTIP_TMPL,
+                'tooltip' => [
+                    'description' => [
+                        'text' => __('Postal code not showing?'),
+                        'link' => [
+                            'text' => __('Learn why.'),
+                            'href' => '#',
+                        ],
+                    ],
+                ],
             ],
             'dataScope' => 'shippingAddress.' . static::DATASCOPE,
             'filterBy' => [
