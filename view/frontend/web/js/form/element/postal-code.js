@@ -28,7 +28,8 @@ define([
                 postalCode: '${ $.parentName }.postcode:value'
             },
             imports: {
-                onCountrySelect: '${ $.parentName }.country_id:value'
+                onCountrySelect: '${ $.parentName }.country_id:value',
+                onLocalitySelect: '${ $.parentName }.city_id:value'
             },
             listens: {
                 value: 'onValueChange'
@@ -38,24 +39,27 @@ define([
         /**
          * @param {mixed} value
          * @param {String} field
+         * @param {String} dict
          * @return {mixed}
          */
-        getFieldByValue: function (value, field) {
-            var dict, index,
+        getFieldByValue: function (value, field, dict) {
+            var data, index,
                 item, result = null;
 
-            registry.get(this.provider, function (provider) {
-                /** @var {Array} dict */
-                dict = provider.dictionaries[this.dict];
+            dict = dict || this.dict;
 
-                if (!dict) {
+            registry.get(this.provider, function (provider) {
+                /** @var {Array} data */
+                data = provider.dictionaries[dict];
+
+                if (!data) {
                     return result;
                 }
 
                 /** @var {Number} index */
-                for (index = 0; index < dict.length; index += 1) {
+                for (index = 0; index < data.length; index += 1) {
                     /** @var {Object} item */
-                    item = dict[index];
+                    item = data[index];
 
                     if (result !== null) {
                         break;
@@ -101,6 +105,38 @@ define([
             }
 
             this.required(!option['is_zipcode_optional']);
+        },
+        /**
+         * @param {String} value
+         * @return {void}
+         */
+        onLocalitySelect: function (value) {
+            var field, locality, result;
+
+            if (!value) {
+                return;
+            }
+
+            /** @var {String} field */
+            field = 'locality_name';
+
+            /** @var {String} locality */
+            locality = this.getFieldByValue(
+                value,
+                field,
+                'whitelist_city_id'
+            );
+
+            /** @var {Array} result */
+            result = _.filter(this.initialOptions, function (item) {
+                return item[field] === locality || item.value === '';
+            });
+
+            this.setOptions(result);
+
+            if (result.length && result.length < 2) {
+                this.value(result[0]['value']);
+            }
         },
         /**
          * @param {String} value
