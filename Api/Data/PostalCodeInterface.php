@@ -56,13 +56,13 @@ interface PostalCodeInterface
     /**
      * @return string
      */
-    public function getPostalName(): string;
+    public function getLocalityName(): string;
 
     /**
-     * @param string $postalName
+     * @param string $localityName
      * @return \AuroraExtensions\ShippingFilters\Api\Data\PostalCodeInterface
      */
-    public function setPostalName(string $postalName): PostalCodeInterface;
+    public function setLocalityName(string $localityName): PostalCodeInterface;
 
     /**
      * @return int

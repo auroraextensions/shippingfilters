@@ -56,7 +56,7 @@ class AddCitySelectComponent
         $component += [
             'component' => static::COMPONENT,
             'config' => [
-                'caption' => __('Please select a locality'),
+                'caption' => __('Please select a city.'),
                 'customScope' => 'shippingAddress',
                 'elementTmpl' => static::TMPL,
                 'template' => 'ui/form/field',

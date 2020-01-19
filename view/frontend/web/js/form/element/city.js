@@ -30,7 +30,7 @@ define([
             listens: {
                 value: 'onValueChange'
             },
-            postalCode: ko.observable()
+            locality: ko.observable()
         },
         /**
          * @param {mixed} value

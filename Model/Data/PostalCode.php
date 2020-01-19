@@ -73,18 +73,18 @@ class PostalCode extends AbstractModel implements PostalCodeInterface
     /**
      * @return string
      */
-    public function getPostalName(): string
+    public function getLocalityName(): string
     {
-        return $this->getData('postal_name');
+        return $this->getData('locality_name');
     }
 
     /**
-     * @param string $postalName
+     * @param string $localityName
      * @return $this
      */
-    public function setPostalName(string $postalName): PostalCodeInterface
+    public function setLocalityName(string $localityName): PostalCodeInterface
     {
-        $this->setData('postal_name', $postalName);
+        $this->setData('locality_name', $localityName);
         return $this;
     }
 

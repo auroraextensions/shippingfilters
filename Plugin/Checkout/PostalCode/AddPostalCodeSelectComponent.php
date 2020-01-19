@@ -56,7 +56,7 @@ class AddPostalCodeSelectComponent
         $component += [
             'component' => static::COMPONENT,
             'config' => [
-                'caption' => __('Please select a ZIP/postal code'),
+                'caption' => __('Please select a ZIP/postal code.'),
                 'customScope' => 'shippingAddress',
                 'elementTmpl' => static::TMPL,
                 'template' => 'ui/form/field',

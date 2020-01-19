@@ -143,12 +143,12 @@ class ImportUnitedStatesPostalCodes implements DataPatchInterface
             /** @var array $fileRow */
             foreach ($fileData as $fileRow) {
                 /** @var string $postalCode */
-                /** @var string $postalName */
+                /** @var string $localityName */
                 /** @var string $regionName */
                 /** @var string $regionCode */
                 [
                     $postalCode,
-                    $postalName,
+                    $localityName,
                     $regionName,
                     $regionCode,
                 ] = $fileRow;
@@ -161,7 +161,7 @@ class ImportUnitedStatesPostalCodes implements DataPatchInterface
                 $entity = $this->postalCodeFactory->create();
                 $entity->addData([
                     'postal_code' => $postalCode,
-                    'postal_name' => $postalName,
+                    'locality_name' => $localityName,
                     'region_id' => $this->cache[$regionCode],
                     'region_code' => $regionCode,
                     'region_name' => $regionName,
