@@ -51,7 +51,7 @@
         <column xsi:type="int" name="postal_code_id" padding="10" unsigned="true" nullable="false" identity="true"
                 comment="Postal Code ID"/>
         <column xsi:type="varchar" name="postal_code" nullable="false" length="64" comment="Postal Code"/>
-        <column xsi:type="varchar" name="postal_name" nullable="false" length="128" comment="Locality Name"/>
+        <column xsi:type="varchar" name="locality_name" nullable="false" length="128" comment="Locality Name"/>
         <column xsi:type="int" name="region_id" padding="10" unsigned="true" nullable="false" comment="Region ID"/>
         <column xsi:type="varchar" name="region_code" nullable="true" length="64" comment="Region Code"/>
         <column xsi:type="varchar" name="region_name" nullable="true" length="128" comment="Region Name"/>
