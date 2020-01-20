@@ -21,9 +21,13 @@
         <resources>
             <resource id="Magento_Backend::admin">
                 <resource id="Magento_Backend::stores">
+                    <resource id="AuroraExtensions_ShippingFilters::shippingfilters" title="Shipping Filters" translate="title" sortOrder="10">
+                        <resource id="AuroraExtensions_ShippingFilters::shippingfilters_locality" title="Locality" translate="title" sortOrder="10"/>
+                        <resource id="AuroraExtensions_ShippingFilters::shippingfilters_postal_code" title="Postal Code" translate="title" sortOrder="20"/>
+                    </resource>
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
-                            <resource id="AuroraExtensions_ShippingFilters::configuration" title="Shipping Filters"/>
+                            <resource id="AuroraExtensions_ShippingFilters::configuration" title="Configuration" translate="title"/>
                         </resource>
                     </resource>
                 </resource>
