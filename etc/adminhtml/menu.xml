@@ -22,8 +22,9 @@
              title="Shipping Filters"
              translate="title"
              module="AuroraExtensions_ShippingFilters"
-             parent="Magento_Backend::stores"
+             dependsOnModule="AuroraExtensions_ShippingFilters"
              resource="AuroraExtensions_ShippingFilters::shippingfilters"
+             parent="Magento_Backend::stores"
              sortOrder="100"/>
         <add id="AuroraExtensions_ShippingFilters::shippingfilters_locality"
              title="Cities"
