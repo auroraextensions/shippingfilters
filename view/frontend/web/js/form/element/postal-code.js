@@ -186,6 +186,7 @@ define([
             }
 
             if (result.length && result.length < 2) {
+                this.disabled(true);
                 this.value(result[0]['value']);
             }
         },
