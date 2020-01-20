@@ -17,9 +17,42 @@ define([
     'underscore',
     'ko',
     'uiRegistry',
+    'mage/translate',
     'Magento_Ui/js/form/element/select'
-], function (_, ko, registry, Select) {
+], function (_, ko, registry, $t, Select) {
     'use strict';
+
+    /**
+     * @param {Array} data
+     * @param {Object} result
+     * @returns {Object}
+     */
+    function indexOptions(data, result) {
+        var value;
+
+        result = result || {};
+
+        data.forEach(function (item) {
+            value = item.value;
+
+            if (Array.isArray(value)) {
+                indexOptions(value, result);
+            } else {
+                result[value] = item;
+            }
+        });
+
+        return result;
+    }
+
+    /**
+     * @param {Array} a
+     * @param {Array} b
+     * @return {Boolean}
+     */
+    function isArrayEqual(a, b) {
+        return (JSON.stringify(a) === JSON.stringify(b));
+    }
 
     return Select.extend({
         defaults: {
@@ -32,9 +65,29 @@ define([
                 onLocalitySelect: '${ $.parentName }.city_id:value'
             },
             listens: {
+                options: 'onOptionsChange',
                 value: 'onValueChange'
             },
-            postalCode: ko.observable()
+            filterOptions: ko.observableArray([]),
+            postalCode: ko.observable(),
+            messages: {
+                noZipCodesWarning: $t('We\'re unable to ship to your selected city. We apologize for the inconvenience.')
+            }
+        },
+        /**
+         * @return {String|null}
+         */
+        getLocalityValue: function () {
+            var component;
+
+            /** @var {UiClass} component */
+            component = registry.get(this.parentName + '.city_id');
+
+            if (!component.value()) {
+                return null;
+            }
+
+            return component.value();
         },
         /**
          * @param {mixed} value
@@ -111,10 +164,51 @@ define([
          * @return {void}
          */
         onLocalitySelect: function (value) {
-            var field, locality, result;
+            var result;
 
             if (!value) {
                 return;
+            }
+
+            /** @var {Array} result */
+            result = this.filterByLocality(value);
+
+            this.filterOptions(result);
+            this.setOptions(result);
+
+            if (!result.length) {
+                this.disabled(true);
+                this.error(false);
+                this.warn(this.messages['noZipCodesWarning']);
+            } else {
+                this.disabled(false);
+                this.warn(false);
+            }
+
+            if (result.length && result.length < 2) {
+                this.value(result[0]['value']);
+            }
+        },
+        /**
+         * @param {Array} options
+         * @return {void}
+         */
+        onOptionsChange: function (options) {
+            var locality;
+
+            if (!isArrayEqual(options, this.filterOptions())) {
+                this.setOptions(this.filterOptions());
+            }
+        },
+        /**
+         * @param {String} value
+         * @return {Array}
+         */
+        filterByLocality: function (value) {
+            var field, locality, result;
+
+            if (!value) {
+                return [];
             }
 
             /** @var {String} field */
@@ -127,16 +221,9 @@ define([
                 'whitelist_city_id'
             );
 
-            /** @var {Array} result */
-            result = _.filter(this.initialOptions, function (item) {
+            return _.filter(this.initialOptions, function (item) {
                 return item[field] === locality || item.value === '';
             });
-
-            this.setOptions(result);
-
-            if (result.length && result.length < 2) {
-                this.value(result[0]['value']);
-            }
         },
         /**
          * @param {String} value
