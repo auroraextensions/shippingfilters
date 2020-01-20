@@ -28,6 +28,9 @@
             <region>
                 <whitelist></whitelist>
             </region>
+            <locality>
+                <whitelist></whitelist>
+            </locality>
             <postal>
                 <whitelist></whitelist>
             </postal>
