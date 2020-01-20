@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * menu.xml
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License, which
+ * is bundled with this package in the file LICENSE.txt.
+ *
+ * It is also available on the Internet at the following URL:
+ * https://docs.auroraextensions.com/magento/extensions/2.x/shippingfilters/LICENSE.txt
+ *
+ * @package       AuroraExtensions_ShippingFilters
+ * @copyright     Copyright (C) 2020 Aurora Extensions <support@auroraextensions.com>
+ * @license       MIT License
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="AuroraExtensions_ShippingFilters::shippingfilters"
+             title="Shipping Filters"
+             translate="title"
+             module="AuroraExtensions_ShippingFilters"
+             parent="Magento_Backend::stores"
+             resource="AuroraExtensions_ShippingFilters::shippingfilters"
+             sortOrder="100"/>
+        <add id="AuroraExtensions_ShippingFilters::shippingfilters_locality"
+             title="Cities"
+             translate="title"
+             module="AuroraExtensions_ShippingFilters"
+             parent="AuroraExtensions_ShippingFilters::shippingfilters"
+             resource="AuroraExtensions_ShippingFilters::shippingfilters_locality"
+             sortOrder="10"
+             action="shippingfilters/locality/index"/>
+        <add id="AuroraExtensions_ShippingFilters::shippingfilters_postal_code"
+             title="Postal Codes"
+             translate="title"
+             module="AuroraExtensions_ShippingFilters"
+             parent="AuroraExtensions_ShippingFilters::shippingfilters"
+             resource="AuroraExtensions_ShippingFilters::shippingfilters_postal_code"
+             sortOrder="20"
+             action="shippingfilters/postal/index"/>
+    </menu>
+</config>
