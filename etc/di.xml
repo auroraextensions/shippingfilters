@@ -41,6 +41,13 @@
     <preference for="AuroraExtensions\ShippingFilters\Csi\System\ModuleConfigInterface"
                 type="AuroraExtensions\ShippingFilters\Model\System\ModuleConfig"/>
 
+    <virtualType name="AuroraExtensions\ShippingFilters\Ui\Component\Listing\Column\Locality\Actions"
+                 type="AuroraExtensions\ShippingFilters\Ui\Component\Listing\Column\Actions">
+        <arguments>
+            <argument name="paramKey" xsi:type="string">locality_id</argument>
+        </arguments>
+    </virtualType>
+
     <type name="Magento\Checkout\Block\Checkout\DirectoryDataProcessor">
         <plugin name="shippingfilters_checkout_shipping_address_country_add_filter_shipping_country_dictionary"
                 type="AuroraExtensions\ShippingFilters\Plugin\Checkout\Country\AddFilterShippingCountryDictionary"
