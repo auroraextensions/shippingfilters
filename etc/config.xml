@@ -29,10 +29,10 @@
                 <whitelist></whitelist>
             </region>
             <locality>
-                <whitelist></whitelist>
+                <enable>0</enable>
             </locality>
             <postal>
-                <whitelist></whitelist>
+                <enable>0</enable>
             </postal>
         </shippingfilters>
     </default>
