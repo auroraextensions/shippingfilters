@@ -54,29 +54,17 @@
                 <settings>
                     <confirm>
                         <message translate="true">Are you sure you want to whitelist the selected localities?</message>
-                        <title translate="true">Add items to whitelist</title>
+                        <title translate="true">Add items to Whitelist</title>
                     </confirm>
-                    <url path="shippingfilters/index/massWhitelist"/>
+                    <url path="shippingfilters/locality_index/massWhitelist"/>
                     <type>add_to_whitelist</type>
-                    <label translate="true">Add to whitelist</label>
+                    <label translate="true">Add to Whitelist</label>
                 </settings>
             </action>
         </massaction>
         <paging name="listing_paging"/>
     </listingToolbar>
     <columns name="shippingfilters_locality_grid_columns">
-        <settings>
-            <childDefaults>
-                <param name="fieldAction" xsi:type="array">
-                    <item name="provider" xsi:type="string">shippingfilters_locality_grid.shippingfilters_locality_grid.shippingfilters_locality_grid_columns.actions</item>
-                    <item name="target" xsi:type="string">applyAction</item>
-                    <item name="params" xsi:type="array">
-                        <item name="0" xsi:type="string">view</item>
-                        <item name="1" xsi:type="string">${ $.$data.rowIndex }</item>
-                    </item>
-                </param>
-            </childDefaults>
-        </settings>
         <selectionsColumn name="ids" sortOrder="100">
             <settings>
                 <indexField>locality_id</indexField>
@@ -91,14 +79,14 @@
         <column name="locality_name" sortOrder="300">
             <settings>
                 <filter>text</filter>
-                <label translate="true">Name</label>
+                <label translate="true">City</label>
             </settings>
         </column>
         <column name="region_name" sortOrder="400">
             <settings>
                 <filter>text</filter>
-                <label translate="true">Region</label>
-                <sorting>desc</sorting>
+                <label translate="true">State/Province</label>
+                <sorting>asc</sorting>
             </settings>
         </column>
         <column name="country_name" sortOrder="500">
@@ -107,38 +95,5 @@
                 <label translate="true">Country</label>
             </settings>
         </column>
-        <column name="created_at"
-                class="Magento\Ui\Component\Listing\Columns\Date"
-                component="Magento_Ui/js/grid/columns/date"
-                sortOrder="600">
-            <settings>
-                <dataType>date</dataType>
-                <filter>dateRange</filter>
-                <label translate="true">Created</label>
-            </settings>
-        </column>
-        <column name="updated_at"
-                class="Magento\Ui\Component\Listing\Columns\Date"
-                component="Magento_Ui/js/grid/columns/date"
-                sortOrder="700">
-            <settings>
-                <dataType>date</dataType>
-                <filter>dateRange</filter>
-                <label translate="true">Updated</label>
-            </settings>
-        </column>
-        <actionsColumn name="actions"
-                       class="AuroraExtensions\ShippingFilters\Ui\Component\Listing\Column\Locality\Actions"
-                       sortOrder="800">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="viewUrlPath" xsi:type="string">shippingfilters/locality/view</item>
-                    <item name="editUrlPath" xsi:type="string">shippingfilters/locality/edit</item>
-                </item>
-            </argument>
-            <settings>
-                <indexField>locality_id</indexField>
-            </settings>
-        </actionsColumn>
     </columns>
 </listing>
