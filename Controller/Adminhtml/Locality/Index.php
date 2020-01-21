@@ -57,7 +57,7 @@ class Index extends Action implements HttpGetActionInterface
         $resultPage = $this->resultPageFactory->create();
         $resultPage->getConfig()
             ->getTitle()
-            ->prepend(__('Shipping Filters by Locality'));
+            ->prepend(__('City Shipping Filters'));
 
         return $resultPage;
     }
