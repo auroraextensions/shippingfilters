@@ -46,11 +46,11 @@ define([
     }
 
     /**
-     * @param {Array} a
-     * @param {Array} b
+     * @param {Object} a
+     * @param {Object} b
      * @return {Boolean}
      */
-    function isArrayEqual(a, b) {
+    function isCompositeEqual(a, b) {
         return (JSON.stringify(a) === JSON.stringify(b));
     }
 
@@ -62,6 +62,7 @@ define([
             },
             imports: {
                 onCountrySelect: '${ $.parentName }.country_id:value',
+                onRegionSelect: '${ $.parentName }.region_id:value',
                 onLocalitySelect: '${ $.parentName }.city_id:value'
             },
             listens: {
@@ -73,21 +74,6 @@ define([
             messages: {
                 noZipCodesWarning: $t('We\'re unable to ship to your selected city. We apologize for the inconvenience.')
             }
-        },
-        /**
-         * @return {String|null}
-         */
-        getLocalityValue: function () {
-            var component;
-
-            /** @var {UiClass} component */
-            component = registry.get(this.parentName + '.city_id');
-
-            if (!component.value()) {
-                return null;
-            }
-
-            return component.value();
         },
         /**
          * @param {mixed} value
@@ -163,6 +149,23 @@ define([
          * @param {String} value
          * @return {void}
          */
+        onRegionSelect: function (value) {
+            var result;
+
+            if (!value) {
+                return;
+            }
+
+            /** @var {Array} result */
+            result = this.filterByRegion(value);
+
+            this.filterOptions(result);
+            this.setOptions(result);
+        },
+        /**
+         * @param {String} value
+         * @return {void}
+         */
         onLocalitySelect: function (value) {
             var result;
 
@@ -195,9 +198,7 @@ define([
          * @return {void}
          */
         onOptionsChange: function (options) {
-            var locality;
-
-            if (!isArrayEqual(options, this.filterOptions())) {
+            if (!isCompositeEqual(options, this.filterOptions())) {
                 this.setOptions(this.filterOptions());
             }
         },
@@ -206,7 +207,7 @@ define([
          * @return {Array}
          */
         filterByLocality: function (value) {
-            var field, locality, result;
+            var field, locality;
 
             if (!value) {
                 return [];
@@ -224,6 +225,31 @@ define([
 
             return _.filter(this.initialOptions, function (item) {
                 return item[field] === locality || item.value === '';
+            });
+        },
+        /**
+         * @param {String} value
+         * @return {Array}
+         */
+        filterByRegion: function (value) {
+            var field, region;
+
+            if (!value) {
+                return [];
+            }
+
+            /** @var {String} field */
+            field = 'label';
+
+            /** @var {String} region */
+            region = this.getFieldByValue(
+                value,
+                field,
+                'whitelist_region_id'
+            );
+
+            return _.filter(this.initialOptions, function (item) {
+                return item[field] === region || item.value === '';
             });
         },
         /**
