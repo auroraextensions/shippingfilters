@@ -1,6 +1,6 @@
 <?php
 /**
- * MassWhitelist.php
+ * MassActivate.php
  *
  * NOTICE OF LICENSE
  *
@@ -20,6 +20,7 @@ namespace AuroraExtensions\ShippingFilters\Controller\Adminhtml\Locality\Index;
 
 use AuroraExtensions\ShippingFilters\{
     Api\AbstractCollectionInterface,
+    Api\LocalityRepositoryInterface,
     Model\ResourceModel\Locality\Collection,
     Model\ResourceModel\Locality\CollectionFactory
 };
@@ -30,26 +31,32 @@ use Magento\Framework\{
 };
 use Magento\Ui\Component\MassAction\Filter;
 
-class MassWhitelist extends AbstractMassAction implements HttpPostActionInterface
+class MassActivate extends AbstractMassAction implements HttpPostActionInterface
 {
     /** @constant string ADMIN_RESOURCE */
     public const ADMIN_RESOURCE = 'AuroraExtensions_ShippingFilters::shippingfilters_locality';
+
+    /** @property LocalityRepositoryInterface $localityRepository */
+    protected $localityRepository;
 
     /**
      * @param Context $context
      * @param CollectionFactory $collectionFactory
      * @param Filter $filter
+     * @param LocalityRepositoryInterface $localityRepository
      */
     public function __construct(
         Context $context,
         CollectionFactory $collectionFactory,
-        Filter $filter
+        Filter $filter,
+        LocalityRepositoryInterface $localityRepository
     ) {
         parent::__construct(
             $context,
             $collectionFactory,
             $filter
         );
+        $this->localityRepository = $localityRepository;
     }
 
     /**
@@ -61,12 +68,18 @@ class MassWhitelist extends AbstractMassAction implements HttpPostActionInterfac
         $count = 0;
 
         foreach ($collection->getAllIds() as $localityId) {
+            /** @var LocalityInterface $locality */
+            $locality = $this->localityRepository
+                ->getById((int) $localityId);
+
+            $locality->setIsActive(true);
+            $this->localityRepository->save($locality);
             $count++;
         }
 
         if ($count) {
             $this->messageManager
-                ->addSuccessMessage(__('A total of %1 record(s) were whitelisted.', $count));
+                ->addSuccessMessage(__('A total of %1 record(s) were activated.', $count));
         }
 
         /** @var Redirect $resultRedirect */
