@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * shippingfilters_postal_code_grid.xml
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License, which
+ * is bundled with this package in the file LICENSE.txt.
+ *
+ * It is also available on the Internet at the following URL:
+ * https://docs.auroraextensions.com/magento/extensions/2.x/shippingfilters/LICENSE.txt
+ *
+ * @package       AuroraExtensions_ShippingFilters
+ * @copyright     Copyright (C) 2020 Aurora Extensions <support@auroraextensions.com>
+ * @license       MIT License
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">shippingfilters_postal_code_grid.shippingfilters_postal_code_grid_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <deps>
+            <dep>shippingfilters_postal_code_grid.shippingfilters_postal_code_grid_data_source</dep>
+        </deps>
+        <spinner>shippingfilters_postal_code_grid_columns</spinner>
+    </settings>
+    <dataSource name="shippingfilters_postal_code_grid_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>AuroraExtensions_ShippingFilters::shippingfilters_postal_code</aclResource>
+        <dataProvider class="AuroraExtensions\ShippingFilters\Ui\DataProvider\Grid\PostalCode\DataProvider"
+                      name="shippingfilters_postal_code_grid_data_source">
+            <settings>
+                <primaryFieldName>postal_code_id</primaryFieldName>
+                <requestFieldName>postal_code_id</requestFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>false</sticky>
+        </settings>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters"/>
+        <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
+            <action name="activate_postal_codes" class="AuroraExtensions\ShippingFilters\Ui\Component\Control\MassAction">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="actionPath" xsi:type="string">shippingfilters/postal_index/massActivate</item>
+                    </item>
+                </argument>
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to activate the selected postal codes?</message>
+                        <title translate="true">Activate postal codes</title>
+                    </confirm>
+                    <type>activate_postal_codes</type>
+                    <label translate="true">Activate</label>
+                </settings>
+            </action>
+            <action name="deactivate_postal_codes" class="AuroraExtensions\ShippingFilters\Ui\Component\Control\MassAction">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="actionPath" xsi:type="string">shippingfilters/postal_index/massDeactivate</item>
+                    </item>
+                </argument>
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to deactivate the selected postal codes?</message>
+                        <title translate="true">Deactivate postal codes</title>
+                    </confirm>
+                    <type>deactivate_postal_codes</type>
+                    <label translate="true">Deactivate</label>
+                </settings>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="shippingfilters_postal_code_grid_columns">
+        <selectionsColumn name="ids" sortOrder="100">
+            <settings>
+                <indexField>postal_code_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="postal_code_id" sortOrder="200">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">ID</label>
+            </settings>
+        </column>
+        <column name="postal_code" sortOrder="300">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">ZIP/Postal Code</label>
+            </settings>
+        </column>
+        <column name="locality_name" sortOrder="400">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">City</label>
+            </settings>
+        </column>
+        <column name="region_name" sortOrder="500">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">State/Province</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="country_name" sortOrder="600">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Country</label>
+            </settings>
+        </column>
+        <column name="is_active"
+                class="AuroraExtensions\ShippingFilters\Ui\Component\Listing\Column\YesNo"
+                sortOrder="700">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Active</label>
+            </settings>
+        </column>
+    </columns>
+</listing>

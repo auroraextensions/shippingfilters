@@ -16,13 +16,13 @@
  */
 declare(strict_types=1);
 
-namespace AuroraExtensions\ShippingFilters\Ui\DataProvider\Grid\Locality;
+namespace AuroraExtensions\ShippingFilters\Ui\DataProvider\Grid\PostalCode;
 
 use Countable;
 use AuroraExtensions\ShippingFilters\{
     Component\Ui\DataProvider\Modifier\ModifierPoolTrait,
-    Model\ResourceModel\Locality\Collection,
-    Model\ResourceModel\Locality\CollectionFactory
+    Model\ResourceModel\PostalCode\Collection,
+    Model\ResourceModel\PostalCode\CollectionFactory
 };
 use Magento\Framework\{
     Api\Filter,
