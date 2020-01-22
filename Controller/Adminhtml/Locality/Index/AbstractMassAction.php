@@ -21,6 +21,7 @@ namespace AuroraExtensions\ShippingFilters\Controller\Adminhtml\Locality\Index;
 use Exception;
 use AuroraExtensions\ShippingFilters\{
     Api\AbstractCollectionInterface,
+    Exception\ExceptionFactory,
     Model\ResourceModel\Locality\Collection,
     Model\ResourceModel\Locality\CollectionFactory
 };
@@ -31,7 +32,8 @@ use Magento\Backend\{
 use Magento\Framework\{
     App\ResponseInterface,
     Controller\ResultFactory,
-    Controller\ResultInterface
+    Controller\ResultInterface,
+    Data\Form\FormKey\Validator as FormKeyValidator
 };
 use Magento\Ui\Component\MassAction\Filter;
 
@@ -43,8 +45,14 @@ abstract class AbstractMassAction extends Action
     /** @property CollectionFactory $collectionFactory */
     protected $collectionFactory;
 
+    /** @property ExceptionFactory $exceptionFactory */
+    protected $exceptionFactory;
+
     /** @property Filter $filter */
     protected $filter;
+
+    /** @property FormKeyValidator $formKeyValidator */
+    protected $formKeyValidator;
 
     /** @property string $redirectUrl */
     protected $redirectUrl = '*/*/index';
@@ -52,17 +60,23 @@ abstract class AbstractMassAction extends Action
     /**
      * @param Context $context
      * @param CollectionFactory $collectionFactory
+     * @param ExceptionFactory $exceptionFactory
      * @param Filter $filter
+     * @param FormKeyValidator $formKeyValidator
      * @return void
      */
     public function __construct(
         Context $context,
         CollectionFactory $collectionFactory,
-        Filter $filter
+        ExceptionFactory $exceptionFactory,
+        Filter $filter,
+        FormKeyValidator $formKeyValidator
     ) {
         parent::__construct($context);
         $this->collectionFactory = $collectionFactory;
+        $this->exceptionFactory = $exceptionFactory;
         $this->filter = $filter;
+        $this->formKeyValidator = $formKeyValidator;
     }
 
     /**
@@ -72,13 +86,21 @@ abstract class AbstractMassAction extends Action
     public function execute()
     {
         try {
+            if (!$this->formKeyValidator->validate($this->getRequest())) {
+                /** @var Exception $exception */
+                $exception = $this->exceptionFactory->create();
+
+                throw $exception;
+            }
+
             /** @var AbstractCollectionInterface $collection */
             $collection = $this->filter
                 ->getCollection($this->collectionFactory->create());
 
             return $this->massAction($collection);
         } catch (Exception $e) {
-            $this->messageManager->addErrorMessage($e->getMessage());
+            $this->messageManager
+                ->addErrorMessage($e->getMessage());
 
             /** @var Redirect $resultRedirect */
             $resultRedirect = $this->resultFactory
