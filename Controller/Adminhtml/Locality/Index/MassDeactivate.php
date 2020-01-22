@@ -1,6 +1,6 @@
 <?php
 /**
- * MassActivate.php
+ * MassDeactivate.php
  *
  * NOTICE OF LICENSE
  *
@@ -28,12 +28,15 @@ use AuroraExtensions\ShippingFilters\{
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\{
     App\Action\HttpPostActionInterface,
+    App\CsrfAwareActionInterface,
     Controller\ResultFactory,
     Data\Form\FormKey\Validator as FormKeyValidator
 };
 use Magento\Ui\Component\MassAction\Filter;
 
-class MassDeactivate extends AbstractMassAction implements HttpPostActionInterface
+class MassDeactivate extends AbstractMassAction implements
+    HttpPostActionInterface,
+    CsrfAwareActionInterface
 {
     /** @constant string ADMIN_RESOURCE */
     public const ADMIN_RESOURCE = 'AuroraExtensions_ShippingFilters::shippingfilters_locality';
@@ -75,6 +78,7 @@ class MassDeactivate extends AbstractMassAction implements HttpPostActionInterfa
         /** @var int $count */
         $count = 0;
 
+        /** @var int|string $localityId */
         foreach ($collection->getAllIds() as $localityId) {
             /** @var LocalityInterface $locality */
             $locality = $this->localityRepository
@@ -93,7 +97,7 @@ class MassDeactivate extends AbstractMassAction implements HttpPostActionInterfa
         /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory
             ->create(ResultFactory::TYPE_REDIRECT)
-            ->setPath($this->redirectUrl);
+            ->setPath($this->getComponentRefererUrl());
 
         return $resultRedirect;
     }
