@@ -24,10 +24,10 @@
         </item>
     </argument>
     <settings>
-        <spinner>shippingfilters_locality_grid_columns</spinner>
         <deps>
             <dep>shippingfilters_locality_grid.shippingfilters_locality_grid_data_source</dep>
         </deps>
+        <spinner>shippingfilters_locality_grid_columns</spinner>
     </settings>
     <dataSource name="shippingfilters_locality_grid_data_source" component="Magento_Ui/js/grid/provider">
         <settings>
@@ -50,15 +50,34 @@
         <filterSearch name="fulltext"/>
         <filters name="listing_filters"/>
         <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
-            <action name="add_to_whitelist">
+            <action name="activate_localities" class="AuroraExtensions\ShippingFilters\Ui\Component\Control\MassAction">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="actionPath" xsi:type="string">shippingfilters/locality_index/massActivate</item>
+                    </item>
+                </argument>
                 <settings>
                     <confirm>
-                        <message translate="true">Are you sure you want to whitelist the selected localities?</message>
-                        <title translate="true">Add items to Whitelist</title>
+                        <message translate="true">Are you sure you want to activate the selected localities?</message>
+                        <title translate="true">Activate localities</title>
                     </confirm>
-                    <url path="shippingfilters/locality_index/massWhitelist"/>
-                    <type>add_to_whitelist</type>
-                    <label translate="true">Add to Whitelist</label>
+                    <type>activate_localities</type>
+                    <label translate="true">Activate</label>
+                </settings>
+            </action>
+            <action name="deactivate_localities" class="AuroraExtensions\ShippingFilters\Ui\Component\Control\MassAction">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="actionPath" xsi:type="string">shippingfilters/locality_index/massDeactivate</item>
+                    </item>
+                </argument>
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to deactivate the selected localities?</message>
+                        <title translate="true">Deactivate localities</title>
+                    </confirm>
+                    <type>deactivate_localities</type>
+                    <label translate="true">Deactivate</label>
                 </settings>
             </action>
         </massaction>
@@ -93,6 +112,14 @@
             <settings>
                 <filter>text</filter>
                 <label translate="true">Country</label>
+            </settings>
+        </column>
+        <column name="is_active"
+                class="AuroraExtensions\ShippingFilters\Ui\Component\Listing\Column\YesNo"
+                sortOrder="600">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Active</label>
             </settings>
         </column>
     </columns>
