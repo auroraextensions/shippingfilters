@@ -20,6 +20,7 @@ namespace AuroraExtensions\ShippingFilters\Model\Filter;
 
 use AuroraExtensions\ShippingFilters\{
     Component\System\ModuleConfigTrait,
+    Component\Utils\ArrayTrait,
     Csi\Filter\CountryFilterInterface,
     Csi\Filter\LocalityFilterInterface,
     Csi\Filter\RegionFilterInterface,
@@ -32,10 +33,12 @@ use Magento\Store\Model\StoreManagerInterface;
 class LocalityFilter implements LocalityFilterInterface
 {
     /**
+     * @method array flattenArray()
+     * ---
      * @property ModuleConfigInterface $moduleConfig
      * @method ModuleConfigInterface getModuleConfig()
      */
-    use ModuleConfigTrait;
+    use ArrayTrait, ModuleConfigTrait;
 
     /** @property CollectionFactory $collectionFactory */
     protected $collectionFactory;
@@ -76,23 +79,13 @@ class LocalityFilter implements LocalityFilterInterface
      */
     public function getLocalities(): array
     {
-        /** @var StoreInterface $store */
-        $store = $this->storeManager->getStore();
+        /** @var Collection $collection */
+        $collection = $this->collectionFactory
+            ->create()
+            ->addFieldToSelect(static::PRIMARY_KEY)
+            ->addFieldToFilter('is_active', ['eq' => '1']);
 
-        /** @var string $whitelist */
-        $whitelist = $this->getModuleConfig()
-            ->getLocalityWhitelist((int) $store->getId());
-
-        /** @var array $localities */
-        $localities = array_filter(
-            array_map(
-                'trim',
-                explode(',', $whitelist)
-            ),
-            'strlen'
-        );
-
-        return $localities;
+        return $this->flattenArray($collection->toArray()['items'] ?? []);
     }
 
     /**
