@@ -60,7 +60,6 @@ class DataProvider extends AbstractDataProvider implements
      * @param AddFieldToCollectionInterface[] $addFieldStrategies
      * @param AddFilterToCollectionInterface[] $addFilterStrategies
      * @param CollectionFactory $collectionFactory
-     * @param array $labels
      * @return void
      */
     public function __construct(
