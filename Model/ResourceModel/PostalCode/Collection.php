@@ -37,6 +37,9 @@ class Collection extends AbstractCollection implements AbstractCollectionInterfa
         'region_id',
     ];
 
+    /** @property string $_idFieldName */
+    protected $_idFieldName = 'postal_code_id';
+
     /** @var Generator $generator */
     protected $generator;
 
