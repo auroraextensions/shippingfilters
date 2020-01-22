@@ -29,15 +29,18 @@ use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 class Collection extends AbstractCollection implements AbstractCollectionInterface
 {
     /** @constant array SELECT_FIELDS */
-    private const SELECT_FIELDS = [
+    public const SELECT_FIELDS = [
         'locality_id',
         'locality_name',
         'country_code',
         'region_id',
     ];
 
+    /** @property string $_idFieldName */
+    protected $_idFieldName = 'locality_id';
+
     /** @var Generator $generator */
-    private $generator;
+    protected $generator;
 
     /**
      * @return void
@@ -152,6 +155,10 @@ class Collection extends AbstractCollection implements AbstractCollectionInterfa
      */
     public function optimizeLoad(): AbstractCollectionInterface
     {
+        $this->_beforeLoad();
+        $this->_renderFilters()
+            ->_renderOrders()
+            ->_renderLimit();
         $this->resetData();
 
         if (!$this->generator) {
@@ -159,6 +166,7 @@ class Collection extends AbstractCollection implements AbstractCollectionInterfa
         }
 
         $this->_setIsLoaded();
+        $this->_afterLoad();
         return $this;
     }
 
@@ -170,11 +178,20 @@ class Collection extends AbstractCollection implements AbstractCollectionInterfa
         /** @var AdapterInterface $adapter */
         $adapter = $this->getConnection();
 
-        /** @var array $items */
-        $items = $adapter->fetchAll($this->getSelect());
+        /** @var array $rows */
+        $rows = $adapter->fetchAll($this->getSelect());
 
-        /** @var array $item */
-        foreach ($items as $item) {
+        /** @var array $row */
+        foreach ($rows as $row) {
+            /** @var DataObject $item */
+            $item = $this->getNewEmptyItem();
+
+            if ($this->getIdFieldName()) {
+                $item->setIdFieldName($this->getIdFieldName());
+            }
+
+            $item->addData($row);
+            $this->beforeAddLoadedItem($item);
             yield $item;
         }
     }
@@ -196,16 +213,16 @@ class Collection extends AbstractCollection implements AbstractCollectionInterfa
         /** @var array $options */
         $options = [];
 
-        /** @var array $item */
+        /** @var DataObject $item */
         foreach ($this->getCacheItems() as $item) {
             /** @var string $localityName */
-            $localityName = $item['locality_name'];
+            $localityName = $item->getLocalityName();
 
             $options[] = [
                 'label' => $localityName,
-                'value' => $item['locality_id'],
-                'country_id' => $item['country_code'],
-                'region_id' => $item['region_id'],
+                'value' => $item->getId(),
+                'country_id' => $item->getCountryCode(),
+                'region_id' => $item->getRegionId(),
                 'locality_name' => $localityName,
             ];
         }

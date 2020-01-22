@@ -107,4 +107,15 @@ interface LocalityInterface
      * @return \AuroraExtensions\ShippingFilters\Api\Data\LocalityInterface
      */
     public function setCountryName(string $countryName): LocalityInterface;
+
+    /**
+     * @return bool
+     */
+    public function getIsActive(): bool;
+
+    /**
+     * @param bool $isActive
+     * @return \AuroraExtensions\ShippingFilters\Api\Data\LocalityInterface
+     */
+    public function setIsActive(bool $isActive): LocalityInterface;
 }

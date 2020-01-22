@@ -159,4 +159,22 @@ class Locality extends AbstractModel implements LocalityInterface
         $this->setData('country_name', $countryName);
         return $this;
     }
+
+    /**
+     * @return bool
+     */
+    public function getIsActive(): bool
+    {
+        return (bool) $this->getData('is_active');
+    }
+
+    /**
+     * @param bool $isActive
+     * @return $this
+     */
+    public function setIsActive(bool $isActive): LocalityInterface
+    {
+        $this->setData('is_active', $isActive);
+        return $this;
+    }
 }
