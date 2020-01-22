@@ -53,7 +53,7 @@
             <action name="activate_postal_codes" class="AuroraExtensions\ShippingFilters\Ui\Component\Control\MassAction">
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
-                        <item name="actionPath" xsi:type="string">shippingfilters/postal_index/massActivate</item>
+                        <item name="actionPath" xsi:type="string">shippingfilters/postalcode_index/massActivate</item>
                     </item>
                 </argument>
                 <settings>
@@ -68,7 +68,7 @@
             <action name="deactivate_postal_codes" class="AuroraExtensions\ShippingFilters\Ui\Component\Control\MassAction">
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
-                        <item name="actionPath" xsi:type="string">shippingfilters/postal_index/massDeactivate</item>
+                        <item name="actionPath" xsi:type="string">shippingfilters/postalcode_index/massDeactivate</item>
                     </item>
                 </argument>
                 <settings>

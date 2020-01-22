@@ -22,6 +22,9 @@ use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
 class PostalCode extends AbstractDb
 {
+    /** @property string $_idFieldName */
+    protected $_idFieldName = 'postal_code_id';
+
     /**
      * @return void
      */

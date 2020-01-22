@@ -41,6 +41,6 @@
              parent="AuroraExtensions_ShippingFilters::shippingfilters"
              resource="AuroraExtensions_ShippingFilters::shippingfilters_postal_code"
              sortOrder="20"
-             action="shippingfilters/postal/index"/>
+             action="shippingfilters/postalcode/index"/>
     </menu>
 </config>
