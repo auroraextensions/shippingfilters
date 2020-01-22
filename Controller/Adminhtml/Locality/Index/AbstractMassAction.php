@@ -31,6 +31,8 @@ use Magento\Backend\{
 };
 use Magento\Framework\{
     App\ResponseInterface,
+    App\RequestInterface,
+    App\Request\InvalidRequestException,
     Controller\ResultFactory,
     Controller\ResultInterface,
     Data\Form\FormKey\Validator as FormKeyValidator
@@ -108,6 +110,32 @@ abstract class AbstractMassAction extends Action
 
             return $resultRedirect->setPath($this->redirectUrl);
         }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function createCsrfValidationException(
+        RequestInterface $request
+    ): ?InvalidRequestException
+    {
+        return null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function validateForCsrf(RequestInterface $request): ?bool
+    {
+        return true;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getComponentRefererUrl()
+    {
+        return $this->filter->getComponentRefererUrl() ?: 'shippingfilters/locality/index';
     }
 
     /**
