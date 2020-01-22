@@ -20,6 +20,9 @@ namespace AuroraExtensions\ShippingFilters\Csi\Filter;
 
 interface LocalityFilterInterface extends AbstractFilterInterface
 {
+    /** @constant string PRIMARY_KEY */
+    public const PRIMARY_KEY = 'locality_id';
+
     /**
      * @return array
      */

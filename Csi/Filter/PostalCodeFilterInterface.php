@@ -20,6 +20,9 @@ namespace AuroraExtensions\ShippingFilters\Csi\Filter;
 
 interface PostalCodeFilterInterface extends AbstractFilterInterface
 {
+    /** @constant string PRIMARY_KEY */
+    public const PRIMARY_KEY = 'postal_code_id';
+
     /**
      * @return array
      */
