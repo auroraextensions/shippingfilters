@@ -23,29 +23,6 @@ define([
     'use strict';
 
     /**
-     * @param {Array} data
-     * @param {Object} result
-     * @returns {Object}
-     */
-    function indexOptions(data, result) {
-        var value;
-
-        result = result || {};
-
-        data.forEach(function (item) {
-            value = item.value;
-
-            if (Array.isArray(value)) {
-                indexOptions(value, result);
-            } else {
-                result[value] = item;
-            }
-        });
-
-        return result;
-    }
-
-    /**
      * @param {Object} a
      * @param {Object} b
      * @return {Boolean}
@@ -60,20 +37,30 @@ define([
             exports: {
                 postalCode: '${ $.parentName }.postcode:value'
             },
+            filterOptions: ko.observableArray([]),
             imports: {
                 onCountrySelect: '${ $.parentName }.country_id:value',
-                onRegionSelect: '${ $.parentName }.region_id:value',
-                onLocalitySelect: '${ $.parentName }.city_id:value'
+                onLocalitySelect: '${ $.parentName }.city_id:value',
+                onRegionSelect: '${ $.parentName }.region_id:value'
             },
+            initialized: ko.observable(false),
             listens: {
                 options: 'onOptionsChange',
                 value: 'onValueChange'
             },
-            filterOptions: ko.observableArray([]),
             postalCode: ko.observable(),
-            messages: {
-                noZipCodesWarning: $t('We\'re unable to ship to your selected city. We apologize for the inconvenience.')
-            }
+        },
+        /**
+         * {@inheritdoc}
+         */
+        initialize: function () {
+            this._super();
+
+            this.filterOptions(this.initialOptions);
+            this.setOptions(this.initialOptions);
+            this.initialized(true);
+
+            return this;
         },
         /**
          * @param {mixed} value
@@ -182,10 +169,8 @@ define([
             if (!result.length) {
                 this.disabled(true);
                 this.error(false);
-                this.warn(this.messages['noZipCodesWarning']);
             } else {
                 this.disabled(false);
-                this.warn(false);
             }
 
             if (result.length && result.length < 2) {
@@ -198,6 +183,10 @@ define([
          * @return {void}
          */
         onOptionsChange: function (options) {
+            if (!this.initialized()) {
+                return;
+            }
+
             if (!isCompositeEqual(options, this.filterOptions())) {
                 this.setOptions(this.filterOptions());
             }
@@ -224,7 +213,7 @@ define([
             );
 
             return _.filter(this.initialOptions, function (item) {
-                return item[field] === locality || item.value === '';
+                return (item[field] === locality || item.value === '');
             });
         },
         /**
@@ -238,18 +227,15 @@ define([
                 return [];
             }
 
-            /** @var {String} field */
-            field = 'label';
-
-            /** @var {String} region */
-            region = this.getFieldByValue(
+            /** @var {Number} region */
+            region = +(this.getFieldByValue(
                 value,
-                field,
+                'value',
                 'whitelist_region_id'
-            );
+            ));
 
             return _.filter(this.initialOptions, function (item) {
-                return item[field] === region || item.value === '';
+                return (item['region_id'] === region || item.value === '');
             });
         },
         /**
@@ -268,7 +254,6 @@ define([
                 value,
                 'postal_code'
             );
-
             this.postalCode(code);
         }
     });
