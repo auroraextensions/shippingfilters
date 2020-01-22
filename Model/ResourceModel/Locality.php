@@ -22,6 +22,9 @@ use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
 class Locality extends AbstractDb
 {
+    /** @property string $_idFieldName */
+    protected $_idFieldName = 'locality_id';
+
     /**
      * @return void
      */
