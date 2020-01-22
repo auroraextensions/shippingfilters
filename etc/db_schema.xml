@@ -27,6 +27,8 @@
         <column xsi:type="varchar" name="region_name" nullable="true" length="128" comment="Region Name"/>
         <column xsi:type="varchar" name="country_code" nullable="true" length="32" comment="Country Code"/>
         <column xsi:type="varchar" name="country_name" nullable="true" length="128" comment="Country Name"/>
+        <column xsi:type="smallint" name="is_active" padding="5" unsigned="true" nullable="false" default="1"
+                comment="Is Active"/>
         <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
                 comment="Created At"/>
         <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
@@ -57,6 +59,8 @@
         <column xsi:type="varchar" name="region_name" nullable="true" length="128" comment="Region Name"/>
         <column xsi:type="varchar" name="country_code" nullable="true" length="32" comment="Country Code"/>
         <column xsi:type="varchar" name="country_name" nullable="true" length="128" comment="Country Name"/>
+        <column xsi:type="smallint" name="is_active" padding="5" unsigned="true" nullable="false" default="1"
+                comment="Is Active"/>
         <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
                 comment="Created At"/>
         <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
