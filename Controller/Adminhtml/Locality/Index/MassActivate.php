@@ -21,13 +21,15 @@ namespace AuroraExtensions\ShippingFilters\Controller\Adminhtml\Locality\Index;
 use AuroraExtensions\ShippingFilters\{
     Api\AbstractCollectionInterface,
     Api\LocalityRepositoryInterface,
+    Exception\ExceptionFactory,
     Model\ResourceModel\Locality\Collection,
     Model\ResourceModel\Locality\CollectionFactory
 };
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\{
     App\Action\HttpPostActionInterface,
-    Controller\ResultFactory
+    Controller\ResultFactory,
+    Data\Form\FormKey\Validator as FormKeyValidator
 };
 use Magento\Ui\Component\MassAction\Filter;
 
@@ -42,19 +44,25 @@ class MassActivate extends AbstractMassAction implements HttpPostActionInterface
     /**
      * @param Context $context
      * @param CollectionFactory $collectionFactory
+     * @param ExceptionFactory $exceptionFactory
      * @param Filter $filter
+     * @param FormKeyValidator $formKeyValidator
      * @param LocalityRepositoryInterface $localityRepository
      */
     public function __construct(
         Context $context,
         CollectionFactory $collectionFactory,
+        ExceptionFactory $exceptionFactory,
         Filter $filter,
+        FormKeyValidator $formKeyValidator,
         LocalityRepositoryInterface $localityRepository
     ) {
         parent::__construct(
             $context,
             $collectionFactory,
-            $filter
+            $exceptionFactory,
+            $filter,
+            $formKeyValidator
         );
         $this->localityRepository = $localityRepository;
     }
