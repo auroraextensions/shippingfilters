@@ -185,6 +185,16 @@ define([
 
             this.filterOptions(result);
             this.setOptions(result);
+
+            if (!result.length) {
+                this.disabled(true);
+                this.error(false);
+            } else if (result.length < 2) {
+                this.disabled(true);
+                this.value(result[0]['value']);
+            } else {
+                this.disabled(false);
+            }
         },
         /**
          * @param {String} value
@@ -206,13 +216,11 @@ define([
             if (!result.length) {
                 this.disabled(true);
                 this.error(false);
-            } else {
-                this.disabled(false);
-            }
-
-            if (result.length && result.length < 2) {
+            } else if (result.length < 2) {
                 this.disabled(true);
                 this.value(result[0]['value']);
+            } else {
+                this.disabled(false);
             }
         },
         /**
