@@ -147,15 +147,17 @@ define([
             if (!result.length) {
                 this.disabled(true);
                 this.error(false);
+                this.notice(false);
                 this.warn(this.messages.warn['noOptionsAvailable']);
             } else if (result.length < 2) {
                 this.disabled(true);
                 this.value(result[0]['value']);
                 this.notice(this.messages.notice['oneOptionAvailable']);
+                this.warn(false);
             } else {
                 this.disabled(false);
-                this.warn(false);
                 this.notice(false);
+                this.warn(false);
             }
         },
         /**
