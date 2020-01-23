@@ -54,13 +54,50 @@ define([
          * {@inheritdoc}
          */
         initialize: function () {
+            var options;
+
             this._super();
 
-            this.filterOptions(this.initialOptions);
-            this.setOptions(this.initialOptions);
+            /** @var {Array} options */
+            options = (this.getRegionValue() !== null && this.getLocalityValue() !== null)
+                ? this.initialOptions
+                : [];
+
+            this.filterOptions(options);
+            this.setOptions(options);
             this.initialized(true);
 
             return this;
+        },
+        /**
+         * @return {mixed}
+         */
+        getLocalityValue: function () {
+            var locality;
+
+            /** @var {UiClass} locality */
+            locality = registry.get(this.parentName + '.city_id');
+
+            if (locality) {
+                return locality.value();
+            }
+
+            return null;
+        },
+        /**
+         * @return {mixed}
+         */
+        getRegionValue: function () {
+            var region;
+
+            /** @var {UiClass} region */
+            region = registry.get(this.parentName + '.region_id');
+
+            if (region) {
+                return region.value();
+            }
+
+            return null;
         },
         /**
          * @param {mixed} value

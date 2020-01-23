@@ -33,11 +33,11 @@ class ModuleConfig implements ModuleConfigInterface
     /** @constant string XML_PATH_FILTERS_REGION_WHITELIST */
     public const XML_PATH_FILTERS_REGION_WHITELIST = 'shippingfilters/region/whitelist';
 
-    /** @constant string XML_PATH_FILTERS_LOCALITY_WHITELIST */
-    public const XML_PATH_FILTERS_LOCALITY_WHITELIST = 'shippingfilters/locality/whitelist';
+    /** @constant string XML_PATH_FILTERS_LOCALITY_AUTO_ACTIVATE_POSTAL */
+    public const XML_PATH_FILTERS_LOCALITY_AUTO_ACTIVATE_POSTAL = 'shippingfilters/locality/auto_activate_postal_code';
 
-    /** @constant string XML_PATH_FILTERS_POSTAL_WHITELIST */
-    public const XML_PATH_FILTERS_POSTAL_WHITELIST = 'shippingfilters/postal/whitelist';
+    /** @constant string XML_PATH_FILTERS_POSTAL_AUTO_ACTIVATE_LOCALITY */
+    public const XML_PATH_FILTERS_POSTAL_AUTO_ACTIVATE_LOCALITY = 'shippingfilters/postal/auto_activate_locality';
 
     /** @property ScopeConfigInterface $scopeConfig */
     protected $scopeConfig;
@@ -89,34 +89,34 @@ class ModuleConfig implements ModuleConfigInterface
     /**
      * @param int $store
      * @param string $scope
-     * @return string
+     * @return bool
      */
-    public function getLocalityWhitelist(
+    public function getAutoActivatePostalCode(
         int $store = Store::DEFAULT_STORE_ID,
         string $scope = StoreScopeInterface::SCOPE_STORE
-    ): string
+    ): bool
     {
-        return $this->scopeConfig->getValue(
-            static::XML_PATH_FILTERS_LOCALITY_WHITELIST,
+        return $this->scopeConfig->isSetFlag(
+            static::XML_PATH_FILTERS_LOCALITY_AUTO_ACTIVATE_POSTAL,
             $scope,
             $store
-        ) ?? '';
+        );
     }
 
     /**
      * @param int $store
      * @param string $scope
-     * @return string
+     * @return bool
      */
-    public function getPostalCodeWhitelist(
+    public function getAutoActivateLocality(
         int $store = Store::DEFAULT_STORE_ID,
         string $scope = StoreScopeInterface::SCOPE_STORE
-    ): string
+    ): bool
     {
-        return $this->scopeConfig->getValue(
-            static::XML_PATH_FILTERS_POSTAL_WHITELIST,
+        return $this->scopeConfig->isSetFlag(
+            static::XML_PATH_FILTERS_POSTAL_AUTO_ACTIVATE_LOCALITY,
             $scope,
             $store
-        ) ?? '';
+        );
     }
 }
