@@ -42,6 +42,13 @@ class AutoActivateLocalityObserver implements ObserverInterface
     /**
      * @property MessageManagerInterface $messageManager
      * @method void addErrorMessage()
+     * @method void addNoticeMessage()
+     * @method void addSuccessMessage()
+     * @method void addWarningMessage()
+     * @method void addComplexErrorMessage()
+     * @method void addComplexNoticeMessage()
+     * @method void addComplexSuccessMessage()
+     * @method void addComplexWarningMessage()
      * ---
      * @property ModuleConfigInterface $moduleConfig
      * @method ModuleConfigInterface getModuleConfig()
@@ -128,7 +135,8 @@ class AutoActivateLocalityObserver implements ObserverInterface
                 $localities = $this->collectionFactory
                     ->create()
                     ->addFieldToFilter('locality_name', ['eq' => $cityName])
-                    ->addFieldToFilter('region_id', ['eq' => $regionId]);
+                    ->addFieldToFilter('region_id', ['eq' => $regionId])
+                    ->optimizeLoad();
 
                 $this->activate($localities);
             }
@@ -157,7 +165,7 @@ class AutoActivateLocalityObserver implements ObserverInterface
     private function activate(AbstractCollectionInterface $collection): void
     {
         /** @var LocalityInterface $locality */
-        foreach ($collection as $locality) {
+        foreach ($collection->getCacheItems() as $locality) {
             $locality->setIsActive(true);
             $this->localityRepository->save($locality);
         }
