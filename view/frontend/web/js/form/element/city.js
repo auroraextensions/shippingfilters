@@ -48,9 +48,11 @@ define([
             },
             locality: ko.observable(),
             messages: {
-                warnings: {
-                    noOptionsAvailable: $t('We\'re unable to ship to your selected city. We apologize for the inconvenience.'),
-                    oneOptionAvailable: $t('The selected city is the only available option. We apologize for any inconvenience.')
+                notice: {
+                    oneOptionAvailable: $t('The selected city is the only available option.')
+                },
+                warn: {
+                    noOptionsAvailable: $t('We\'re unable to ship to your selected city. We apologize for the inconvenience.')
                 }
             }
         },
@@ -58,13 +60,35 @@ define([
          * {@inheritdoc}
          */
         initialize: function () {
+            var options;
+
             this._super();
 
-            this.filterOptions(this.initialOptions);
-            this.setOptions(this.initialOptions);
+            /** @var {Array} options */
+            options = this.getRegionValue() !== null
+                ? this.initialOptions
+                : [];
+
+            this.filterOptions(options);
+            this.setOptions(options);
             this.initialized(true);
 
             return this;
+        },
+        /**
+         * @return {mixed}
+         */
+        getRegionValue: function () {
+            var region;
+
+            /** @var {UiClass} region */
+            region = registry.get(this.parentName + '.region_id');
+
+            if (region) {
+                return region.value();
+            }
+
+            return null;
         },
         /**
          * @param {mixed} value
@@ -123,14 +147,15 @@ define([
             if (!result.length) {
                 this.disabled(true);
                 this.error(false);
-                this.warn(this.messages.warnings['noOptionsAvailable']);
+                this.warn(this.messages.warn['noOptionsAvailable']);
             } else if (result.length < 2) {
                 this.disabled(true);
                 this.value(result[0]['value']);
-                this.warn(this.messages.warnings['oneOptionAvailable']);
+                this.notice(this.messages.notice['oneOptionAvailable']);
             } else {
                 this.disabled(false);
                 this.warn(false);
+                this.notice(false);
             }
         },
         /**
