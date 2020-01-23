@@ -16,3 +16,34 @@
 .select-tooltip {
   margin-right: -35px;
 }
+
+.field .field-note {
+  background: #fbfbfb;
+  color: #000;
+  display: block;
+  font-size: 1.3rem;
+  margin: 10px 0;
+  padding: 12px 20px 12px 45px;
+  position: relative;
+}
+
+.field .field-note > span[data-bind]:first-child:before {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #1c3ecb;
+  content: '\2139';
+  display: inline-block;
+  font-family: 'luma-icons';
+  font-size: 24px;
+  font-weight: normal;
+  left: 0;
+  line-height: 24px;
+  margin: -15px 0 0;
+  overflow: hidden;
+  position: absolute;
+  speak: none;
+  text-align: center;
+  top: 20px;
+  vertical-align: middle;
+  width: 45px;
+}
