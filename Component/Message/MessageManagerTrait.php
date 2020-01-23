@@ -66,4 +66,84 @@ trait MessageManagerTrait
         $this->messageManager
             ->addWarningMessage($message, $group);
     }
+
+    /**
+     * @param string $identifier
+     * @param array $data
+     * @param string|null $group
+     * @return void
+     */
+    private function addComplexErrorMessage(
+        string $identifier,
+        array $data = [],
+        string $group = null
+    ): void
+    {
+        $this->messageManager
+            ->addComplexErrorMessage(
+                $identifier,
+                $data,
+                $group
+            );
+    }
+
+    /**
+     * @param string $identifier
+     * @param array $data
+     * @param string|null $group
+     * @return void
+     */
+    private function addComplexNoticeMessage(
+        string $identifier,
+        array $data = [],
+        string $group = null
+    ): void
+    {
+        $this->messageManager
+            ->addComplexNoticeMessage(
+                $identifier,
+                $data,
+                $group
+            );
+    }
+
+    /**
+     * @param string $identifier
+     * @param array $data
+     * @param string|null $group
+     * @return void
+     */
+    private function addComplexSuccessMessage(
+        string $identifier,
+        array $data = [],
+        string $group = null
+    ): void
+    {
+        $this->messageManager
+            ->addComplexSuccessMessage(
+                $identifier,
+                $data,
+                $group
+            );
+    }
+
+    /**
+     * @param string $identifier
+     * @param array $data
+     * @param string|null $group
+     * @return void
+     */
+    private function addComplexWarningMessage(
+        string $identifier,
+        array $data = [],
+        string $group = null
+    ): void
+    {
+        $this->messageManager
+            ->addComplexWarningMessage(
+                $identifier,
+                $data,
+                $group
+            );
+    }
 }
