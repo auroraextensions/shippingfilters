@@ -199,7 +199,7 @@ class Collection extends AbstractCollection implements AbstractCollectionInterfa
     /**
      * @return Generator
      */
-    private function getCacheItems()
+    public function getCacheItems()
     {
         return $this->generator
             ->generator();
