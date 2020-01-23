@@ -47,7 +47,7 @@
             <sticky>false</sticky>
         </settings>
         <columnsControls name="columns_controls"/>
-        <filterSearch name="fulltext"/>
+        <filterSearch name="locality_name"/>
         <filters name="listing_filters"/>
         <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
             <action name="activate_localities" class="AuroraExtensions\ShippingFilters\Ui\Component\Control\MassAction">
