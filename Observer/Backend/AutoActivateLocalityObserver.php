@@ -33,7 +33,8 @@ use AuroraExtensions\ShippingFilters\{
 use Magento\Framework\{
     Event\Observer,
     Event\ObserverInterface,
-    Message\ManagerInterface as MessageManagerInterface
+    Message\ManagerInterface as MessageManagerInterface,
+    UrlInterface
 };
 
 class AutoActivateLocalityObserver implements ObserverInterface
@@ -47,6 +48,12 @@ class AutoActivateLocalityObserver implements ObserverInterface
      */
     use MessageManagerTrait, ModuleConfigTrait;
 
+    /** @constant string CONFIG_PATH */
+    public const CONFIG_PATH = 'adminhtml/system_config/edit/section/shippingfilters';
+
+    /** @constant string NOTICE_TMPL */
+    public const NOTICE_TMPL = 'autoActivateSuccessMessage';
+
     /** @property CollectionFactory $collectionFactory */
     protected $collectionFactory;
 
@@ -56,12 +63,16 @@ class AutoActivateLocalityObserver implements ObserverInterface
     /** @property PostalCodeRepositoryInterface $postalCodeRepository */
     protected $postalCodeRepository;
 
+    /** @property UrlInterface $urlBuilder */
+    protected $urlBuilder;
+
     /**
      * @param CollectionFactory $collectionFactory
      * @param LocalityRepositoryInterface $localityRepository
      * @param MessageManagerInterface $messageManager
      * @param ModuleConfigInterface $moduleConfig
      * @param PostalCodeRepositoryInterface $postalCodeRepository
+     * @param UrlInterface $urlBuilder
      * @return void
      */
     public function __construct(
@@ -69,13 +80,15 @@ class AutoActivateLocalityObserver implements ObserverInterface
         LocalityRepositoryInterface $localityRepository,
         MessageManagerInterface $messageManager,
         ModuleConfigInterface $moduleConfig,
-        PostalCodeRepositoryInterface $postalCodeRepository
+        PostalCodeRepositoryInterface $postalCodeRepository,
+        UrlInterface $urlBuilder
     ) {
         $this->collectionFactory = $collectionFactory;
         $this->localityRepository = $localityRepository;
         $this->messageManager = $messageManager;
         $this->moduleConfig = $moduleConfig;
         $this->postalCodeRepository = $postalCodeRepository;
+        $this->urlBuilder = $urlBuilder;
     }
 
     /**
@@ -120,9 +133,16 @@ class AutoActivateLocalityObserver implements ObserverInterface
                 $this->activate($localities);
             }
 
-            $this->addSuccessMessage(
-                __('Auto-activated required localities. To disable auto-activation, click <a href="%1">here</a>.', '#')
-            );
+            /** @var string $configUrl */
+            $configUrl = $this->urlBuilder
+                ->getUrl(
+                    static::CONFIG_PATH,
+                    ['_secure' => true]
+                );
+
+            $this->addComplexSuccessMessage(static::NOTICE_TMPL, [
+                'config_url' => $configUrl,
+            ]);
         } catch (Exception $e) {
             /* No action required. */
         }
