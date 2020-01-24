@@ -18,8 +18,15 @@ declare(strict_types=1);
 
 namespace AuroraExtensions\ShippingFilters\Model\System;
 
-use AuroraExtensions\ShippingFilters\Csi\System\ModuleConfigInterface;
-use Magento\Framework\App\Config\ScopeConfigInterface;
+use AuroraExtensions\ShippingFilters\{
+    Component\Data\Container\DataContainerTrait,
+    Csi\System\ModuleConfigInterface
+};
+use Magento\Framework\{
+    App\Config\ScopeConfigInterface,
+    DataObject,
+    DataObject\Factory as DataObjectFactory
+};
 use Magento\Store\{
     Model\ScopeInterface as StoreScopeInterface,
     Model\Store
@@ -27,6 +34,12 @@ use Magento\Store\{
 
 class ModuleConfig implements ModuleConfigInterface
 {
+    /**
+     * @property DataObject $container
+     * @method DataObject|null getContainer()
+     */
+    use DataContainerTrait;
+
     /** @constant string XML_PATH_FILTERS_COUNTRY_WHITELIST */
     public const XML_PATH_FILTERS_COUNTRY_WHITELIST = 'shippingfilters/country/whitelist';
 
@@ -44,12 +57,17 @@ class ModuleConfig implements ModuleConfigInterface
 
     /**
      * @param ScopeConfigInterface $scopeConfig
+     * @param DataObjectFactory $dataObjectFactory
+     * @param array $data
      * @return void
      */
     public function __construct(
-        ScopeConfigInterface $scopeConfig
+        ScopeConfigInterface $scopeConfig,
+        DataObjectFactory $dataObjectFactory,
+        array $data = []
     ) {
         $this->scopeConfig = $scopeConfig;
+        $this->container = $dataObjectFactory->create($data);
     }
 
     /**
