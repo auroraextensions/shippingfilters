@@ -48,6 +48,18 @@
         </arguments>
     </virtualType>
 
+    <type name="AuroraExtensions\ShippingFilters\Csi\System\ModuleConfigInterface">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="custom_filters" xsi:type="array">
+                    <item name="countries" xsi:type="array">
+                        <item name="0" xsi:type="string">US</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
     <type name="Magento\Checkout\Block\Checkout\DirectoryDataProcessor">
         <plugin name="shippingfilters_checkout_shipping_address_country_add_filter_shipping_country_dictionary"
                 type="AuroraExtensions\ShippingFilters\Plugin\Checkout\Country\AddFilterShippingCountryDictionary"
@@ -61,6 +73,9 @@
         <plugin name="shippingfilters_checkout_shipping_address_postal_code_add_shipping_postal_code_dictionary"
                 type="AuroraExtensions\ShippingFilters\Plugin\Checkout\PostalCode\AddShippingPostalCodeDictionary"
                 sortOrder="40"/>
+        <plugin name="shippingfilters_checkout_shipping_address_provider_add_custom_filters_config"
+                type="AuroraExtensions\ShippingFilters\Plugin\Checkout\Provider\AddCustomFiltersConfig"
+                sortOrder="50"/>
     </type>
     <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
         <plugin name="shippingfilters_checkout_shipping_address_country_set_filter_shipping_country_dictionary"

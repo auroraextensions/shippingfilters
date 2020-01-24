@@ -33,6 +33,8 @@ define([
 
     return Select.extend({
         defaults: {
+            customFilters: ko.observable({}),
+            customName: '${ $.parentName }.postcode',
             dict: 'whitelist_postal_code_id',
             exports: {
                 postalCode: '${ $.parentName }.postcode:value'
@@ -41,7 +43,8 @@ define([
             imports: {
                 onCountrySelect: '${ $.parentName }.country_id:value',
                 onLocalitySelect: '${ $.parentName }.city_id:value',
-                onRegionSelect: '${ $.parentName }.region_id:value'
+                onRegionSelect: '${ $.parentName }.region_id:value',
+                customFilters: '${ $.provider }:customFilters'
             },
             initialized: ko.observable(false),
             listens: {
@@ -54,7 +57,7 @@ define([
          * {@inheritdoc}
          */
         initialize: function () {
-            var options;
+            var country, options;
 
             this._super();
 
@@ -67,7 +70,75 @@ define([
             this.setOptions(options);
             this.initialized(true);
 
+            /** @var {String} country */
+            country = this.getCountryValue();
+
+            if (!this.isCountrySupported(country)) {
+                this.setVisible(false)
+                    .toggleInput(true);
+            }
+
             return this;
+        },
+        /**
+         * @return {UiClass}
+         */
+        getDefaultComponent: function () {
+            var component;
+
+            /** @var {UiClass} component */
+            component = registry.get(this.customName);
+
+            return !!component ? component : this;
+        },
+        /**
+         * @return {Array}
+         */
+        getSupportedCountries: function () {
+            var customFilters, countries;
+
+            /** @var {Object} customFilters */
+            customFilters = this.customFilters();
+
+            if (!customFilters) {
+                return [];
+            }
+
+            /** @var {Array|void} countries */
+            countries = customFilters['countries'];
+
+            return !!countries ? countries : [];
+        },
+        /**
+         * @param {String} value
+         * @return {Boolean}
+         */
+        isCountrySupported: function (value) {
+            var countries;
+
+            if (!value) {
+                return false;
+            }
+
+            /** @var {Array} countries */
+            countries = this.getSupportedCountries();
+
+            return (countries.indexOf(value) > -1);
+        },
+        /**
+         * @return {mixed}
+         */
+        getCountryValue: function () {
+            var country;
+
+            /** @var {UiClass} country */
+            country = registry.get(this.parentName + '.country_id');
+
+            if (country) {
+                return country.value();
+            }
+
+            return null;
         },
         /**
          * @return {mixed}
@@ -141,7 +212,8 @@ define([
          * @return {void}
          */
         onCountrySelect: function (value) {
-            var country, options, option;
+            var country, options,
+                option, supported;
 
             if (!value) {
                 return;
@@ -168,6 +240,18 @@ define([
             }
 
             this.required(!option['is_zipcode_optional']);
+
+            /** @var {Boolean} supported */
+            supported = this.isCountrySupported(value);
+
+            this.setVisible(supported)
+                .toggleInput(!supported);
+
+            if (!supported) {
+                this.clearMessages()
+                    .getDefaultComponent()
+                    .clear();
+            }
         },
         /**
          * @param {String} value
@@ -300,6 +384,31 @@ define([
                 'postal_code'
             );
             this.postalCode(code);
+        },
+        /**
+         * @return {this}
+         */
+        clearMessages: function () {
+            var index, type, types;
+
+            /** @var {Array} types */
+            types = [
+                this.error,
+                this.warn,
+                this.notice
+            ];
+
+            /** @var {Number} index */
+            for (index = 0; index < types.length; index += 1) {
+                /** @var {Function} type */
+                type = types[index];
+
+                if (_.isFunction(type) && !!type()) {
+                    type(false);
+                }
+            }
+
+            return this;
         }
     });
 });
