@@ -33,13 +33,17 @@ define([
 
     return Select.extend({
         defaults: {
+            customFilters: ko.observable({}),
+            customName: '${ $.parentName }.city',
             dict: 'whitelist_city_id',
             exports: {
                 locality: '${ $.parentName }.city:value'
             },
             filterOptions: ko.observableArray([]),
             imports: {
-                onRegionSelect: '${ $.parentName }.region_id:value'
+                onCountrySelect: '${ $.parentName }.country_id:value',
+                onRegionSelect: '${ $.parentName }.region_id:value',
+                customFilters: '${ $.provider }:customFilters'
             },
             initialized: ko.observable(false),
             listens: {
@@ -60,7 +64,7 @@ define([
          * {@inheritdoc}
          */
         initialize: function () {
-            var options;
+            var country, options;
 
             this._super();
 
@@ -73,7 +77,75 @@ define([
             this.setOptions(options);
             this.initialized(true);
 
+            /** @var {String} country */
+            country = this.getCountryValue();
+
+            if (!this.isCountrySupported(country)) {
+                this.setVisible(false)
+                    .toggleInput(true);
+            }
+
             return this;
+        },
+        /**
+         * @return {UiClass}
+         */
+        getDefaultComponent: function () {
+            var component;
+
+            /** @var {UiClass} component */
+            component = registry.get(this.customName);
+
+            return !!component ? component : this;
+        },
+        /**
+         * @return {Array}
+         */
+        getSupportedCountries: function () {
+            var customFilters, countries;
+
+            /** @var {Object} customFilters */
+            customFilters = this.customFilters();
+
+            if (!customFilters) {
+                return [];
+            }
+
+            /** @var {Array|void} countries */
+            countries = customFilters['countries'];
+
+            return !!countries ? countries : [];
+        },
+        /**
+         * @param {String} value
+         * @return {Boolean}
+         */
+        isCountrySupported: function (value) {
+            var countries;
+
+            if (!value) {
+                return false;
+            }
+
+            /** @var {Array} countries */
+            countries = this.getSupportedCountries();
+
+            return (countries.indexOf(value) > -1);
+        },
+        /**
+         * @return {mixed}
+         */
+        getCountryValue: function () {
+            var country;
+
+            /** @var {UiClass} country */
+            country = registry.get(this.parentName + '.country_id');
+
+            if (country) {
+                return country.value();
+            }
+
+            return null;
         },
         /**
          * @return {mixed}
@@ -131,6 +203,25 @@ define([
          * @param {String} value
          * @return {void}
          */
+        onCountrySelect: function (value) {
+            var supported;
+
+            /** @var {Boolean} supported */
+            supported = this.isCountrySupported(value);
+
+            this.setVisible(supported)
+                .toggleInput(!supported);
+
+            if (!supported) {
+                this.clearMessages()
+                    .getDefaultComponent()
+                    .clear();
+            }
+        },
+        /**
+         * @param {String} value
+         * @return {void}
+         */
         onRegionSelect: function (value) {
             var result;
 
@@ -146,18 +237,16 @@ define([
 
             if (!result.length) {
                 this.disabled(true);
-                this.error(false);
-                this.notice(false);
+                this.clearMessages();
                 this.warn(this.messages.warn['noOptionsAvailable']);
             } else if (result.length < 2) {
                 this.disabled(true);
                 this.value(result[0]['value']);
+                this.clearMessages();
                 this.notice(this.messages.notice['oneOptionAvailable']);
-                this.warn(false);
             } else {
                 this.disabled(false);
-                this.notice(false);
-                this.warn(false);
+                this.clearMessages();
             }
         },
         /**
@@ -212,6 +301,31 @@ define([
                 'locality_name'
             );
             this.locality(name);
+        },
+        /**
+         * @return {this}
+         */
+        clearMessages: function () {
+            var index, type, types;
+
+            /** @var {Array} types */
+            types = [
+                this.error,
+                this.warn,
+                this.notice
+            ];
+
+            /** @var {Number} index */
+            for (index = 0; index < types.length; index += 1) {
+                /** @var {Function} type */
+                type = types[index];
+
+                if (_.isFunction(type) && !!type()) {
+                    type(false);
+                }
+            }
+
+            return this;
         }
     });
 });
