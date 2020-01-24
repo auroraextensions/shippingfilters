@@ -1266,42 +1266,42 @@
 35223,Mountain Brook,Alabama,AL
 35253,Mountain Brook,Alabama,AL
 36051,Mountain Creek,Alabama,AL
-36101,Mtgy,Alabama,AL
-36102,Mtgy,Alabama,AL
-36103,Mtgy,Alabama,AL
-36104,Mtgy,Alabama,AL
-36105,Mtgy,Alabama,AL
-36106,Mtgy,Alabama,AL
-36107,Mtgy,Alabama,AL
-36108,Mtgy,Alabama,AL
-36109,Mtgy,Alabama,AL
-36110,Mtgy,Alabama,AL
-36111,Mtgy,Alabama,AL
-36112,Mtgy,Alabama,AL
-36113,Mtgy,Alabama,AL
-36114,Mtgy,Alabama,AL
-36115,Mtgy,Alabama,AL
-36116,Mtgy,Alabama,AL
-36117,Mtgy,Alabama,AL
-36118,Mtgy,Alabama,AL
-36119,Mtgy,Alabama,AL
-36120,Mtgy,Alabama,AL
-36121,Mtgy,Alabama,AL
-36123,Mtgy,Alabama,AL
-36124,Mtgy,Alabama,AL
-36125,Mtgy,Alabama,AL
-36130,Mtgy,Alabama,AL
-36131,Mtgy,Alabama,AL
-36132,Mtgy,Alabama,AL
-36133,Mtgy,Alabama,AL
-36134,Mtgy,Alabama,AL
-36135,Mtgy,Alabama,AL
-36140,Mtgy,Alabama,AL
-36141,Mtgy,Alabama,AL
-36142,Mtgy,Alabama,AL
-36177,Mtgy,Alabama,AL
-36191,Mtgy,Alabama,AL
-35243,Mtn Brook,Alabama,AL
+36101,Montgomery,Alabama,AL
+36102,Montgomery,Alabama,AL
+36103,Montgomery,Alabama,AL
+36104,Montgomery,Alabama,AL
+36105,Montgomery,Alabama,AL
+36106,Montgomery,Alabama,AL
+36107,Montgomery,Alabama,AL
+36108,Montgomery,Alabama,AL
+36109,Montgomery,Alabama,AL
+36110,Montgomery,Alabama,AL
+36111,Montgomery,Alabama,AL
+36112,Montgomery,Alabama,AL
+36113,Montgomery,Alabama,AL
+36114,Montgomery,Alabama,AL
+36115,Montgomery,Alabama,AL
+36116,Montgomery,Alabama,AL
+36117,Montgomery,Alabama,AL
+36118,Montgomery,Alabama,AL
+36119,Montgomery,Alabama,AL
+36120,Montgomery,Alabama,AL
+36121,Montgomery,Alabama,AL
+36123,Montgomery,Alabama,AL
+36124,Montgomery,Alabama,AL
+36125,Montgomery,Alabama,AL
+36130,Montgomery,Alabama,AL
+36131,Montgomery,Alabama,AL
+36132,Montgomery,Alabama,AL
+36133,Montgomery,Alabama,AL
+36134,Montgomery,Alabama,AL
+36135,Montgomery,Alabama,AL
+36140,Montgomery,Alabama,AL
+36141,Montgomery,Alabama,AL
+36142,Montgomery,Alabama,AL
+36177,Montgomery,Alabama,AL
+36191,Montgomery,Alabama,AL
+35243,Mountain Brook,Alabama,AL
 35118,Mulga,Alabama,AL
 36268,Munford,Alabama,AL
 35897,Munitions Missle Com Sch,Alabama,AL
@@ -1715,7 +1715,6 @@
 72134,Aberdeen,Arkansas,AR
 71953,Acorn,Arkansas,AR
 72001,Adona,Arkansas,AR
-72076,Air Base,Arkansas,AR
 72680,Alco,Arkansas,AR
 72002,Alexander,Arkansas,AR
 72112,Algoa,Arkansas,AR
@@ -2287,7 +2286,6 @@
 72078,Jacksonville,Arkansas,AR
 72099,Jacksonville,Arkansas,AR
 72641,Jasper,Arkansas,AR
-72076,JAX,Arkansas,AR
 72079,Jefferson,Arkansas,AR
 71601,Jefferson Square,Arkansas,AR
 72118,Jeffery,Arkansas,AR
@@ -2394,7 +2392,6 @@
 72295,Little Rock,Arkansas,AR
 72076,Little Rock AFB,Arkansas,AR
 72099,Little Rock AFB,Arkansas,AR
-72099,Little Rock Air Force Base,Arkansas,AR
 71846,Lockesburg,Arkansas,AR
 72550,Locust Grove,Arkansas,AR
 72160,Lodge Corner,Arkansas,AR
@@ -2409,10 +2406,7 @@
 71751,Louann,Arkansas,AR
 72641,Low Gap,Arkansas,AR
 72745,Lowell,Arkansas,AR
-72076,Lr AFB,Arkansas,AR
 72099,Lr AFB,Arkansas,AR
-72076,Lr Airforce Base,Arkansas,AR
-72076,LrAFB,Arkansas,AR
 72099,LrAFB,Arkansas,AR
 71653,Luna,Arkansas,AR
 72358,Luxora,Arkansas,AR
@@ -2526,8 +2520,8 @@
 72560,Mountain View,Arkansas,AR
 72946,Mountainburg,Arkansas,AR
 72051,Mozart,Arkansas,AR
-72653,Mtn Home,Arkansas,AR
-72654,Mtn Home,Arkansas,AR
+72653,Mountain Home,Arkansas,AR
+72654,Mountain Home,Arkansas,AR
 72947,Mulberry,Arkansas,AR
 71958,Murfreesboro,Arkansas,AR
 72112,Murphys Corner,Arkansas,AR
@@ -2540,41 +2534,14 @@
 71667,Nebo,Arkansas,AR
 72851,New Blaine,Arkansas,AR
 71660,New Edinburg,Arkansas,AR
-72112,New Pr,Arkansas,AR
 72562,Newark,Arkansas,AR
 71959,Newhope,Arkansas,AR
 72112,Newport,Arkansas,AR
 72126,Nimrod,Arkansas,AR
-72113,Nlr,Arkansas,AR
-72114,Nlr,Arkansas,AR
-72116,Nlr,Arkansas,AR
-72117,Nlr,Arkansas,AR
-72118,Nlr,Arkansas,AR
-72119,Nlr,Arkansas,AR
-72120,Nlr,Arkansas,AR
-72124,Nlr,Arkansas,AR
-72190,Nlr,Arkansas,AR
-72199,Nlr,Arkansas,AR
-72231,Nlr,Arkansas,AR
-72113,No Little Rock,Arkansas,AR
-72114,No Little Rock,Arkansas,AR
-72115,No Little Rock,Arkansas,AR
-72116,No Little Rock,Arkansas,AR
-72117,No Little Rock,Arkansas,AR
-72118,No Little Rock,Arkansas,AR
-72119,No Little Rock,Arkansas,AR
-72120,No Little Rock,Arkansas,AR
-72124,No Little Rock,Arkansas,AR
-72190,No Little Rock,Arkansas,AR
-72199,No Little Rock,Arkansas,AR
 72658,Norfork,Arkansas,AR
 72659,Norfork,Arkansas,AR
 71960,Norman,Arkansas,AR
 71759,Norphlet,Arkansas,AR
-72114,North L R,Arkansas,AR
-72116,North L R,Arkansas,AR
-72117,North L R,Arkansas,AR
-72118,North L R,Arkansas,AR
 72113,North Little Rock,Arkansas,AR
 72114,North Little Rock,Arkansas,AR
 72115,North Little Rock,Arkansas,AR
@@ -2588,9 +2555,6 @@
 72198,North Little Rock,Arkansas,AR
 72199,North Little Rock,Arkansas,AR
 72231,North Little Rock,Arkansas,AR
-72116,North LR,Arkansas,AR
-72117,North LR,Arkansas,AR
-72118,North LR,Arkansas,AR
 72135,Northpoint,Arkansas,AR
 71953,Nunley,Arkansas,AR
 72449,O Kean,Arkansas,AR
@@ -2619,7 +2583,6 @@
 71660,Orlando,Arkansas,AR
 72370,Osceola,Arkansas,AR
 72173,Otto,Arkansas,AR
-71998,Ouachita Baptist University,Arkansas,AR
 72087,Owensville,Arkansas,AR
 72565,Oxford,Arkansas,AR
 72645,Oxley,Arkansas,AR
@@ -11107,7 +11070,6 @@
 32976,Barefoot Bay,Florida,FL
 34134,Barefoot Bch,Florida,FL
 34134,Barefoot Beach,Florida,FL
-33161,Barry University,Florida,FL
 33830,Bartow,Florida,FL
 33831,Bartow,Florida,FL
 32423,Bascom,Florida,FL
@@ -12660,16 +12622,6 @@
 34654,New Port Richey,Florida,FL
 34655,New Port Richey,Florida,FL
 34656,New Port Richey,Florida,FL
-34652,New Prt Rchy,Florida,FL
-34653,New Prt Rchy,Florida,FL
-34654,New Prt Rchy,Florida,FL
-34655,New Prt Rchy,Florida,FL
-34656,New Prt Rchy,Florida,FL
-34652,New Pt Richey,Florida,FL
-34653,New Pt Richey,Florida,FL
-34654,New Pt Richey,Florida,FL
-34655,New Pt Richey,Florida,FL
-34656,New Pt Richey,Florida,FL
 32168,New Smyrna,Florida,FL
 32169,New Smyrna,Florida,FL
 32170,New Smyrna,Florida,FL
@@ -12680,19 +12632,7 @@
 32578,Niceville,Florida,FL
 32588,Niceville,Florida,FL
 33863,Nichols,Florida,FL
-33161,Nmb,Florida,FL
-33180,Nmb,Florida,FL
-33181,Nmb,Florida,FL
-33280,Nmb,Florida,FL
-33903,No Fort Myers,Florida,FL
-33917,No Fort Myers,Florida,FL
-33918,No Fort Myers,Florida,FL
-33903,No Ft Myers,Florida,FL
-33917,No Ft Myers,Florida,FL
 33043,No Name Key,Florida,FL
-34286,No Port,Florida,FL
-34288,No Port,Florida,FL
-34289,No Port,Florida,FL
 34661,Nobleton,Florida,FL
 34268,Nocatee,Florida,FL
 34274,Nokomis,Florida,FL
@@ -12705,9 +12645,6 @@
 33903,North Fort Myers,Florida,FL
 33917,North Fort Myers,Florida,FL
 33918,North Fort Myers,Florida,FL
-33903,North Ft Myers,Florida,FL
-33917,North Ft Myers,Florida,FL
-33918,North Ft Myers,Florida,FL
 33068,North Lauderdale,Florida,FL
 33309,North Lauderdale,Florida,FL
 33319,North Lauderdale,Florida,FL
@@ -12726,6 +12663,7 @@
 33180,North Miami Beach,Florida,FL
 33181,North Miami Beach,Florida,FL
 33261,North Miami Beach,Florida,FL
+33280,North Miami Beach,Florida,FL
 33403,North Palm Beach,Florida,FL
 33408,North Palm Beach,Florida,FL
 33410,North Palm Beach,Florida,FL
@@ -12740,11 +12678,7 @@
 34275,North Venice,Florida,FL
 33624,Northdale,Florida,FL
 33626,Northdale,Florida,FL
-34286,Northport,Florida,FL
-34288,Northport,Florida,FL
-34289,Northport,Florida,FL
 32511,NTT Corry Field,Florida,FL
-34652,NW Prt Rchy,Florida,FL
 32071,O Brien,Florida,FL
 32759,Oak Hill,Florida,FL
 34740,Oakland,Florida,FL
@@ -66252,7 +66186,7 @@
 84404,Ms City,Utah,UT
 84401,MSC,Utah,UT
 84404,MSC,Utah,UT
-84050,Mtn Green,Utah,UT
+84050,Mountain Green,Utah,UT
 84107,Murray,Utah,UT
 84117,Murray,Utah,UT
 84121,Murray,Utah,UT
