@@ -93,6 +93,7 @@
             <settings>
                 <filter>text</filter>
                 <label translate="true">ID</label>
+                <visible>false</visible>
             </settings>
         </column>
         <column name="postal_code" sortOrder="300">
