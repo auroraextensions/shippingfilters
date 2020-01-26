@@ -99,7 +99,7 @@
         <column name="postal_code" sortOrder="300">
             <settings>
                 <filter>text</filter>
-                <label translate="true">ZIP/Postal Code</label>
+                <label translate="true">Postal Code</label>
             </settings>
         </column>
         <column name="locality_name" sortOrder="400">
