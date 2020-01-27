@@ -21,7 +21,7 @@ namespace AuroraExtensions\ShippingFilters\Model\ResourceModel\PostalCode;
 use AuroraExtensions\ShippingFilters\{
     Api\AbstractCollectionInterface,
     Model\Cache\CacheGenerator,
-    Model\Data\PostalCode,
+    Model\Data\ShippingPostalCode,
     Model\ResourceModel\PostalCode as PostalCodeResource
 };
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
@@ -49,7 +49,7 @@ class Collection extends AbstractCollection implements AbstractCollectionInterfa
     protected function _construct()
     {
         $this->_init(
-            PostalCode::class,
+            ShippingPostalCode::class,
             PostalCodeResource::class
         );
     }
