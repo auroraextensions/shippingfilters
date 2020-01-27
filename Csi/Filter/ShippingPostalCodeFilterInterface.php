@@ -1,6 +1,6 @@
 <?php
 /**
- * PostalCodeFilterInterface.php
+ * ShippingPostalCodeFilterInterface.php
  *
  * NOTICE OF LICENSE
  *
@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace AuroraExtensions\ShippingFilters\Csi\Filter;
 
-interface PostalCodeFilterInterface extends AbstractFilterInterface
+interface ShippingPostalCodeFilterInterface extends AbstractFilterInterface
 {
     /** @constant string PRIMARY_KEY */
     public const PRIMARY_KEY = 'postal_code_id';
