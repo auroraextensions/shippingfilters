@@ -181,7 +181,7 @@ class ImportUnitedStatesLocalities implements DataPatchInterface
      */
     private function getEtcFilePath(
         string $filename,
-        string $directory = 'import/localities'
+        string $directory = 'import/locality'
     ): string
     {
         /** @var string $modulePath */
