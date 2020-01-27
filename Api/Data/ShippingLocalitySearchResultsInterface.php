@@ -23,12 +23,12 @@ use Magento\Framework\Api\SearchResultsInterface;
 interface LocalitySearchResultsInterface extends SearchResultsInterface
 {
     /**
-     * @return \AuroraExtensions\ShippingFilters\Api\Data\LocalityInterface[]
+     * @return \AuroraExtensions\ShippingFilters\Api\Data\ShippingLocalityInterface[]
      */
     public function getItems();
 
     /**
-     * @param \AuroraExtensions\ShippingFilters\Api\Data\LocalityInterface[] $items
+     * @param \AuroraExtensions\ShippingFilters\Api\Data\ShippingLocalityInterface[] $items
      * @return \Magento\Framework\Api\SearchResultsInterface
      */
     public function setItems(array $items);
