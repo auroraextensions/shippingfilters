@@ -1,6 +1,6 @@
 <?php
 /**
- * PostalCodeFilter.php
+ * ShippingPostalCodeFilter.php
  *
  * NOTICE OF LICENSE
  *
@@ -22,7 +22,7 @@ use AuroraExtensions\ShippingFilters\{
     Component\System\ModuleConfigTrait,
     Component\Utils\ArrayTrait,
     Csi\Filter\CountryFilterInterface,
-    Csi\Filter\PostalCodeFilterInterface,
+    Csi\Filter\ShippingPostalCodeFilterInterface,
     Csi\Filter\RegionFilterInterface,
     Csi\System\ModuleConfigInterface,
     Model\ResourceModel\PostalCode\Collection,
@@ -30,7 +30,7 @@ use AuroraExtensions\ShippingFilters\{
 };
 use Magento\Store\Model\StoreManagerInterface;
 
-class PostalCodeFilter implements PostalCodeFilterInterface
+class ShippingPostalCodeFilter implements ShippingPostalCodeFilterInterface
 {
     /**
      * @method array flattenArray()

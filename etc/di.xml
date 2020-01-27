@@ -23,11 +23,11 @@
                 type="AuroraExtensions\ShippingFilters\Model\Data\ShippingLocality"/>
     <preference for="AuroraExtensions\ShippingFilters\Api\Data\ShippingLocalitySearchResultsInterface"
                 type="Magento\Framework\Api\SearchResults"/>
-    <preference for="AuroraExtensions\ShippingFilters\Api\PostalCodeRepositoryInterface"
-                type="AuroraExtensions\ShippingFilters\Model\Repository\PostalCodeRepository"/>
-    <preference for="AuroraExtensions\ShippingFilters\Api\Data\PostalCodeInterface"
-                type="AuroraExtensions\ShippingFilters\Model\Data\PostalCode"/>
-    <preference for="AuroraExtensions\ShippingFilters\Api\Data\PostalCodeSearchResultsInterface"
+    <preference for="AuroraExtensions\ShippingFilters\Api\ShippingPostalCodeRepositoryInterface"
+                type="AuroraExtensions\ShippingFilters\Model\Repository\ShippingPostalCodeRepository"/>
+    <preference for="AuroraExtensions\ShippingFilters\Api\Data\ShippingPostalCodeInterface"
+                type="AuroraExtensions\ShippingFilters\Model\Data\ShippingPostalCode"/>
+    <preference for="AuroraExtensions\ShippingFilters\Api\Data\ShippingPostalCodeSearchResultsInterface"
                 type="Magento\Framework\Api\SearchResults"/>
 
     <preference for="AuroraExtensions\ShippingFilters\Csi\Filter\CountryFilterInterface"
@@ -36,8 +36,8 @@
                 type="AuroraExtensions\ShippingFilters\Model\Filter\RegionFilter"/>
     <preference for="AuroraExtensions\ShippingFilters\Csi\Filter\ShippingLocalityFilterInterface"
                 type="AuroraExtensions\ShippingFilters\Model\Filter\ShippingLocalityFilter"/>
-    <preference for="AuroraExtensions\ShippingFilters\Csi\Filter\PostalCodeFilterInterface"
-                type="AuroraExtensions\ShippingFilters\Model\Filter\PostalCodeFilter"/>
+    <preference for="AuroraExtensions\ShippingFilters\Csi\Filter\ShippingPostalCodeFilterInterface"
+                type="AuroraExtensions\ShippingFilters\Model\Filter\ShippingPostalCodeFilter"/>
     <preference for="AuroraExtensions\ShippingFilters\Csi\System\ModuleConfigInterface"
                 type="AuroraExtensions\ShippingFilters\Model\System\ModuleConfig"/>
 

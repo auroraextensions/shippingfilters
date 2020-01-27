@@ -21,7 +21,7 @@ namespace AuroraExtensions\ShippingFilters\Model\ResourceModel\Locality;
 use AuroraExtensions\ShippingFilters\{
     Api\AbstractCollectionInterface,
     Model\Cache\CacheGenerator,
-    Model\Data\Locality,
+    Model\Data\ShippingLocality,
     Model\ResourceModel\Locality as LocalityResource
 };
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
@@ -48,7 +48,7 @@ class Collection extends AbstractCollection implements AbstractCollectionInterfa
     protected function _construct()
     {
         $this->_init(
-            Locality::class,
+            ShippingLocality::class,
             LocalityResource::class
         );
     }

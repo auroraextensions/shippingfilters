@@ -20,9 +20,9 @@ namespace AuroraExtensions\ShippingFilters\Model\Repository;
 
 use AuroraExtensions\ShippingFilters\{
     Api\AbstractCollectionInterface,
-    Api\PostalCodeRepositoryInterface,
-    Api\Data\PostalCodeInterface,
-    Api\Data\PostalCodeInterfaceFactory,
+    Api\ShippingPostalCodeRepositoryInterface,
+    Api\Data\ShippingPostalCodeInterface,
+    Api\Data\ShippingPostalCodeInterfaceFactory,
     Component\Repository\AbstractRepositoryTrait,
     Exception\ExceptionFactory,
     Model\Data\PostalCode,
@@ -37,7 +37,7 @@ use Magento\Framework\{
     Exception\NoSuchEntityException
 };
 
-class PostalCodeRepository implements PostalCodeRepositoryInterface
+class PostalCodeRepository implements ShippingPostalCodeRepositoryInterface
 {
     /**
      * @method void addFilterGroupToCollection()
@@ -52,7 +52,7 @@ class PostalCodeRepository implements PostalCodeRepositoryInterface
     /** @property ExceptionFactory $exceptionFactory */
     protected $exceptionFactory;
 
-    /** @property PostalCodeInterfaceFactory $postalCodeFactory */
+    /** @property ShippingPostalCodeInterfaceFactory $postalCodeFactory */
     protected $postalCodeFactory;
 
     /** @property PostalCodeResource $postalCodeResource */
@@ -65,7 +65,7 @@ class PostalCodeRepository implements PostalCodeRepositoryInterface
      * @param CollectionFactory $collectionFactory
      * @param SearchResultsInterfaceFactory $searchResultsFactory
      * @param ExceptionFactory $exceptionFactory
-     * @param PostalCodeInterfaceFactory $postalCodeFactory
+     * @param ShippingPostalCodeInterfaceFactory $postalCodeFactory
      * @param PostalCodeResource $postalCodeResource
      * @return void
      */
@@ -73,7 +73,7 @@ class PostalCodeRepository implements PostalCodeRepositoryInterface
         CollectionFactory $collectionFactory,
         SearchResultsInterfaceFactory $searchResultsFactory,
         ExceptionFactory $exceptionFactory,
-        PostalCodeInterfaceFactory $postalCodeFactory,
+        ShippingPostalCodeInterfaceFactory $postalCodeFactory,
         PostalCodeResource $postalCodeResource
     ) {
         $this->collectionFactory = $collectionFactory;
@@ -85,12 +85,12 @@ class PostalCodeRepository implements PostalCodeRepositoryInterface
 
     /**
      * @param RegionInformationInterface $region
-     * @return PostalCodeInterface
+     * @return ShippingPostalCodeInterface
      * @throws NoSuchEntityException
      */
-    public function get(RegionInformationInterface $region): PostalCodeInterface
+    public function get(RegionInformationInterface $region): ShippingPostalCodeInterface
     {
-        /** @var PostalCodeInterface $postalCode */
+        /** @var ShippingPostalCodeInterface $postalCode */
         $postalCode = $this->postalCodeFactory->create();
         $this->postalCodeResource->load(
             $postalCode,
@@ -113,12 +113,12 @@ class PostalCodeRepository implements PostalCodeRepositoryInterface
 
     /**
      * @param int $id
-     * @return PostalCodeInterface
+     * @return ShippingPostalCodeInterface
      * @throws NoSuchEntityException
      */
-    public function getById(int $id): PostalCodeInterface
+    public function getById(int $id): ShippingPostalCodeInterface
     {
-        /** @var PostalCodeInterface $postalCode */
+        /** @var ShippingPostalCodeInterface $postalCode */
         $postalCode = $this->postalCodeFactory->create();
         $this->postalCodeResource->load($postalCode, $id);
 
@@ -136,20 +136,20 @@ class PostalCodeRepository implements PostalCodeRepositoryInterface
     }
 
     /**
-     * @param PostalCodeInterface $postalCode
+     * @param ShippingPostalCodeInterface $postalCode
      * @return int
      */
-    public function save(PostalCodeInterface $postalCode): int
+    public function save(ShippingPostalCodeInterface $postalCode): int
     {
         $this->postalCodeResource->save($postalCode);
         return (int) $postalCode->getId();
     }
 
     /**
-     * @param PostalCodeInterface $postalCode
+     * @param ShippingPostalCodeInterface $postalCode
      * @return bool
      */
-    public function delete(PostalCodeInterface $postalCode): bool
+    public function delete(ShippingPostalCodeInterface $postalCode): bool
     {
         return $this->deleteById((int) $postalCode->getId());
     }
@@ -160,7 +160,7 @@ class PostalCodeRepository implements PostalCodeRepositoryInterface
      */
     public function deleteById(int $id): bool
     {
-        /** @var PostalCodeInterface $postalCode */
+        /** @var ShippingPostalCodeInterface $postalCode */
         $postalCode = $this->postalCodeFactory->create();
         $postalCode->setId($id);
 

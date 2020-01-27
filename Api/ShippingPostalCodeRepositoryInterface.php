@@ -1,6 +1,6 @@
 <?php
 /**
- * PostalCodeRepositoryInterface.php
+ * ShippingPostalCodeRepositoryInterface.php
  *
  * NOTICE OF LICENSE
  *
@@ -20,33 +20,33 @@ namespace AuroraExtensions\ShippingFilters\Api;
 
 use Magento\Directory\Api\Data\RegionInformationInterface;
 
-interface PostalCodeRepositoryInterface
+interface ShippingPostalCodeRepositoryInterface
 {
     /**
      * @param \Magento\Directory\Api\Data\RegionInformationInterface $region
-     * @return \AuroraExtensions\ShippingFilters\Api\Data\PostalCodeInterface
+     * @return \AuroraExtensions\ShippingFilters\Api\Data\ShippingPostalCodeInterface
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function get(RegionInformationInterface $region): Data\PostalCodeInterface;
+    public function get(RegionInformationInterface $region): Data\ShippingPostalCodeInterface;
 
     /**
      * @param int $id
-     * @return \AuroraExtensions\ShippingFilters\Api\Data\PostalCodeInterface
+     * @return \AuroraExtensions\ShippingFilters\Api\Data\ShippingPostalCodeInterface
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function getById(int $id): Data\PostalCodeInterface;
+    public function getById(int $id): Data\ShippingPostalCodeInterface;
 
     /**
-     * @param \AuroraExtensions\ShippingFilters\Api\Data\PostalCodeInterface $postalCode
+     * @param \AuroraExtensions\ShippingFilters\Api\Data\ShippingPostalCodeInterface $postalCode
      * @return int
      */
-    public function save(Data\PostalCodeInterface $postalCode): int;
+    public function save(Data\ShippingPostalCodeInterface $postalCode): int;
 
     /**
-     * @param \AuroraExtensions\ShippingFilters\Api\Data\PostalCodeInterface $postalCode
+     * @param \AuroraExtensions\ShippingFilters\Api\Data\ShippingPostalCodeInterface $postalCode
      * @return bool
      */
-    public function delete(Data\PostalCodeInterface $postalCode): bool;
+    public function delete(Data\ShippingPostalCodeInterface $postalCode): bool;
 
     /**
      * @param int $id

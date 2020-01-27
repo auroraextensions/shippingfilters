@@ -23,12 +23,12 @@ use Magento\Framework\Api\SearchResultsInterface;
 interface PostalCodeSearchResultsInterface extends SearchResultsInterface
 {
     /**
-     * @return \AuroraExtensions\ShippingFilters\Api\Data\PostalCodeInterface[]
+     * @return \AuroraExtensions\ShippingFilters\Api\Data\ShippingPostalCodeInterface[]
      */
     public function getItems();
 
     /**
-     * @param \AuroraExtensions\ShippingFilters\Api\Data\PostalCodeInterface[] $items
+     * @param \AuroraExtensions\ShippingFilters\Api\Data\ShippingPostalCodeInterface[] $items
      * @return $this
      */
     public function setItems(array $items);

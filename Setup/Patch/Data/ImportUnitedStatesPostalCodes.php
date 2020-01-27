@@ -20,9 +20,9 @@ namespace AuroraExtensions\ShippingFilters\Setup\Patch\Data;
 
 use Exception;
 use AuroraExtensions\ShippingFilters\{
-    Api\PostalCodeRepositoryInterface,
-    Api\Data\PostalCodeInterface,
-    Api\Data\PostalCodeInterfaceFactory
+    Api\ShippingPostalCodeRepositoryInterface,
+    Api\Data\ShippingPostalCodeInterface,
+    Api\Data\ShippingPostalCodeInterfaceFactory
 };
 use Magento\Directory\{
     Model\ResourceModel\Region\Collection,
@@ -69,10 +69,10 @@ class ImportUnitedStatesPostalCodes implements DataPatchInterface
     /** @property ModuleReader $moduleReader */
     protected $moduleReader;
 
-    /** @property PostalCodeInterfaceFactory $postalCodeFactory */
+    /** @property ShippingPostalCodeInterfaceFactory $postalCodeFactory */
     protected $postalCodeFactory;
 
-    /** @property PostalCodeRepositoryInterface $postalCodeRepository */
+    /** @property ShippingPostalCodeRepositoryInterface $postalCodeRepository */
     protected $postalCodeRepository;
 
     /**
@@ -81,8 +81,8 @@ class ImportUnitedStatesPostalCodes implements DataPatchInterface
      * @param CsvReader $csvReader
      * @param LoggerInterface $logger
      * @param ModuleReader $moduleReader
-     * @param PostalCodeInterfaceFactory $postalCodeFactory
-     * @param PostalCodeRepositoryInterface $postalCodeRepository
+     * @param ShippingPostalCodeInterfaceFactory $postalCodeFactory
+     * @param ShippingPostalCodeRepositoryInterface $postalCodeRepository
      * @return void
      */
     public function __construct(
@@ -91,8 +91,8 @@ class ImportUnitedStatesPostalCodes implements DataPatchInterface
         CsvReader $csvReader,
         LoggerInterface $logger,
         ModuleReader $moduleReader,
-        PostalCodeInterfaceFactory $postalCodeFactory,
-        PostalCodeRepositoryInterface $postalCodeRepository
+        ShippingPostalCodeInterfaceFactory $postalCodeFactory,
+        ShippingPostalCodeRepositoryInterface $postalCodeRepository
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->collectionFactory = $collectionFactory;
@@ -157,7 +157,7 @@ class ImportUnitedStatesPostalCodes implements DataPatchInterface
                     $this->cache[$regionCode] = $this->getRegionIdByCode($regionCode);
                 }
 
-                /** @var PostalCodeInterface $entity */
+                /** @var ShippingPostalCodeInterface $entity */
                 $entity = $this->postalCodeFactory->create();
                 $entity->addData([
                     'postal_code' => $postalCode,
