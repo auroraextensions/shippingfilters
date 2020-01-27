@@ -1,6 +1,6 @@
 <?php
 /**
- * LocalityRepository.php
+ * ShippingLocalityRepository.php
  *
  * NOTICE OF LICENSE
  *
@@ -20,7 +20,7 @@ namespace AuroraExtensions\ShippingFilters\Model\Repository;
 
 use AuroraExtensions\ShippingFilters\{
     Api\AbstractCollectionInterface,
-    Api\LocalityRepositoryInterface,
+    Api\ShippingLocalityRepositoryInterface,
     Api\Data\LocalityInterface,
     Api\Data\LocalityInterfaceFactory,
     Component\Repository\AbstractRepositoryTrait,
@@ -35,7 +35,7 @@ use Magento\Framework\{
     Exception\NoSuchEntityException
 };
 
-class LocalityRepository implements LocalityRepositoryInterface
+class ShippingLocalityRepository implements ShippingLocalityRepositoryInterface
 {
     /**
      * @method void addFilterGroupToCollection()
