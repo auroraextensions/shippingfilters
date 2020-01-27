@@ -186,7 +186,7 @@ class ImportUnitedStatesPostalCodes implements DataPatchInterface
      */
     private function getEtcFilePath(
         string $filename,
-        string $directory = 'import/postal_codes'
+        string $directory = 'import/postalcode'
     ): string
     {
         /** @var string $modulePath */
