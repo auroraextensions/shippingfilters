@@ -1,6 +1,6 @@
 <?php
 /**
- * PostalCodeInterface.php
+ * ShippingPostalCodeInterface.php
  *
  * NOTICE OF LICENSE
  *
@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace AuroraExtensions\ShippingFilters\Api\Data;
 
-interface PostalCodeInterface
+interface ShippingPostalCodeInterface
 {
     /**
      * @return int
@@ -27,7 +27,7 @@ interface PostalCodeInterface
 
     /**
      * @param int $id
-     * @return \AuroraExtensions\ShippingFilters\Api\Data\PostalCodeInterface
+     * @return \AuroraExtensions\ShippingFilters\Api\Data\ShippingPostalCodeInterface
      */
     public function setId($id);
 
@@ -38,9 +38,9 @@ interface PostalCodeInterface
 
     /**
      * @param string $createdAt
-     * @return \AuroraExtensions\ShippingFilters\Api\Data\PostalCodeInterface
+     * @return \AuroraExtensions\ShippingFilters\Api\Data\ShippingPostalCodeInterface
      */
-    public function setCreatedAt($createdAt): PostalCodeInterface;
+    public function setCreatedAt($createdAt): ShippingPostalCodeInterface;
 
     /**
      * @return string
@@ -49,9 +49,9 @@ interface PostalCodeInterface
 
     /**
      * @param string $postalCode
-     * @return \AuroraExtensions\ShippingFilters\Api\Data\PostalCodeInterface
+     * @return \AuroraExtensions\ShippingFilters\Api\Data\ShippingPostalCodeInterface
      */
-    public function setPostalCode(string $postalCode): PostalCodeInterface;
+    public function setPostalCode(string $postalCode): ShippingPostalCodeInterface;
 
     /**
      * @return string
@@ -60,9 +60,9 @@ interface PostalCodeInterface
 
     /**
      * @param string $localityName
-     * @return \AuroraExtensions\ShippingFilters\Api\Data\PostalCodeInterface
+     * @return \AuroraExtensions\ShippingFilters\Api\Data\ShippingPostalCodeInterface
      */
-    public function setLocalityName(string $localityName): PostalCodeInterface;
+    public function setLocalityName(string $localityName): ShippingPostalCodeInterface;
 
     /**
      * @return int
@@ -71,9 +71,9 @@ interface PostalCodeInterface
 
     /**
      * @param int $regionId
-     * @return \AuroraExtensions\ShippingFilters\Api\Data\PostalCodeInterface
+     * @return \AuroraExtensions\ShippingFilters\Api\Data\ShippingPostalCodeInterface
      */
-    public function setRegionId(int $regionId): PostalCodeInterface;
+    public function setRegionId(int $regionId): ShippingPostalCodeInterface;
 
     /**
      * @return string
@@ -82,9 +82,9 @@ interface PostalCodeInterface
 
     /**
      * @param string $regionCode
-     * @return \AuroraExtensions\ShippingFilters\Api\Data\PostalCodeInterface
+     * @return \AuroraExtensions\ShippingFilters\Api\Data\ShippingPostalCodeInterface
      */
-    public function setRegionCode(string $regionCode): PostalCodeInterface;
+    public function setRegionCode(string $regionCode): ShippingPostalCodeInterface;
 
     /**
      * @return string
@@ -93,9 +93,9 @@ interface PostalCodeInterface
 
     /**
      * @param string $regionName
-     * @return \AuroraExtensions\ShippingFilters\Api\Data\PostalCodeInterface
+     * @return \AuroraExtensions\ShippingFilters\Api\Data\ShippingPostalCodeInterface
      */
-    public function setRegionName(string $regionName): PostalCodeInterface;
+    public function setRegionName(string $regionName): ShippingPostalCodeInterface;
 
     /**
      * @return string
@@ -104,9 +104,9 @@ interface PostalCodeInterface
 
     /**
      * @param string $countryCode
-     * @return \AuroraExtensions\ShippingFilters\Api\Data\PostalCodeInterface
+     * @return \AuroraExtensions\ShippingFilters\Api\Data\ShippingPostalCodeInterface
      */
-    public function setCountryCode(string $countryCode): PostalCodeInterface;
+    public function setCountryCode(string $countryCode): ShippingPostalCodeInterface;
 
     /**
      * @return string
@@ -115,7 +115,7 @@ interface PostalCodeInterface
 
     /**
      * @param string $countryName
-     * @return \AuroraExtensions\ShippingFilters\Api\Data\PostalCodeInterface
+     * @return \AuroraExtensions\ShippingFilters\Api\Data\ShippingPostalCodeInterface
      */
-    public function setCountryName(string $countryName): PostalCodeInterface;
+    public function setCountryName(string $countryName): ShippingPostalCodeInterface;
 }
