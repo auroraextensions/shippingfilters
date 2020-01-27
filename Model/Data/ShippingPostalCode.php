@@ -1,6 +1,6 @@
 <?php
 /**
- * PostalCode.php
+ * ShippingPostalCode.php
  *
  * NOTICE OF LICENSE
  *
@@ -24,7 +24,7 @@ use AuroraExtensions\ShippingFilters\{
 };
 use Magento\Framework\Model\AbstractModel;
 
-class PostalCode extends AbstractModel implements ShippingPostalCodeInterface
+class ShippingPostalCode extends AbstractModel implements ShippingPostalCodeInterface
 {
     /**
      * @return void
