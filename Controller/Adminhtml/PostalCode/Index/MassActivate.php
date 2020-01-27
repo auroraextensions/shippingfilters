@@ -20,7 +20,7 @@ namespace AuroraExtensions\ShippingFilters\Controller\Adminhtml\PostalCode\Index
 
 use AuroraExtensions\ShippingFilters\{
     Api\AbstractCollectionInterface,
-    Api\PostalCodeRepositoryInterface,
+    Api\ShippingPostalCodeRepositoryInterface,
     Component\Event\EventManagerTrait,
     Exception\ExceptionFactory,
     Model\ResourceModel\PostalCode\Collection,
@@ -57,7 +57,7 @@ class MassActivate extends AbstractMassAction implements
     /** @constant string MASSACTION_BEFORE_EVENT */
     public const MASSACTION_BEFORE_EVENT = 'shippingfilters_adminhtml_postalcode_index_massactivate_before';
 
-    /** @property PostalCodeRepositoryInterface $postalCodeRepository */
+    /** @property ShippingPostalCodeRepositoryInterface $postalCodeRepository */
     protected $postalCodeRepository;
 
     /** @property StoreManagerInterface $storeManager */
@@ -70,7 +70,7 @@ class MassActivate extends AbstractMassAction implements
      * @param Filter $filter
      * @param FormKeyValidator $formKeyValidator
      * @param EventManagerInterface $eventManager
-     * @param PostalCodeRepositoryInterface $postalCodeRepository
+     * @param ShippingPostalCodeRepositoryInterface $postalCodeRepository
      * @param StoreManagerInterface $storeManager
      */
     public function __construct(
@@ -80,7 +80,7 @@ class MassActivate extends AbstractMassAction implements
         Filter $filter,
         FormKeyValidator $formKeyValidator,
         EventManagerInterface $eventManager,
-        PostalCodeRepositoryInterface $postalCodeRepository,
+        ShippingPostalCodeRepositoryInterface $postalCodeRepository,
         StoreManagerInterface $storeManager
     ) {
         parent::__construct(
@@ -115,7 +115,7 @@ class MassActivate extends AbstractMassAction implements
 
         /** @var int|string $postalCodeId */
         foreach ($collection->getAllIds() as $postalCodeId) {
-            /** @var PostalCodeInterface $postalCode */
+            /** @var ShippingPostalCodeInterface $postalCode */
             $postalCode = $this->postalCodeRepository
                 ->getById((int) $postalCodeId);
 

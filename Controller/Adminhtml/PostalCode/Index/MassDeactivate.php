@@ -20,7 +20,7 @@ namespace AuroraExtensions\ShippingFilters\Controller\Adminhtml\PostalCode\Index
 
 use AuroraExtensions\ShippingFilters\{
     Api\AbstractCollectionInterface,
-    Api\PostalCodeRepositoryInterface,
+    Api\ShippingPostalCodeRepositoryInterface,
     Component\Event\EventManagerTrait,
     Exception\ExceptionFactory,
     Model\ResourceModel\PostalCode\Collection,
@@ -56,7 +56,7 @@ class MassDeactivate extends AbstractMassAction implements
     /** @constant string MASSACTION_BEFORE_EVENT */
     public const MASSACTION_BEFORE_EVENT = 'shippingfilters_adminhtml_postalcode_index_massdeactivate_before';
 
-    /** @property PostalCodeRepositoryInterface $postalCodeRepository */
+    /** @property ShippingPostalCodeRepositoryInterface $postalCodeRepository */
     protected $postalCodeRepository;
 
     /**
@@ -66,7 +66,7 @@ class MassDeactivate extends AbstractMassAction implements
      * @param Filter $filter
      * @param FormKeyValidator $formKeyValidator
      * @param EventManagerInterface $eventManager
-     * @param PostalCodeRepositoryInterface $postalCodeRepository
+     * @param ShippingPostalCodeRepositoryInterface $postalCodeRepository
      */
     public function __construct(
         Context $context,
@@ -75,7 +75,7 @@ class MassDeactivate extends AbstractMassAction implements
         Filter $filter,
         FormKeyValidator $formKeyValidator,
         EventManagerInterface $eventManager,
-        PostalCodeRepositoryInterface $postalCodeRepository
+        ShippingPostalCodeRepositoryInterface $postalCodeRepository
     ) {
         parent::__construct(
             $context,
@@ -102,7 +102,7 @@ class MassDeactivate extends AbstractMassAction implements
 
         /** @var int|string $postalCodeId */
         foreach ($collection->getAllIds() as $postalCodeId) {
-            /** @var PostalCodeInterface $postalCode */
+            /** @var ShippingPostalCodeInterface $postalCode */
             $postalCode = $this->postalCodeRepository
                 ->getById((int) $postalCodeId);
 
