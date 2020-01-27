@@ -21,9 +21,9 @@ namespace AuroraExtensions\ShippingFilters\Observer\Backend;
 use Exception;
 use AuroraExtensions\ShippingFilters\{
     Api\AbstractCollectionInterface,
-    Api\Data\PostalCodeInterface,
+    Api\Data\ShippingPostalCodeInterface,
     Api\ShippingLocalityRepositoryInterface,
-    Api\PostalCodeRepositoryInterface,
+    Api\ShippingPostalCodeRepositoryInterface,
     Component\Message\MessageManagerTrait,
     Component\System\ModuleConfigTrait,
     Csi\System\ModuleConfigInterface,
@@ -67,7 +67,7 @@ class AutoActivateLocalityObserver implements ObserverInterface
     /** @property ShippingLocalityRepositoryInterface $localityRepository */
     protected $localityRepository;
 
-    /** @property PostalCodeRepositoryInterface $postalCodeRepository */
+    /** @property ShippingPostalCodeRepositoryInterface $postalCodeRepository */
     protected $postalCodeRepository;
 
     /** @property UrlInterface $urlBuilder */
@@ -78,7 +78,7 @@ class AutoActivateLocalityObserver implements ObserverInterface
      * @param ShippingLocalityRepositoryInterface $localityRepository
      * @param MessageManagerInterface $messageManager
      * @param ModuleConfigInterface $moduleConfig
-     * @param PostalCodeRepositoryInterface $postalCodeRepository
+     * @param ShippingPostalCodeRepositoryInterface $postalCodeRepository
      * @param UrlInterface $urlBuilder
      * @return void
      */
@@ -87,7 +87,7 @@ class AutoActivateLocalityObserver implements ObserverInterface
         ShippingLocalityRepositoryInterface $localityRepository,
         MessageManagerInterface $messageManager,
         ModuleConfigInterface $moduleConfig,
-        PostalCodeRepositoryInterface $postalCodeRepository,
+        ShippingPostalCodeRepositoryInterface $postalCodeRepository,
         UrlInterface $urlBuilder
     ) {
         $this->collectionFactory = $collectionFactory;
@@ -121,7 +121,7 @@ class AutoActivateLocalityObserver implements ObserverInterface
 
             /** @var int|string $postalCodeId */
             foreach ($collection->getAllIds() as $postalCodeId) {
-                /** @var PostalCodeInterface $postalCode */
+                /** @var ShippingPostalCodeInterface $postalCode */
                 $postalCode = $this->postalCodeRepository
                     ->getById((int) $postalCodeId);
 
