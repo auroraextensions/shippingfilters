@@ -1,6 +1,6 @@
 <?php
 /**
- * LocalityFilter.php
+ * ShippingLocalityFilter.php
  *
  * NOTICE OF LICENSE
  *
@@ -22,7 +22,7 @@ use AuroraExtensions\ShippingFilters\{
     Component\System\ModuleConfigTrait,
     Component\Utils\ArrayTrait,
     Csi\Filter\CountryFilterInterface,
-    Csi\Filter\LocalityFilterInterface,
+    Csi\Filter\ShippingLocalityFilterInterface,
     Csi\Filter\RegionFilterInterface,
     Csi\System\ModuleConfigInterface,
     Model\ResourceModel\Locality\Collection,
@@ -30,7 +30,7 @@ use AuroraExtensions\ShippingFilters\{
 };
 use Magento\Store\Model\StoreManagerInterface;
 
-class LocalityFilter implements LocalityFilterInterface
+class ShippingLocalityFilter implements ShippingLocalityFilterInterface
 {
     /**
      * @method array flattenArray()

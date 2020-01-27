@@ -34,8 +34,8 @@
                 type="AuroraExtensions\ShippingFilters\Model\Filter\CountryFilter"/>
     <preference for="AuroraExtensions\ShippingFilters\Csi\Filter\RegionFilterInterface"
                 type="AuroraExtensions\ShippingFilters\Model\Filter\RegionFilter"/>
-    <preference for="AuroraExtensions\ShippingFilters\Csi\Filter\LocalityFilterInterface"
-                type="AuroraExtensions\ShippingFilters\Model\Filter\LocalityFilter"/>
+    <preference for="AuroraExtensions\ShippingFilters\Csi\Filter\ShippingLocalityFilterInterface"
+                type="AuroraExtensions\ShippingFilters\Model\Filter\ShippingLocalityFilter"/>
     <preference for="AuroraExtensions\ShippingFilters\Csi\Filter\PostalCodeFilterInterface"
                 type="AuroraExtensions\ShippingFilters\Model\Filter\PostalCodeFilter"/>
     <preference for="AuroraExtensions\ShippingFilters\Csi\System\ModuleConfigInterface"

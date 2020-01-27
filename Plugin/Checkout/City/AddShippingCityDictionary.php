@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace AuroraExtensions\ShippingFilters\Plugin\Checkout\City;
 
-use AuroraExtensions\ShippingFilters\Csi\Filter\LocalityFilterInterface;
+use AuroraExtensions\ShippingFilters\Csi\Filter\ShippingLocalityFilterInterface;
 use Magento\Checkout\Block\Checkout\LayoutProcessorInterface;
 
 class AddShippingCityDictionary
