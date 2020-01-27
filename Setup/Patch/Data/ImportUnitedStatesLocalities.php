@@ -20,9 +20,9 @@ namespace AuroraExtensions\ShippingFilters\Setup\Patch\Data;
 
 use Exception;
 use AuroraExtensions\ShippingFilters\{
-    Api\LocalityRepositoryInterface,
-    Api\Data\LocalityInterface,
-    Api\Data\LocalityInterfaceFactory
+    Api\ShippingLocalityRepositoryInterface,
+    Api\Data\ShippingLocalityInterface,
+    Api\Data\ShippingLocalityInterfaceFactory
 };
 use Magento\Directory\{
     Model\ResourceModel\Region\Collection,
@@ -69,10 +69,10 @@ class ImportUnitedStatesLocalities implements DataPatchInterface
     /** @property ModuleReader $moduleReader */
     protected $moduleReader;
 
-    /** @property LocalityInterfaceFactory $localityFactory */
+    /** @property ShippingLocalityInterfaceFactory $localityFactory */
     protected $localityFactory;
 
-    /** @property LocalityRepositoryInterface $localityRepository */
+    /** @property ShippingLocalityRepositoryInterface $localityRepository */
     protected $localityRepository;
 
     /**
@@ -81,8 +81,8 @@ class ImportUnitedStatesLocalities implements DataPatchInterface
      * @param CsvReader $csvReader
      * @param LoggerInterface $logger
      * @param ModuleReader $moduleReader
-     * @param LocalityInterfaceFactory $localityFactory
-     * @param LocalityRepositoryInterface $localityRepository
+     * @param ShippingLocalityInterfaceFactory $localityFactory
+     * @param ShippingLocalityRepositoryInterface $localityRepository
      * @return void
      */
     public function __construct(
@@ -91,8 +91,8 @@ class ImportUnitedStatesLocalities implements DataPatchInterface
         CsvReader $csvReader,
         LoggerInterface $logger,
         ModuleReader $moduleReader,
-        LocalityInterfaceFactory $localityFactory,
-        LocalityRepositoryInterface $localityRepository
+        ShippingLocalityInterfaceFactory $localityFactory,
+        ShippingLocalityRepositoryInterface $localityRepository
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->collectionFactory = $collectionFactory;
@@ -153,7 +153,7 @@ class ImportUnitedStatesLocalities implements DataPatchInterface
                     $this->cache[$regionCode] = $this->getRegionIdByCode($regionCode);
                 }
 
-                /** @var LocalityInterface $entity */
+                /** @var ShippingLocalityInterface $entity */
                 $entity = $this->localityFactory->create();
                 $entity->addData([
                     'locality_name' => $locality,

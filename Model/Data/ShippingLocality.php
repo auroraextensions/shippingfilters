@@ -19,12 +19,12 @@ declare(strict_types=1);
 namespace AuroraExtensions\ShippingFilters\Model\Data;
 
 use AuroraExtensions\ShippingFilters\{
-    Api\Data\LocalityInterface,
+    Api\Data\ShippingLocalityInterface,
     Model\ResourceModel\Locality as LocalityResourceModel
 };
 use Magento\Framework\Model\AbstractModel;
 
-class Locality extends AbstractModel implements LocalityInterface
+class Locality extends AbstractModel implements ShippingLocalityInterface
 {
     /**
      * @return void
@@ -46,7 +46,7 @@ class Locality extends AbstractModel implements LocalityInterface
      * @param string $createdAt
      * @return $this
      */
-    public function setCreatedAt($createdAt): LocalityInterface
+    public function setCreatedAt($createdAt): ShippingLocalityInterface
     {
         $this->setData('created_at', $createdAt);
         return $this;
@@ -64,7 +64,7 @@ class Locality extends AbstractModel implements LocalityInterface
      * @param string $name
      * @return $this
      */
-    public function setLocalityName(string $name): LocalityInterface
+    public function setLocalityName(string $name): ShippingLocalityInterface
     {
         $this->setData('locality_name', $name);
         return $this;
@@ -82,7 +82,7 @@ class Locality extends AbstractModel implements LocalityInterface
      * @param int $regionId
      * @return $this
      */
-    public function setRegionId(int $regionId): LocalityInterface
+    public function setRegionId(int $regionId): ShippingLocalityInterface
     {
         $this->setData('region_id', $regionId);
         return $this;
@@ -100,7 +100,7 @@ class Locality extends AbstractModel implements LocalityInterface
      * @param string $regionCode
      * @return $this
      */
-    public function setRegionCode(string $regionCode): LocalityInterface
+    public function setRegionCode(string $regionCode): ShippingLocalityInterface
     {
         $this->setData('region_code', $regionCode);
         return $this;
@@ -118,7 +118,7 @@ class Locality extends AbstractModel implements LocalityInterface
      * @param string $regionName
      * @return $this
      */
-    public function setRegionName(string $regionName): LocalityInterface
+    public function setRegionName(string $regionName): ShippingLocalityInterface
     {
         $this->setData('region_name', $regionName);
         return $this;
@@ -136,7 +136,7 @@ class Locality extends AbstractModel implements LocalityInterface
      * @param string $countryCode
      * @return $this
      */
-    public function setCountryCode(string $countryCode): LocalityInterface
+    public function setCountryCode(string $countryCode): ShippingLocalityInterface
     {
         $this->setData('country_code', $countryCode);
         return $this;
@@ -154,7 +154,7 @@ class Locality extends AbstractModel implements LocalityInterface
      * @param string $countryName
      * @return $this
      */
-    public function setCountryName(string $countryName): LocalityInterface
+    public function setCountryName(string $countryName): ShippingLocalityInterface
     {
         $this->setData('country_name', $countryName);
         return $this;
@@ -172,7 +172,7 @@ class Locality extends AbstractModel implements LocalityInterface
      * @param bool $isActive
      * @return $this
      */
-    public function setIsActive(bool $isActive): LocalityInterface
+    public function setIsActive(bool $isActive): ShippingLocalityInterface
     {
         $this->setData('is_active', $isActive);
         return $this;

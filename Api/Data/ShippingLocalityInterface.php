@@ -1,6 +1,6 @@
 <?php
 /**
- * LocalityInterface.php
+ * ShippingLocalityInterface.php
  *
  * NOTICE OF LICENSE
  *
@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace AuroraExtensions\ShippingFilters\Api\Data;
 
-interface LocalityInterface
+interface ShippingLocalityInterface
 {
     /**
      * @return int
@@ -27,7 +27,7 @@ interface LocalityInterface
 
     /**
      * @param int $id
-     * @return \AuroraExtensions\ShippingFilters\Api\Data\LocalityInterface
+     * @return \AuroraExtensions\ShippingFilters\Api\Data\ShippingLocalityInterface
      */
     public function setId($id);
 
@@ -38,9 +38,9 @@ interface LocalityInterface
 
     /**
      * @param \DateTime|string $createdAt
-     * @return \AuroraExtensions\ShippingFilters\Api\Data\LocalityInterface
+     * @return \AuroraExtensions\ShippingFilters\Api\Data\ShippingLocalityInterface
      */
-    public function setCreatedAt($createdAt): LocalityInterface;
+    public function setCreatedAt($createdAt): ShippingLocalityInterface;
 
     /**
      * @return string
@@ -49,9 +49,9 @@ interface LocalityInterface
 
     /**
      * @param string $name
-     * @return \AuroraExtensions\ShippingFilters\Api\Data\LocalityInterface
+     * @return \AuroraExtensions\ShippingFilters\Api\Data\ShippingLocalityInterface
      */
-    public function setLocalityName(string $name): LocalityInterface;
+    public function setLocalityName(string $name): ShippingLocalityInterface;
 
     /**
      * @return int
@@ -60,9 +60,9 @@ interface LocalityInterface
 
     /**
      * @param int $regionId
-     * @return \AuroraExtensions\ShippingFilters\Api\Data\LocalityInterface
+     * @return \AuroraExtensions\ShippingFilters\Api\Data\ShippingLocalityInterface
      */
-    public function setRegionId(int $regionId): LocalityInterface;
+    public function setRegionId(int $regionId): ShippingLocalityInterface;
 
     /**
      * @return string
@@ -71,9 +71,9 @@ interface LocalityInterface
 
     /**
      * @param string $regionCode
-     * @return \AuroraExtensions\ShippingFilters\Api\Data\LocalityInterface
+     * @return \AuroraExtensions\ShippingFilters\Api\Data\ShippingLocalityInterface
      */
-    public function setRegionCode(string $regionCode): LocalityInterface;
+    public function setRegionCode(string $regionCode): ShippingLocalityInterface;
 
     /**
      * @return string
@@ -82,9 +82,9 @@ interface LocalityInterface
 
     /**
      * @param string $regionName
-     * @return \AuroraExtensions\ShippingFilters\Api\Data\LocalityInterface
+     * @return \AuroraExtensions\ShippingFilters\Api\Data\ShippingLocalityInterface
      */
-    public function setRegionName(string $regionName): LocalityInterface;
+    public function setRegionName(string $regionName): ShippingLocalityInterface;
 
     /**
      * @return string
@@ -93,9 +93,9 @@ interface LocalityInterface
 
     /**
      * @param string $countryCode
-     * @return \AuroraExtensions\ShippingFilters\Api\Data\LocalityInterface
+     * @return \AuroraExtensions\ShippingFilters\Api\Data\ShippingLocalityInterface
      */
-    public function setCountryCode(string $countryCode): LocalityInterface;
+    public function setCountryCode(string $countryCode): ShippingLocalityInterface;
 
     /**
      * @return string
@@ -104,9 +104,9 @@ interface LocalityInterface
 
     /**
      * @param string $countryName
-     * @return \AuroraExtensions\ShippingFilters\Api\Data\LocalityInterface
+     * @return \AuroraExtensions\ShippingFilters\Api\Data\ShippingLocalityInterface
      */
-    public function setCountryName(string $countryName): LocalityInterface;
+    public function setCountryName(string $countryName): ShippingLocalityInterface;
 
     /**
      * @return bool
@@ -115,7 +115,7 @@ interface LocalityInterface
 
     /**
      * @param bool $isActive
-     * @return \AuroraExtensions\ShippingFilters\Api\Data\LocalityInterface
+     * @return \AuroraExtensions\ShippingFilters\Api\Data\ShippingLocalityInterface
      */
-    public function setIsActive(bool $isActive): LocalityInterface;
+    public function setIsActive(bool $isActive): ShippingLocalityInterface;
 }

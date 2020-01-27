@@ -1,6 +1,6 @@
 <?php
 /**
- * LocalityRepositoryInterface.php
+ * ShippingLocalityRepositoryInterface.php
  *
  * NOTICE OF LICENSE
  *
@@ -18,26 +18,26 @@ declare(strict_types=1);
 
 namespace AuroraExtensions\ShippingFilters\Api;
 
-interface LocalityRepositoryInterface
+interface ShippingLocalityRepositoryInterface
 {
     /**
      * @param int $id
-     * @return \AuroraExtensions\ShippingFilters\Api\Data\LocalityInterface
+     * @return \AuroraExtensions\ShippingFilters\Api\Data\ShippingLocalityInterface
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function getById(int $id): Data\LocalityInterface;
+    public function getById(int $id): Data\ShippingLocalityInterface;
 
     /**
-     * @param \AuroraExtensions\ShippingFilters\Api\Data\LocalityInterface $locality
+     * @param \AuroraExtensions\ShippingFilters\Api\Data\ShippingLocalityInterface $locality
      * @return int
      */
-    public function save(Data\LocalityInterface $locality): int;
+    public function save(Data\ShippingLocalityInterface $locality): int;
 
     /**
-     * @param \AuroraExtensions\ShippingFilters\Api\Data\LocalityInterface $locality
+     * @param \AuroraExtensions\ShippingFilters\Api\Data\ShippingLocalityInterface $locality
      * @return bool
      */
-    public function delete(Data\LocalityInterface $locality): bool;
+    public function delete(Data\ShippingLocalityInterface $locality): bool;
 
     /**
      * @param int $id

@@ -20,7 +20,7 @@ namespace AuroraExtensions\ShippingFilters\Controller\Adminhtml\Locality\Index;
 
 use AuroraExtensions\ShippingFilters\{
     Api\AbstractCollectionInterface,
-    Api\LocalityRepositoryInterface,
+    Api\ShippingLocalityRepositoryInterface,
     Exception\ExceptionFactory,
     Model\ResourceModel\Locality\Collection,
     Model\ResourceModel\Locality\CollectionFactory
@@ -41,7 +41,7 @@ class MassActivate extends AbstractMassAction implements
     /** @constant string ADMIN_RESOURCE */
     public const ADMIN_RESOURCE = 'AuroraExtensions_ShippingFilters::shippingfilters_locality';
 
-    /** @property LocalityRepositoryInterface $localityRepository */
+    /** @property ShippingLocalityRepositoryInterface $localityRepository */
     protected $localityRepository;
 
     /**
@@ -50,7 +50,7 @@ class MassActivate extends AbstractMassAction implements
      * @param ExceptionFactory $exceptionFactory
      * @param Filter $filter
      * @param FormKeyValidator $formKeyValidator
-     * @param LocalityRepositoryInterface $localityRepository
+     * @param ShippingLocalityRepositoryInterface $localityRepository
      */
     public function __construct(
         Context $context,
@@ -58,7 +58,7 @@ class MassActivate extends AbstractMassAction implements
         ExceptionFactory $exceptionFactory,
         Filter $filter,
         FormKeyValidator $formKeyValidator,
-        LocalityRepositoryInterface $localityRepository
+        ShippingLocalityRepositoryInterface $localityRepository
     ) {
         parent::__construct(
             $context,
@@ -80,7 +80,7 @@ class MassActivate extends AbstractMassAction implements
 
         /** @var int|string $localityId */
         foreach ($collection->getAllIds() as $localityId) {
-            /** @var LocalityInterface $locality */
+            /** @var ShippingLocalityInterface $locality */
             $locality = $this->localityRepository
                 ->getById((int) $localityId);
 

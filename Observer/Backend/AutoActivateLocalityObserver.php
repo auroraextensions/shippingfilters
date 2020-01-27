@@ -22,7 +22,7 @@ use Exception;
 use AuroraExtensions\ShippingFilters\{
     Api\AbstractCollectionInterface,
     Api\Data\PostalCodeInterface,
-    Api\LocalityRepositoryInterface,
+    Api\ShippingLocalityRepositoryInterface,
     Api\PostalCodeRepositoryInterface,
     Component\Message\MessageManagerTrait,
     Component\System\ModuleConfigTrait,
@@ -64,7 +64,7 @@ class AutoActivateLocalityObserver implements ObserverInterface
     /** @property CollectionFactory $collectionFactory */
     protected $collectionFactory;
 
-    /** @property LocalityRepositoryInterface $localityRepository */
+    /** @property ShippingLocalityRepositoryInterface $localityRepository */
     protected $localityRepository;
 
     /** @property PostalCodeRepositoryInterface $postalCodeRepository */
@@ -75,7 +75,7 @@ class AutoActivateLocalityObserver implements ObserverInterface
 
     /**
      * @param CollectionFactory $collectionFactory
-     * @param LocalityRepositoryInterface $localityRepository
+     * @param ShippingLocalityRepositoryInterface $localityRepository
      * @param MessageManagerInterface $messageManager
      * @param ModuleConfigInterface $moduleConfig
      * @param PostalCodeRepositoryInterface $postalCodeRepository
@@ -84,7 +84,7 @@ class AutoActivateLocalityObserver implements ObserverInterface
      */
     public function __construct(
         CollectionFactory $collectionFactory,
-        LocalityRepositoryInterface $localityRepository,
+        ShippingLocalityRepositoryInterface $localityRepository,
         MessageManagerInterface $messageManager,
         ModuleConfigInterface $moduleConfig,
         PostalCodeRepositoryInterface $postalCodeRepository,
@@ -164,7 +164,7 @@ class AutoActivateLocalityObserver implements ObserverInterface
      */
     private function activate(AbstractCollectionInterface $collection): void
     {
-        /** @var LocalityInterface $locality */
+        /** @var ShippingLocalityInterface $locality */
         foreach ($collection->getCacheItems() as $locality) {
             $locality->setIsActive(true);
             $this->localityRepository->save($locality);

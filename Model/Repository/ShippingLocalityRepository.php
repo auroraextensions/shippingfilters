@@ -1,6 +1,6 @@
 <?php
 /**
- * LocalityRepository.php
+ * ShippingLocalityRepository.php
  *
  * NOTICE OF LICENSE
  *
@@ -20,9 +20,9 @@ namespace AuroraExtensions\ShippingFilters\Model\Repository;
 
 use AuroraExtensions\ShippingFilters\{
     Api\AbstractCollectionInterface,
-    Api\LocalityRepositoryInterface,
-    Api\Data\LocalityInterface,
-    Api\Data\LocalityInterfaceFactory,
+    Api\ShippingLocalityRepositoryInterface,
+    Api\Data\ShippingLocalityInterface,
+    Api\Data\ShippingLocalityInterfaceFactory,
     Component\Repository\AbstractRepositoryTrait,
     Exception\ExceptionFactory,
     Model\ResourceModel\Locality as LocalityResource,
@@ -35,7 +35,7 @@ use Magento\Framework\{
     Exception\NoSuchEntityException
 };
 
-class LocalityRepository implements LocalityRepositoryInterface
+class ShippingLocalityRepository implements ShippingLocalityRepositoryInterface
 {
     /**
      * @method void addFilterGroupToCollection()
@@ -50,7 +50,7 @@ class LocalityRepository implements LocalityRepositoryInterface
     /** @property ExceptionFactory $exceptionFactory */
     protected $exceptionFactory;
 
-    /** @property LocalityInterfaceFactory $localityFactory */
+    /** @property ShippingLocalityInterfaceFactory $localityFactory */
     protected $localityFactory;
 
     /** @property LocalityResource $localityResource */
@@ -63,7 +63,7 @@ class LocalityRepository implements LocalityRepositoryInterface
      * @param CollectionFactory $collectionFactory
      * @param SearchResultsInterfaceFactory $searchResultsFactory
      * @param ExceptionFactory $exceptionFactory
-     * @param LocalityInterfaceFactory $localityFactory
+     * @param ShippingLocalityInterfaceFactory $localityFactory
      * @param LocalityResource $localityResource
      * @return void
      */
@@ -71,7 +71,7 @@ class LocalityRepository implements LocalityRepositoryInterface
         CollectionFactory $collectionFactory,
         SearchResultsInterfaceFactory $searchResultsFactory,
         ExceptionFactory $exceptionFactory,
-        LocalityInterfaceFactory $localityFactory,
+        ShippingLocalityInterfaceFactory $localityFactory,
         LocalityResource $localityResource
     ) {
         $this->collectionFactory = $collectionFactory;
@@ -83,12 +83,12 @@ class LocalityRepository implements LocalityRepositoryInterface
 
     /**
      * @param int $id
-     * @return LocalityInterface
+     * @return ShippingLocalityInterface
      * @throws NoSuchEntityException
      */
-    public function getById(int $id): LocalityInterface
+    public function getById(int $id): ShippingLocalityInterface
     {
-        /** @var LocalityInterface $locality */
+        /** @var ShippingLocalityInterface $locality */
         $locality = $this->localityFactory->create();
         $this->localityResource->load($locality, $id);
 
@@ -106,20 +106,20 @@ class LocalityRepository implements LocalityRepositoryInterface
     }
 
     /**
-     * @param LocalityInterface $locality
+     * @param ShippingLocalityInterface $locality
      * @return int
      */
-    public function save(LocalityInterface $locality): int
+    public function save(ShippingLocalityInterface $locality): int
     {
         $this->localityResource->save($locality);
         return (int) $locality->getId();
     }
 
     /**
-     * @param LocalityInterface $locality
+     * @param ShippingLocalityInterface $locality
      * @return bool
      */
-    public function delete(LocalityInterface $locality): bool
+    public function delete(ShippingLocalityInterface $locality): bool
     {
         return $this->deleteById((int) $locality->getId());
     }
@@ -130,7 +130,7 @@ class LocalityRepository implements LocalityRepositoryInterface
      */
     public function deleteById(int $id): bool
     {
-        /** @var LocalityInterface $locality */
+        /** @var ShippingLocalityInterface $locality */
         $locality = $this->localityFactory->create();
         $locality->setId($id);
 
