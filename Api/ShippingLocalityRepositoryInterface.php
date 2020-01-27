@@ -1,6 +1,6 @@
 <?php
 /**
- * LocalityRepositoryInterface.php
+ * ShippingLocalityRepositoryInterface.php
  *
  * NOTICE OF LICENSE
  *
@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace AuroraExtensions\ShippingFilters\Api;
 
-interface LocalityRepositoryInterface
+interface ShippingLocalityRepositoryInterface
 {
     /**
      * @param int $id
