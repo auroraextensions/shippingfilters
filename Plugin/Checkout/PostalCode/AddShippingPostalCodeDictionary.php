@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace AuroraExtensions\ShippingFilters\Plugin\Checkout\PostalCode;
 
-use AuroraExtensions\ShippingFilters\Csi\Filter\PostalCodeFilterInterface;
+use AuroraExtensions\ShippingFilters\Csi\Filter\ShippingPostalCodeFilterInterface;
 use Magento\Checkout\Block\Checkout\LayoutProcessorInterface;
 
 class AddShippingPostalCodeDictionary
