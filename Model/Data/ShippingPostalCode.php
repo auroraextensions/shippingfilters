@@ -19,12 +19,12 @@ declare(strict_types=1);
 namespace AuroraExtensions\ShippingFilters\Model\Data;
 
 use AuroraExtensions\ShippingFilters\{
-    Api\Data\PostalCodeInterface,
+    Api\Data\ShippingPostalCodeInterface,
     Model\ResourceModel\PostalCode as PostalCodeResourceModel
 };
 use Magento\Framework\Model\AbstractModel;
 
-class PostalCode extends AbstractModel implements PostalCodeInterface
+class PostalCode extends AbstractModel implements ShippingPostalCodeInterface
 {
     /**
      * @return void
@@ -46,7 +46,7 @@ class PostalCode extends AbstractModel implements PostalCodeInterface
      * @param string $createdAt
      * @return $this
      */
-    public function setCreatedAt($createdAt): PostalCodeInterface
+    public function setCreatedAt($createdAt): ShippingPostalCodeInterface
     {
         $this->setData('created_at', $createdAt);
         return $this;
@@ -64,7 +64,7 @@ class PostalCode extends AbstractModel implements PostalCodeInterface
      * @param string $postalCode
      * @return $this
      */
-    public function setPostalCode(string $postalCode): PostalCodeInterface
+    public function setPostalCode(string $postalCode): ShippingPostalCodeInterface
     {
         $this->setData('postal_code', $postalCode);
         return $this;
@@ -82,7 +82,7 @@ class PostalCode extends AbstractModel implements PostalCodeInterface
      * @param string $localityName
      * @return $this
      */
-    public function setLocalityName(string $localityName): PostalCodeInterface
+    public function setLocalityName(string $localityName): ShippingPostalCodeInterface
     {
         $this->setData('locality_name', $localityName);
         return $this;
@@ -100,7 +100,7 @@ class PostalCode extends AbstractModel implements PostalCodeInterface
      * @param int $regionId
      * @return $this
      */
-    public function setRegionId(int $regionId): PostalCodeInterface
+    public function setRegionId(int $regionId): ShippingPostalCodeInterface
     {
         $this->setData('region_id', $regionId);
         return $this;
@@ -118,7 +118,7 @@ class PostalCode extends AbstractModel implements PostalCodeInterface
      * @param string $regionCode
      * @return $this
      */
-    public function setRegionCode(string $regionCode): PostalCodeInterface
+    public function setRegionCode(string $regionCode): ShippingPostalCodeInterface
     {
         $this->setData('region_code', $regionCode);
         return $this;
@@ -136,7 +136,7 @@ class PostalCode extends AbstractModel implements PostalCodeInterface
      * @param string $regionName
      * @return $this
      */
-    public function setRegionName(string $regionName): PostalCodeInterface
+    public function setRegionName(string $regionName): ShippingPostalCodeInterface
     {
         $this->setData('region_name', $regionName);
         return $this;
@@ -154,7 +154,7 @@ class PostalCode extends AbstractModel implements PostalCodeInterface
      * @param string $countryCode
      * @return $this
      */
-    public function setCountryCode(string $countryCode): PostalCodeInterface
+    public function setCountryCode(string $countryCode): ShippingPostalCodeInterface
     {
         $this->setData('country_code', $countryCode);
         return $this;
@@ -172,7 +172,7 @@ class PostalCode extends AbstractModel implements PostalCodeInterface
      * @param string $countryName
      * @return $this
      */
-    public function setCountryName(string $countryName): PostalCodeInterface
+    public function setCountryName(string $countryName): ShippingPostalCodeInterface
     {
         $this->setData('country_name', $countryName);
         return $this;
