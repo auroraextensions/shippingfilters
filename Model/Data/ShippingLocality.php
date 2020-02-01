@@ -24,7 +24,7 @@ use AuroraExtensions\ShippingFilters\{
 };
 use Magento\Framework\Model\AbstractModel;
 
-class Locality extends AbstractModel implements ShippingLocalityInterface
+class ShippingLocality extends AbstractModel implements ShippingLocalityInterface
 {
     /**
      * @return void
