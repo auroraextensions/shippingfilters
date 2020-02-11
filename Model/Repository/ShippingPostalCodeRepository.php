@@ -1,6 +1,6 @@
 <?php
 /**
- * PostalCodeRepository.php
+ * ShippingPostalCodeRepository.php
  *
  * NOTICE OF LICENSE
  *
@@ -37,7 +37,7 @@ use Magento\Framework\{
     Exception\NoSuchEntityException
 };
 
-class PostalCodeRepository implements ShippingPostalCodeRepositoryInterface
+class ShippingPostalCodeRepository implements ShippingPostalCodeRepositoryInterface
 {
     /**
      * @method void addFilterGroupToCollection()
